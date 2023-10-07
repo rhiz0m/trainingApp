@@ -8,10 +8,31 @@
 import SwiftUI
 
 struct LoginView: View {
+    
+    @State private var textInput: String = ""
     var body: some View {
-        Text("Login View!")
+        
+        ZStack {
+            Image("loginBg")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+              
+            Text("Login View!").foregroundColor(.white)
+            VStack {
+                    CustomTextField(textInput: $textInput)
+                    Text("Du skrev: \(textInput)")
+                                .padding()
+                                .foregroundColor(.white)
+                        }.padding()
+                .background(Color.clear)
+            
+        }
     }
 }
+
+
+
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {

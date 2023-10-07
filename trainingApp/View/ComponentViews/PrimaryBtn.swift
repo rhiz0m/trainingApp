@@ -10,7 +10,7 @@ import SwiftUI
 struct PrimaryBtn: View {
     
     var height: CGFloat = 42
-    var width: CGFloat = 150
+    var width: CGFloat = 300
     var fontSize: CGFloat = CGFloat(FontSizes().medium)
     var title: String
     var onPress: () -> Void

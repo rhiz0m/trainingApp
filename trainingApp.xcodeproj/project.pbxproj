@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE535EC32AD1A789000AEC34 /* CustomTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */; };
 		FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA802AD16B4A00B610A6 /* auth.swift */; };
 		FE8EDA882AD171D000B610A6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA872AD171D000B610A6 /* LoginView.swift */; };
 		FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA892AD171EF00B610A6 /* SignUpView.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFeild.swift; sourceTree = "<group>"; };
 		FE8EDA802AD16B4A00B610A6 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
 		FE8EDA872AD171D000B610A6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FE8EDA892AD171EF00B610A6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,8 @@
 				FE8EDAA02AD1779600B610A6 /* ComponentViews */,
 				FE8EDA9F2AD176BA00B610A6 /* Styles */,
 				FE8EDA862AD1719F00B610A6 /* Screens */,
+				FEF1E2312AD0769B0080FE1C /* ContentView.swift */,
+				FEF1E22F2AD0769B0080FE1C /* trainingAppApp.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				FE8EDAA12AD177C000B610A6 /* PrimaryBtn.swift */,
+				FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -201,8 +206,6 @@
 				FE8EDA822AD16B6000B610A6 /* Model */,
 				FE8EDA842AD16B7500B610A6 /* ViewModel */,
 				FE8EDA832AD16B6D00B610A6 /* View */,
-				FEF1E22F2AD0769B0080FE1C /* trainingAppApp.swift */,
-				FEF1E2312AD0769B0080FE1C /* ContentView.swift */,
 				FEF1E2332AD0769C0080FE1C /* Assets.xcassets */,
 				FEF1E2352AD0769C0080FE1C /* Preview Content */,
 			);
@@ -372,6 +375,7 @@
 				FE8EDA9A2AD1764700B610A6 /* DetailsViewModel.swift in Sources */,
 				FE8EDA9E2AD1768E00B610A6 /* SettingsViewModel.swift in Sources */,
 				FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */,
+				FE535EC32AD1A789000AEC34 /* CustomTextFeild.swift in Sources */,
 				FE8EDA8C2AD1721800B610A6 /* HomeView.swift in Sources */,
 				FE8EDA9C2AD1766900B610A6 /* UpdateViewModel.swift in Sources */,
 				FEF1E2302AD0769B0080FE1C /* trainingAppApp.swift in Sources */,

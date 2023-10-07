@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA802AD16B4A00B610A6 /* auth.swift */; };
 		FEF1E2302AD0769B0080FE1C /* trainingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1E22F2AD0769B0080FE1C /* trainingAppApp.swift */; };
 		FEF1E2322AD0769B0080FE1C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1E2312AD0769B0080FE1C /* ContentView.swift */; };
 		FEF1E2342AD0769C0080FE1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEF1E2332AD0769C0080FE1C /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE8EDA802AD16B4A00B610A6 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
 		FEF1E22C2AD0769B0080FE1C /* trainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEF1E22F2AD0769B0080FE1C /* trainingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trainingAppApp.swift; sourceTree = "<group>"; };
 		FEF1E2312AD0769B0080FE1C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE8EDA822AD16B6000B610A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FE8EDA852AD16B8000B610A6 /* Auth */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FE8EDA832AD16B6D00B610A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FE8EDA842AD16B7500B610A6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FE8EDA852AD16B8000B610A6 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FE8EDA802AD16B4A00B610A6 /* auth.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		FEF1E2232AD0769B0080FE1C = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +126,9 @@
 		FEF1E22E2AD0769B0080FE1C /* trainingApp */ = {
 			isa = PBXGroup;
 			children = (
+				FE8EDA822AD16B6000B610A6 /* Model */,
+				FE8EDA842AD16B7500B610A6 /* ViewModel */,
+				FE8EDA832AD16B6D00B610A6 /* View */,
 				FEF1E22F2AD0769B0080FE1C /* trainingAppApp.swift */,
 				FEF1E2312AD0769B0080FE1C /* ContentView.swift */,
 				FEF1E2332AD0769C0080FE1C /* Assets.xcassets */,
@@ -258,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEF1E2322AD0769B0080FE1C /* ContentView.swift in Sources */,
+				FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */,
 				FEF1E2302AD0769B0080FE1C /* trainingAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

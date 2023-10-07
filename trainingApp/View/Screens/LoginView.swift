@@ -13,20 +13,22 @@ struct LoginView: View {
     var body: some View {
         
         ZStack {
-            Image("loginBg")
+            Image("gym")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
-              
-            Text("Login View!").foregroundColor(.white)
-            VStack {
-                    CustomTextField(textInput: $textInput)
-                    Text("Du skrev: \(textInput)")
+                .overlay(
+                    LinearGradient(gradient: Gradient(colors: [Color.green.opacity(0.12), Color.clear]), startPoint: .top, endPoint: .bottom)
+                        .edgesIgnoringSafeArea(.all)
+                )
+            VStack {Spacer()
+                CustomTextField(textInput: $textInput)
+                CustomTextField(textInput: $textInput)
+                    Text("User's text: \(textInput)")
                                 .padding()
                                 .foregroundColor(.white)
                         }.padding()
                 .background(Color.clear)
-            
         }
     }
 }

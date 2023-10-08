@@ -8,6 +8,7 @@
 import Foundation
 
 struct Spacing {
+    let xsmall = 6
     let small = 12
     let medium = 16
     let large = 24

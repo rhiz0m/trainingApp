@@ -9,7 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var textInput: String = ""
+    @State private var emailInput: String = ""
+    @State private var passwordInput: String = ""
+    
+    
     var body: some View {
         
         ZStack {
@@ -18,18 +21,21 @@ struct LoginView: View {
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
                 .overlay(
-                    LinearGradient(gradient: Gradient(colors: [Color.green.opacity(0.12), Color.clear]), startPoint: .top, endPoint: .bottom)
+                    LinearGradient(gradient: Gradient(colors: [Color.indigo.opacity(0.3), Color.black.opacity(0.6)]), startPoint: .top, endPoint: .bottom)
                         .edgesIgnoringSafeArea(.all)
                 )
-            VStack {Spacer()
-                CustomTextField(textInput: $textInput)
-                CustomTextField(textInput: $textInput)
-                    Text("User's text: \(textInput)")
-                                .padding()
-                                .foregroundColor(.white)
+                    
+            VStack(spacing: CGFloat(Spacing().xl)) {
+                CustomTextField(textInput: $emailInput, title: "Email", onPress: {})
+                CustomTextField(textInput: $passwordInput, title: "Password", onPress: {})
+                PrimaryBtn(width: 275, title: "Login", onPress: {})
+                Text("Sign Up").foregroundColor(.white)
+           
                         }.padding()
                 .background(Color.clear)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom).padding()
         }
+     
     }
 }
 

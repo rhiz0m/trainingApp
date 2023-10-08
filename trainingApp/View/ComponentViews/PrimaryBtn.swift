@@ -17,11 +17,11 @@ struct PrimaryBtn: View {
     @State private var isPressed = false
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [Color.blue, Color.cyan]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(gradient: Gradient(colors: [Color.black, Color.indigo.opacity(0.6)]), startPoint: .center, endPoint: .top)
             .frame(width: width, height: height).cornerRadius(CGFloat(Spacing().medium))
             .overlay(
                 RoundedRectangle(cornerRadius: CGFloat(Spacing().medium))
-                .stroke(Color.black, lineWidth: 2)
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo, Color.indigo]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
                 .background(
                     Button(action: {
                         self.onPress()
@@ -30,8 +30,8 @@ struct PrimaryBtn: View {
                         .foregroundColor(.white)
                         .font(.system(size: fontSize).bold())
                         }
+                )
             )
-        )
     }
 }
 

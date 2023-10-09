@@ -22,9 +22,12 @@
 		FE8EDA9C2AD1766900B610A6 /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA9B2AD1766900B610A6 /* UpdateViewModel.swift */; };
 		FE8EDA9E2AD1768E00B610A6 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA9D2AD1768E00B610A6 /* SettingsViewModel.swift */; };
 		FE8EDAA22AD177C000B610A6 /* PrimaryBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDAA12AD177C000B610A6 /* PrimaryBtn.swift */; };
-		FE8EDAA42AD1785F00B610A6 /* FontSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDAA32AD1785F00B610A6 /* FontSizes.swift */; };
-		FE8EDAA62AD1788100B610A6 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDAA52AD1788100B610A6 /* Spacing.swift */; };
 		FE8EDAA82AD179CF00B610A6 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDAA72AD179CF00B610A6 /* GetData.swift */; };
+		FEC2DA942AD475D4003F88C4 /* GridPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA932AD475D4003F88C4 /* GridPoints.swift */; };
+		FEC2DA982AD4796E003F88C4 /* LoginViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA972AD4796E003F88C4 /* LoginViewAdapter.swift */; };
+		FEC2DA9A2AD47A48003F88C4 /* LoginViewAdapterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA992AD47A48003F88C4 /* LoginViewAdapterer.swift */; };
+		FEC2DA9C2AD48105003F88C4 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA9B2AD48105003F88C4 /* Spacing.swift */; };
+		FEC2DA9E2AD481BF003F88C4 /* FontSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA9D2AD481BF003F88C4 /* FontSizes.swift */; };
 		FEF1E2302AD0769B0080FE1C /* trainingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1E22F2AD0769B0080FE1C /* trainingAppApp.swift */; };
 		FEF1E2322AD0769B0080FE1C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1E2312AD0769B0080FE1C /* ContentView.swift */; };
 		FEF1E2342AD0769C0080FE1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEF1E2332AD0769C0080FE1C /* Assets.xcassets */; };
@@ -67,9 +70,12 @@
 		FE8EDA9B2AD1766900B610A6 /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		FE8EDA9D2AD1768E00B610A6 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		FE8EDAA12AD177C000B610A6 /* PrimaryBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryBtn.swift; sourceTree = "<group>"; };
-		FE8EDAA32AD1785F00B610A6 /* FontSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizes.swift; sourceTree = "<group>"; };
-		FE8EDAA52AD1788100B610A6 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		FE8EDAA72AD179CF00B610A6 /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
+		FEC2DA932AD475D4003F88C4 /* GridPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPoints.swift; sourceTree = "<group>"; };
+		FEC2DA972AD4796E003F88C4 /* LoginViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAdapter.swift; sourceTree = "<group>"; };
+		FEC2DA992AD47A48003F88C4 /* LoginViewAdapterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAdapterer.swift; sourceTree = "<group>"; };
+		FEC2DA9B2AD48105003F88C4 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		FEC2DA9D2AD481BF003F88C4 /* FontSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizes.swift; sourceTree = "<group>"; };
 		FEF1E22C2AD0769B0080FE1C /* trainingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trainingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEF1E22F2AD0769B0080FE1C /* trainingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trainingAppApp.swift; sourceTree = "<group>"; };
 		FEF1E2312AD0769B0080FE1C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 			children = (
 				FE8EDA852AD16B8000B610A6 /* Auth */,
 				FE8EDAA72AD179CF00B610A6 /* GetData.swift */,
+				FEC2DA972AD4796E003F88C4 /* LoginViewAdapter.swift */,
+				FEC2DA992AD47A48003F88C4 /* LoginViewAdapterer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,8 +173,9 @@
 		FE8EDA9F2AD176BA00B610A6 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				FE8EDAA32AD1785F00B610A6 /* FontSizes.swift */,
-				FE8EDAA52AD1788100B610A6 /* Spacing.swift */,
+				FEC2DA932AD475D4003F88C4 /* GridPoints.swift */,
+				FEC2DA9B2AD48105003F88C4 /* Spacing.swift */,
+				FEC2DA9D2AD481BF003F88C4 /* FontSizes.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -368,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE8EDA902AD1729E00B610A6 /* UpdateView.swift in Sources */,
+				FEC2DA9C2AD48105003F88C4 /* Spacing.swift in Sources */,
 				FE8EDA942AD1738600B610A6 /* LoginViewModel.swift in Sources */,
 				FE8EDA922AD1733700B610A6 /* SettingsView.swift in Sources */,
 				FE8EDAA22AD177C000B610A6 /* PrimaryBtn.swift in Sources */,
@@ -378,15 +388,17 @@
 				FE535EC32AD1A789000AEC34 /* CustomTextFeild.swift in Sources */,
 				FE8EDA8C2AD1721800B610A6 /* HomeView.swift in Sources */,
 				FE8EDA9C2AD1766900B610A6 /* UpdateViewModel.swift in Sources */,
+				FEC2DA942AD475D4003F88C4 /* GridPoints.swift in Sources */,
 				FEF1E2302AD0769B0080FE1C /* trainingAppApp.swift in Sources */,
-				FE8EDAA62AD1788100B610A6 /* Spacing.swift in Sources */,
 				FE8EDA982AD1762A00B610A6 /* HomeViewModel.swift in Sources */,
-				FE8EDAA42AD1785F00B610A6 /* FontSizes.swift in Sources */,
 				FE8EDA882AD171D000B610A6 /* LoginView.swift in Sources */,
+				FEC2DA9E2AD481BF003F88C4 /* FontSizes.swift in Sources */,
 				FE8EDAA82AD179CF00B610A6 /* GetData.swift in Sources */,
 				FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */,
 				FE8EDA962AD1760400B610A6 /* SignUpViewModel.swift in Sources */,
+				FEC2DA982AD4796E003F88C4 /* LoginViewAdapter.swift in Sources */,
 				FE8EDA8E2AD1724E00B610A6 /* DetailsView.swift in Sources */,
+				FEC2DA9A2AD47A48003F88C4 /* LoginViewAdapterer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

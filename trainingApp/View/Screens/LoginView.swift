@@ -51,14 +51,14 @@ struct LoginView: View {
             onPress: {
                 
             }
-        )
+        ).padding(.horizontal, GridPoints.x6)
         CustomTextField(
             textInput: $loginViewAdapter.passwordInput,
             title: loginViewAdapter.passwordPlaceHolder,
             onPress: {
                 
             }
-        )
+        ).padding(.horizontal, GridPoints.x6)
     }
     
     @ViewBuilder private var buttonsView: some View {

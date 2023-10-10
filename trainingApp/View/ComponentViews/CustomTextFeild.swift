@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CustomTextField: View {
     @Binding var textInput: String
-    var height: CGFloat = 42
-    var width: CGFloat = 300
+    var height: CGFloat = 44
+    var width: CGFloat = .infinity
     var fontSize: CGFloat = CGFloat(FontSizes().medium)
     var title: String
     var onPress: () -> Void
@@ -22,18 +22,18 @@ struct CustomTextField: View {
                     .textFieldStyle(PlainTextFieldStyle())
                     .frame(width: width, height:height)
                     .padding(.leading, 20) // Add left padding for the entire TextField
-                    .background(.white)
+                    .background(.black)
                     .cornerRadius(CGFloat(Spacing().large))
                     .padding(CGFloat(Spacing().xsmall))
                     .overlay(
                         RoundedRectangle(cornerRadius: CGFloat(Spacing().xl))
                             .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo.opacity(0.8), Color.blue.opacity(0.6)]), startPoint: .top, endPoint: .bottom), lineWidth: 2)
-                    )
+                    ).padding(.horizontal, GridPoints.x4)
                     
                     .overlay(
                         Text(title)
                             .padding(CGFloat(Spacing().xsmall))
-                            .foregroundColor(Color.secondary)
+                            .foregroundColor(Color.white)
                             .padding(.horizontal, CGFloat(Spacing().xsmall))
                             .offset(x: -80, y: 0)
                             .font(.caption)
@@ -67,7 +67,7 @@ struct CustomTextFeild_Previews: PreviewProvider {
     static var previews: some View {
         CustomTextField(textInput: $textInput, title: "textFeild Title", onPress: {})
             .previewLayout(.sizeThatFits)
-            .padding()
+       
     }
 }
 

@@ -16,11 +16,13 @@ struct LoginView: View {
     }
     
     @ViewBuilder private var content: some View {
-        ZStack {
-            backgroundImageView(imageName: "gym")
-            VStack(spacing: CGFloat(GridPoints.x4)) {
-                textFieldsView
-                buttonsView
+        NavigationView {
+            ZStack {
+                backgroundImageView(imageName: "gym")
+                VStack(spacing: CGFloat(GridPoints.x4)) {
+                    textFieldsView
+                    buttonsView
+                }
             }
         }
     }
@@ -51,7 +53,7 @@ struct LoginView: View {
             onPress: {
                 
             }
-        ).padding(.horizontal, GridPoints.x6)
+        ).padding(.horizontal, GridPoints.x6).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         CustomTextField(
             textInput: $loginViewAdapter.passwordInput,
             title: loginViewAdapter.passwordPlaceHolder,
@@ -62,25 +64,18 @@ struct LoginView: View {
     }
     
     @ViewBuilder private var buttonsView: some View {
-        PrimaryBtn(
-            //width: 275, // will not be needed thanks to padding
-            title: "Login",
-            onPress: {
-                
-            }
-        )
+        NavigationLink(destination: HomeView(), label: {
+            Text("Login")
+        })
         .padding(.horizontal, GridPoints.x4)
         
-        Text("Sign Up").foregroundColor(.white)
-            .padding()
-            .background(Color.clear)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom).padding()
-            .onTapGesture {
-                // Tap gesture för att lyssna på vad som händer om man trycker på den
-            }
+        NavigationLink(destination: SignUpView(), label: {
+            Text("Sign Up")
+        })
+        .padding(.horizontal, GridPoints.x4)
+        Spacer()
     }
-    
-    
+
     
     struct LoginView_Previews: PreviewProvider {
         static var previews: some View {

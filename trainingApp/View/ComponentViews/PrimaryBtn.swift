@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrimaryBtn: View {
-    
+   
     var height: CGFloat = 44
     var width: CGFloat = .infinity
     var fontSize: CGFloat = CGFloat(FontSizes().medium)

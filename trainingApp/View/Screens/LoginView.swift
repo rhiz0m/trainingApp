@@ -65,12 +65,12 @@ struct LoginView: View {
     
     @ViewBuilder private var buttonsView: some View {
         NavigationLink(destination: HomeView(), label: {
-            Text("Login")
+            SharedBtnStyle(title: "Login")
         })
         .padding(.horizontal, GridPoints.x4)
         
         NavigationLink(destination: SignUpView(), label: {
-            Text("Sign Up")
+            SharedBtnStyle(title: "Sign Up")
         })
         .padding(.horizontal, GridPoints.x4)
         Spacer()

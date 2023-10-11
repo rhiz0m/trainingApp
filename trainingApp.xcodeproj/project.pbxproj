@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FE535EC32AD1A789000AEC34 /* CustomTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */; };
+		FE8ECEE72AD6C05C008B5E15 /* SharedBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */; };
 		FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA802AD16B4A00B610A6 /* auth.swift */; };
 		FE8EDA882AD171D000B610A6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA872AD171D000B610A6 /* LoginView.swift */; };
 		FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA892AD171EF00B610A6 /* SignUpView.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFeild.swift; sourceTree = "<group>"; };
+		FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedBtnStyle.swift; sourceTree = "<group>"; };
 		FE8EDA802AD16B4A00B610A6 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
 		FE8EDA872AD171D000B610A6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FE8EDA892AD171EF00B610A6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				FEC2DA932AD475D4003F88C4 /* GridPoints.swift */,
 				FEC2DA9B2AD48105003F88C4 /* Spacing.swift */,
 				FEC2DA9D2AD481BF003F88C4 /* FontSizes.swift */,
+				FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */,
 				FE535EC32AD1A789000AEC34 /* CustomTextFeild.swift in Sources */,
 				FE8EDA8C2AD1721800B610A6 /* HomeView.swift in Sources */,
+				FE8ECEE72AD6C05C008B5E15 /* SharedBtnStyle.swift in Sources */,
 				FE8EDA9C2AD1766900B610A6 /* UpdateViewModel.swift in Sources */,
 				FEC2DA942AD475D4003F88C4 /* GridPoints.swift in Sources */,
 				FEF1E2302AD0769B0080FE1C /* trainingAppApp.swift in Sources */,

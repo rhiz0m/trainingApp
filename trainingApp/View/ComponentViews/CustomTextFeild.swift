@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CustomTextField: View {
+    
     @Binding var textInput: String
-    var height: CGFloat = 44
-    var width: CGFloat = .infinity
+    
+    var fixedHeight: CGFloat = 44
     var fontSize: CGFloat = CGFloat(FontSizes().medium)
     var title: String
     var onPress: () -> Void
@@ -19,45 +20,27 @@ struct CustomTextField: View {
         VStack {
             ZStack(alignment: .leading) {
                 TextField("", text: $textInput)
+                    .padding()
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(width: width, height:height)
-                    .padding(.leading, 20) // Add left padding for the entire TextField
+                    .frame(height: fixedHeight)
                     .background(.black)
-                    .cornerRadius(CGFloat(Spacing().large))
-                    .padding(CGFloat(Spacing().xsmall))
+                    .cornerRadius(GridPoints.x6)
+                    .padding(GridPoints.half)
                     .overlay(
-                        RoundedRectangle(cornerRadius: CGFloat(Spacing().xl))
+                        RoundedRectangle(cornerRadius: GridPoints.x6)
                             .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo.opacity(0.8), Color.blue.opacity(0.6)]), startPoint: .top, endPoint: .bottom), lineWidth: 2)
                     ).padding(.horizontal, GridPoints.x4)
-                    
                     .overlay(
-                        Text(title)
-                            .padding(CGFloat(Spacing().xsmall))
-                            .foregroundColor(Color.white)
-                            .padding(.horizontal, CGFloat(Spacing().xsmall))
-                            .offset(x: -80, y: 0)
+                        Text(textInput.isEmpty ? title : textInput)
+                            .foregroundColor(textInput.isEmpty ? Color(red: 122/255, green: 245/255, blue: 255/255) : Color.white) // if not empty, use change color to white when user types
                             .font(.caption)
-                            .opacity(textInput.isEmpty ? 1 : 0) // Show only when the textInput is empty
+                            .padding(.horizontal, GridPoints.x8)
+                            .multilineTextAlignment(.leading) // Align text to the left
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     )
+
             }
         }
-    }
-}
-
-struct InnerShadowView: View {
-    var body: some View {
-        RoundedRectangle(cornerRadius: 20)
-            .fill(Color.white)
-            .frame(width: 200, height: 100)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .strokeBorder(Color.black, lineWidth: 2)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .foregroundColor(Color.white)
-                            .shadow(color: Color.black, radius: 8, x: 0, y: 0) // Inner shadow
-                    )
-            )
     }
 }
 

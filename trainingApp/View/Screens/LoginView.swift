@@ -16,28 +16,28 @@ struct LoginView: View {
     }
     
     @ViewBuilder private var content: some View {
-        NavigationView {
             ZStack {
-                backgroundImageView(imageName: "gym")
-                VStack(spacing: CGFloat(GridPoints.x4)) {
+                backgroundImageView(imageName: "gym_loginBg")
+                VStack(spacing: CGFloat(GridPoints.x3)) {
                     textFieldsView
                     buttonsView
                 }
             }
         }
-    }
+    
     
     @ViewBuilder private func backgroundImageView(imageName: String) -> some View {
         Image(imageName)
             .resizable()
             .scaledToFill()
+           
             .edgesIgnoringSafeArea(.bottom)
             .overlay(
                 LinearGradient(
                     gradient: Gradient(
                         colors: [
-                            Color.indigo.opacity(0.3),
-                            Color.black.opacity(0.6)]
+                            Color.indigo.opacity(0.5),
+                            Color.black.opacity(0.9)]
                     ),
                     startPoint: .top,
                     endPoint: .bottom
@@ -64,16 +64,16 @@ struct LoginView: View {
     }
     
     @ViewBuilder private var buttonsView: some View {
+        
         NavigationLink(destination: HomeView(), label: {
             SharedBtnStyle(title: "Login")
         })
-        .padding(.horizontal, GridPoints.x4)
+        .padding(.horizontal, GridPoints.x8)
         
         NavigationLink(destination: SignUpView(), label: {
-            SharedBtnStyle(title: "Sign Up")
+           SharedBtnStyle(title: "Sign Up")
         })
-        .padding(.horizontal, GridPoints.x4)
-        Spacer()
+        .padding(.horizontal, GridPoints.x8)
     }
 
     

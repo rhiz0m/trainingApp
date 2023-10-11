@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct SharedBtnStyle: View {
+    
     var title: String
-    var height: CGFloat = 44
     var width: CGFloat = .infinity
-    var fontSize: CGFloat = CGFloat(FontSizes().medium)
+    var fixedHeight: CGFloat = 44
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [Color.black, Color.indigo.opacity(0.6)]), startPoint: .center, endPoint: .top).cornerRadius(GridPoints.x6).padding(.horizontal, GridPoints.x6)
-            .frame(width: width, height: height)
+        LinearGradient(gradient: Gradient(colors: [Color.black, Color.blue.opacity(0.45)]), startPoint: .leading, endPoint: .trailing)
+            .cornerRadius(GridPoints.x6)
+            .frame(height: fixedHeight)
+            .padding(.horizontal, GridPoints.x6)
             .overlay(
                 RoundedRectangle(cornerRadius: GridPoints.x3)
-                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo, Color.indigo]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2).padding(.horizontal, GridPoints.x6)
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2).padding(.horizontal, GridPoints.x6)
                     .background(
-                   
                         Text(title)
+                        .font(.custom("Roboto-Medium", size: 16))
                         .foregroundColor(.white)
-                        .font(.system(size: fontSize).bold())
-                        
+                    )
                 )
-            )
     }
 }
 

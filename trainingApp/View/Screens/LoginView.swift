@@ -16,21 +16,21 @@ struct LoginView: View {
     }
     
     @ViewBuilder private var content: some View {
-            ZStack {
-                backgroundImageView(imageName: "gym_loginBg")
-                VStack(spacing: CGFloat(GridPoints.x3)) {
-                    textFieldsView
-                    buttonsView
-                }
+        ZStack {
+            backgroundImageView(imageName: "gym_loginBg")
+            VStack(spacing: CGFloat(GridPoints.x3)) {
+                textFieldsView
+                buttonsView
             }
         }
+    }
     
     
     @ViewBuilder private func backgroundImageView(imageName: String) -> some View {
         Image(imageName)
             .resizable()
             .scaledToFill()
-           
+        
             .edgesIgnoringSafeArea(.bottom)
             .overlay(
                 LinearGradient(
@@ -71,16 +71,16 @@ struct LoginView: View {
         .padding(.horizontal, GridPoints.x8)
         
         NavigationLink(destination: SignUpView(), label: {
-           SharedBtnStyle(title: "Sign Up")
+            SharedBtnStyle(title: "Sign Up")
         })
         .padding(.horizontal, GridPoints.x8)
     }
-
-    
-    struct LoginView_Previews: PreviewProvider {
-        static var previews: some View {
-            LoginView()
-        }
-    }
     
 }
+
+struct LoginView_Previews: PreviewProvider {
+        static var previews: some View {
+            LoginView()
+    }
+}
+    

@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
-class TrainingNote {
+
+struct TrainingNote {
     var exercise: String
     var date: Date
     var exerciseInfo: String

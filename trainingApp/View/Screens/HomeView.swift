@@ -6,28 +6,58 @@
 //
 
 import SwiftUI
-import FirebaseFirestore
+
 
 struct HomeView: View {
-    
-    var firebaseDb = Firestore.firestore() // access to the firebase database
-    
+
     var body: some View {
-        VStack {
-            Text("Home View!")
+        formCell()
+    }
+}
+
+
+struct formCell: View {
+    @State private var exerciseName = ""
+    @State private var weight = 0
+    @State private var reps = 0
+    @State private var sets = 0
+
+    var body: some View {
+        ZStack {
+            VStack {
+                Text("My Exercises!").padding()
+
+                TextField("Exercise name: ", text: $exerciseName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                TextField("Weight: ", text: Binding(
+                    get: { String(weight) },
+                    set: { if let newValue = Int($0) { weight = newValue } }
+                ))
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-            Button(action: {
-                firebaseDb.collection("exercice").addDocument(data: [
-                    "name": "deadlift",
-                    "musclegroups": ["back", "core", "trapetiuz"]
-                ])
-            },
-                   label: {
-                Text("Add to Firebase Database")
-            })
+
+                Stepper("Reps: \(reps)", value: $reps)
+                    .padding()
+
+                Stepper("Sets: \(sets)", value: $sets)
+                    .padding()
+
+                Button(action: {
+                    if !exerciseName.isEmpty {
+                        addToDb(exerciseName: exerciseName, weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
+                    }
+                }) {
+                    Text("Add to Firebase Database")
+                }
+            }
         }
     }
 }
+
+
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

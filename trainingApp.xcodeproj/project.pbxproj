@@ -15,7 +15,9 @@
 		FE67B03B2AD997B100CAD12E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FE67B03A2AD997B100CAD12E /* FirebaseFirestore */; };
 		FE67B03D2AD997B100CAD12E /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FE67B03C2AD997B100CAD12E /* FirebaseFirestoreCombine-Community */; };
 		FE67B03F2AD997B100CAD12E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE67B03E2AD997B100CAD12E /* FirebaseFirestoreSwift */; };
-		FE6BF5172AD854C900E54679 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BF5162AD854C900E54679 /* Exercise.swift */; };
+		FE69EAC12ADC3F0D00F3D825 /* UsersPrograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */; };
+		FE69EAC32ADC45F000F3D825 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC22ADC45F000F3D825 /* ProgramViewModel.swift */; };
+		FE6BF5172AD854C900E54679 /* UsersExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BF5162AD854C900E54679 /* UsersExercise.swift */; };
 		FE8315F62ADAA70A00698492 /* AddToDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8315F52ADAA70A00698492 /* AddToDb.swift */; };
 		FE8ECEE72AD6C05C008B5E15 /* SharedBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */; };
 		FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA802AD16B4A00B610A6 /* auth.swift */; };
@@ -68,7 +70,9 @@
 /* Begin PBXFileReference section */
 		FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFeild.swift; sourceTree = "<group>"; };
 		FE67B0312AD9930600CAD12E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FE6BF5162AD854C900E54679 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPrograms.swift; sourceTree = "<group>"; };
+		FE69EAC22ADC45F000F3D825 /* ProgramViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
+		FE6BF5162AD854C900E54679 /* UsersExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersExercise.swift; sourceTree = "<group>"; };
 		FE8315F52ADAA70A00698492 /* AddToDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDb.swift; sourceTree = "<group>"; };
 		FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedBtnStyle.swift; sourceTree = "<group>"; };
 		FE8EDA802AD16B4A00B610A6 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
@@ -135,14 +139,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FE8315F72ADAA71600698492 /* CRUD */ = {
-			isa = PBXGroup;
-			children = (
-				FE8315F52ADAA70A00698492 /* AddToDb.swift */,
-			);
-			path = CRUD;
-			sourceTree = "<group>";
-		};
 		FE8EDA822AD16B6000B610A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +146,8 @@
 				FE8EDAA72AD179CF00B610A6 /* GetData.swift */,
 				FEC2DA972AD4796E003F88C4 /* LoginViewAdapter.swift */,
 				FEC2DA992AD47A48003F88C4 /* LoginViewAdapterer.swift */,
-				FE6BF5162AD854C900E54679 /* Exercise.swift */,
+				FE6BF5162AD854C900E54679 /* UsersExercise.swift */,
+				FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,7 +168,8 @@
 		FE8EDA842AD16B7500B610A6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FE8315F72ADAA71600698492 /* CRUD */,
+				FE69EAC22ADC45F000F3D825 /* ProgramViewModel.swift */,
+				FE8315F52ADAA70A00698492 /* AddToDb.swift */,
 				FE8EDA932AD1738600B610A6 /* LoginViewModel.swift */,
 				FE8EDA952AD1760400B610A6 /* SignUpViewModel.swift */,
 				FE8EDA972AD1762A00B610A6 /* HomeViewModel.swift */,
@@ -441,6 +439,7 @@
 				FE8EDA982AD1762A00B610A6 /* HomeViewModel.swift in Sources */,
 				FE8EDA882AD171D000B610A6 /* LoginView.swift in Sources */,
 				FEC2DA9E2AD481BF003F88C4 /* FontSizes.swift in Sources */,
+				FE69EAC32ADC45F000F3D825 /* ProgramViewModel.swift in Sources */,
 				FE8EDAA82AD179CF00B610A6 /* GetData.swift in Sources */,
 				FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */,
 				FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */,
@@ -449,7 +448,8 @@
 				FE8EDA8E2AD1724E00B610A6 /* DetailsView.swift in Sources */,
 				FEC2DA9A2AD47A48003F88C4 /* LoginViewAdapterer.swift in Sources */,
 				FE8315F62ADAA70A00698492 /* AddToDb.swift in Sources */,
-				FE6BF5172AD854C900E54679 /* Exercise.swift in Sources */,
+				FE6BF5172AD854C900E54679 /* UsersExercise.swift in Sources */,
+				FE69EAC12ADC3F0D00F3D825 /* UsersPrograms.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

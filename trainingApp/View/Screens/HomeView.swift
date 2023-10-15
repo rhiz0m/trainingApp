@@ -9,48 +9,47 @@ import SwiftUI
 
 
 struct HomeView: View {
+    
+    @StateObject private var viewModel = ProgramViewModel()
 
     var body: some View {
-        formCell()
+        FormCell(viewModel: viewModel)
     }
 }
 
-
-struct formCell: View {
-    @State private var exerciseName = ""
-    @State private var weight = 0
-    @State private var reps = 0
-    @State private var sets = 0
+struct FormCell: View {
+    @ObservedObject var viewModel: ProgramViewModel
 
     var body: some View {
-        ZStack {
-            VStack {
-                Text("My Exercises!").padding()
+        VStack {
+            Text("My Exercises!").padding()
 
-                TextField("Exercise name: ", text: $exerciseName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                TextField("Weight: ", text: Binding(
-                    get: { String(weight) },
-                    set: { if let newValue = Int($0) { weight = newValue } }
-                ))
+            TextField("Program name: ", text: $viewModel.programName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
+            TextField("Exercise name: ", text: $viewModel.exerciseName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
+            TextField("Muscle groups (comma-separated): ", text: $viewModel.muscleGroups)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
 
-                Stepper("Reps: \(reps)", value: $reps)
-                    .padding()
+            TextField("Weight: ", text: $viewModel.weight)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
 
-                Stepper("Sets: \(sets)", value: $sets)
-                    .padding()
+            Stepper("Reps: \(viewModel.reps)", value: $viewModel.reps)
+                .padding()
 
-                Button(action: {
-                    if !exerciseName.isEmpty {
-                        addToDb(exerciseName: exerciseName, weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
-                    }
-                }) {
-                    Text("Add to Firebase Database")
-                }
+            Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
+                .padding()
+
+            Button(action: {
+                viewModel.addExerciseToDatabase()
+            }) {
+                Text("Add to Firebase Database")
             }
         }
     }

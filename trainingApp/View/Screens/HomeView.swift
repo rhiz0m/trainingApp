@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct HomeView: View {
     
     @StateObject private var viewModel = ProgramViewModel()
@@ -31,7 +30,7 @@ struct FormCell: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            TextField("Exercise name: ", text: $viewModel.exerciseName)
+            TextField("Exercise name: ", text: $viewModel.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             

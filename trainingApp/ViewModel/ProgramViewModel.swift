@@ -3,7 +3,7 @@ import FirebaseFirestore
 
 class ProgramViewModel: ObservableObject {
     @Published var Id = ""
-    @Published var exerciseName = ""
+    @Published var name = ""
     @Published var muscleGroups = ""
     @Published var weight = ""
     @Published var reps = 0
@@ -11,16 +11,16 @@ class ProgramViewModel: ObservableObject {
 
     func createProgramAndAddToFirestore() {
         
-        if !exerciseName.isEmpty {
+        if !name.isEmpty {
             
             let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
-            let weightValue = Int(weight) ?? 0
+            let weight = Int(weight) ?? 0
             
             let firebaseDb = Firestore.firestore()
             
             let newProgram = UsersPrograms(id: Id, title: Id, category: "exercise", exercises: [])
             
-            let newExercise = UsersExercise(name: exerciseName, muscleGroups: muscleGroupsArray, weight: weightValue, reps: reps, sets: sets, totalReps: reps * sets)
+            let newExercise = UsersExercise(name: name, muscleGroups: muscleGroupsArray, weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
             
             do {
                 let programDocumentRef = firebaseDb.collection("training_programs").document(Id).collection("exercises")
@@ -32,4 +32,13 @@ class ProgramViewModel: ObservableObject {
             }
         }
     }
+    
+    func deleteTrainingProgram() {
+        
+    }
+    
+    func updateTrainingProgram() {
+        
+    }
+    
 }

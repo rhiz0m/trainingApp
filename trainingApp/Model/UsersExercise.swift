@@ -7,11 +7,10 @@
 
 import Foundation
 import FirebaseFirestoreSwift
-import Firebase 
 
 
 struct UsersExercise: Codable{
-  var category = "exercice"
+  var category = "users_exercises"
   var name: String
   var muscleGroups: [String]?
   var weight: Int

@@ -7,12 +7,13 @@
 
 import Foundation
 import FirebaseFirestoreSwift
-import Firebase 
+
 
 struct UsersPrograms: Codable {
     @DocumentID var id: String?
     var title: String
-    var category = "exercice"
+    var category = "users_programs"
     var exercises: [UsersExercise] = []
     
 }
+

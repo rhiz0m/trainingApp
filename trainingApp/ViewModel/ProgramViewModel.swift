@@ -1,30 +1,35 @@
-//
-//  p.swift
-//  trainingApp
-//
-//  Created by Andreas Antonsson on 2023-10-15.
-//
-
 import Foundation
+import FirebaseFirestore
 
 class ProgramViewModel: ObservableObject {
-    @Published var programName = ""
+    @Published var Id = ""
     @Published var exerciseName = ""
     @Published var muscleGroups = ""
     @Published var weight = ""
     @Published var reps = 0
     @Published var sets = 0
 
-    func addExerciseToDatabase() {
+    func createProgramAndAddToFirestore() {
+        
         if !exerciseName.isEmpty {
+            
             let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
             let weightValue = Int(weight) ?? 0
             
-            // Assuming programName is the unique ID for the program
-            let program = UsersPrograms(id: programName, title: programName, category: "exercise", exercises: [])
-
-            addToDb(program: program, Id: programName, exerciseName: exerciseName, muscleGroups: muscleGroupsArray, weight: weightValue, reps: reps, sets: sets, totalReps: reps * sets)
+            let firebaseDb = Firestore.firestore()
+            
+            let newProgram = UsersPrograms(id: Id, title: Id, category: "exercise", exercises: [])
+            
+            let newExercise = UsersExercise(name: exerciseName, muscleGroups: muscleGroupsArray, weight: weightValue, reps: reps, sets: sets, totalReps: reps * sets)
+            
+            do {
+                let programDocumentRef = firebaseDb.collection("training_programs").document(Id).collection("exercises")
+                
+                try programDocumentRef.addDocument(from: newExercise)
+                
+                } catch let error {
+                print(error.localizedDescription)
+            }
         }
     }
 }
-

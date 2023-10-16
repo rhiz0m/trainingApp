@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @StateObject private var viewModel = ProgramViewModel()
 
+
     var body: some View {
         FormCell(viewModel: viewModel)
     }
@@ -19,12 +20,14 @@ struct HomeView: View {
 
 struct FormCell: View {
     @ObservedObject var viewModel: ProgramViewModel
-
+  
+    
     var body: some View {
+  
         VStack {
             Text("My Exercises!").padding()
 
-            TextField("Program name: ", text: $viewModel.programName)
+            TextField("Program name: ", text: $viewModel.Id)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
@@ -47,7 +50,7 @@ struct FormCell: View {
                 .padding()
 
             Button(action: {
-                viewModel.addExerciseToDatabase()
+                viewModel.createProgramAndAddToFirestore()
             }) {
                 Text("Add to Firebase Database")
             }

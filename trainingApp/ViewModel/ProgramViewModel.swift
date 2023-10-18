@@ -9,7 +9,7 @@ class ProgramViewModel: ObservableObject {
     @Published var reps = 0
     @Published var sets = 0
 
-    func createProgramAndAddToFirestore() {
+    func createTrainingProgram() {
         
         if !name.isEmpty {
             
@@ -17,8 +17,6 @@ class ProgramViewModel: ObservableObject {
             let weight = Int(weight) ?? 0
             
             let firebaseDb = Firestore.firestore()
-            
-            let newProgram = UsersPrograms(id: Id, title: Id, category: "exercise", exercises: [])
             
             let newExercise = UsersExercise(name: name, muscleGroups: muscleGroupsArray, weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
             
@@ -33,12 +31,31 @@ class ProgramViewModel: ObservableObject {
         }
     }
     
-    func deleteTrainingProgram() {
-        
-    }
-    
-    func updateTrainingProgram() {
-        
-    }
-    
+    func readTrainingProgram(completion: @escaping ([UsersExercise]) -> Void) {
+           let firebaseDb = Firestore.firestore()
+
+           firebaseDb.collection("training_programs").document(Id).collection("exercises").getDocuments { (querySnapshot, error) in
+               if let error = error {
+                   print("Error getting documents: \(error.localizedDescription)")
+                   completion([])
+               } else {
+                   let exercises = querySnapshot?.documents.compactMap { document in
+                       try? document.data(as: UsersExercise.self)
+                   } ?? []
+
+                   completion(exercises)
+               }
+           }
+       }
+
+       func deleteTrainingProgram(completion: @escaping (Error?) -> Void) {
+           let firebaseDb = Firestore.firestore()
+
+           let programDocumentRef = firebaseDb.collection("training_programs").document(Id)
+
+           programDocumentRef.delete { error in
+               completion(error)
+           }
+       }
+
 }

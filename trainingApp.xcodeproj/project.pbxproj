@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE3950CB2AE038DF00A3D4FF /* RoundedBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3950CA2AE038DF00A3D4FF /* RoundedBtn.swift */; };
 		FE535EC32AD1A789000AEC34 /* CustomTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */; };
 		FE67B0322AD9930600CAD12E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE67B0312AD9930600CAD12E /* GoogleService-Info.plist */; };
 		FE67B0352AD997B100CAD12E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FE67B0342AD997B100CAD12E /* FirebaseAuth */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE3950CA2AE038DF00A3D4FF /* RoundedBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBtn.swift; sourceTree = "<group>"; };
 		FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFeild.swift; sourceTree = "<group>"; };
 		FE67B0312AD9930600CAD12E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPrograms.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				FE8EDAA12AD177C000B610A6 /* PrimaryBtn.swift */,
 				FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */,
+				FE3950CA2AE038DF00A3D4FF /* RoundedBtn.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				FE8EDA9A2AD1764700B610A6 /* DetailsViewModel.swift in Sources */,
 				FE8EDA9E2AD1768E00B610A6 /* SettingsViewModel.swift in Sources */,
 				FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */,
+				FE3950CB2AE038DF00A3D4FF /* RoundedBtn.swift in Sources */,
 				FE535EC32AD1A789000AEC34 /* CustomTextFeild.swift in Sources */,
 				FE8EDA8C2AD1721800B610A6 /* HomeView.swift in Sources */,
 				FE8ECEE72AD6C05C008B5E15 /* SharedBtnStyle.swift in Sources */,

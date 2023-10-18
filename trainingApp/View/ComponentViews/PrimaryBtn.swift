@@ -8,34 +8,36 @@
 import SwiftUI
 
 struct PrimaryBtn: View {
-   
-    var width: CGFloat = .infinity
+    
     var fixedHeight: CGFloat = 44
-    var fontSize: CGFloat = CGFloat(FontSizes().medium)
     var title: String
     var onPress: () -> Void
     @State private var isPressed = false
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [Color.black, Color.indigo.opacity(0.6)]), startPoint: .center, endPoint: .top).cornerRadius(GridPoints.x6).padding(.horizontal, GridPoints.x6)
+        VStack {
+            Button(action: {
+                self.onPress()
+            }) {
+                Text(title)
+                    .foregroundColor(.white)
+                    .padding().frame(maxWidth: .infinity, minHeight: fixedHeight)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: GridPoints.x6)
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color.indigo.opacity(0.6)]), startPoint: .center, endPoint: .top))
+            )
             .overlay(
-                RoundedRectangle(cornerRadius: GridPoints.x3)
-                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo, Color.indigo]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2).padding(.horizontal, GridPoints.x6)
-                    .background(
-                    Button(action: {
-                        self.onPress()
-                        }) {
-                        Text(title)
-                        .foregroundColor(.white)
-                        .font(.system(size: fontSize).bold())
-                        }
-                )
-            ).frame(width: width, height: fixedHeight)
+                RoundedRectangle(cornerRadius: GridPoints.x6)
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo, Color.indigo]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
+            )
+           
+        }
     }
 }
 
 struct PrimaryBtn_Previews: PreviewProvider {
     static var previews: some View {
-        PrimaryBtn(title: "my label", onPress: {print("")})
+        PrimaryBtn(title: "my label", onPress: {})
     }
 }

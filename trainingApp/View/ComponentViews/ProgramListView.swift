@@ -8,22 +8,24 @@
 import Foundation
 import SwiftUI
 
-struct TrainingListView: View {
+struct ProgramListView: View {
     @ObservedObject var programViewModel: ProgramViewModel
 
     var body: some View {
         VStack {
             Text("My List View").bold()
             List {
-                ForEach($programViewModel.programs) { program in
-                    Text(program.name)
+                ForEach(programViewModel.programs) { program in
+               
                 }
             }
+            Text("Building a list")
         }
-        .onAppear {
-            programViewModel.readTrainingProgram { programs in
-                programViewModel.programs = programs
-            }
-        }
+    }
+}
+
+struct ProgramListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProgramListView(programViewModel: ProgramViewModel())
     }
 }

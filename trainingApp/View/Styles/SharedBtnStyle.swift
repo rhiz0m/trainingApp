@@ -16,11 +16,10 @@ struct SharedBtnStyle: View {
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [Color.black, Color.blue.opacity(0.45)]), startPoint: .leading, endPoint: .trailing)
             .cornerRadius(GridPoints.x6)
-            .frame(height: fixedHeight)
-            .padding(.horizontal, GridPoints.x6)
+            .frame(width: width, height: fixedHeight)
             .overlay(
                 RoundedRectangle(cornerRadius: GridPoints.x3)
-                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2).padding(.horizontal, GridPoints.x6)
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
                     .background(
                         Text(title)
                         .font(.custom("Roboto-Medium", size: 16))

@@ -2,6 +2,7 @@ import Foundation
 import FirebaseFirestore
 
 class ProgramViewModel: ObservableObject {
+    @Published var programs: [UsersExercise] = []
     @Published var Id = ""
     @Published var name = ""
     @Published var muscleGroups = ""

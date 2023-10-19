@@ -36,6 +36,7 @@
 		FE8EDAA22AD177C000B610A6 /* PrimaryBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDAA12AD177C000B610A6 /* PrimaryBtn.swift */; };
 		FE8EDAA82AD179CF00B610A6 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDAA72AD179CF00B610A6 /* GetData.swift */; };
 		FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8DD6E2AD983AA00286223 /* SplashScreen.swift */; };
+		FEAF9CF62AE1340A001D0461 /* ProgramListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF9CF52AE1340A001D0461 /* ProgramListView.swift */; };
 		FEC2DA942AD475D4003F88C4 /* GridPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA932AD475D4003F88C4 /* GridPoints.swift */; };
 		FEC2DA982AD4796E003F88C4 /* LoginViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA972AD4796E003F88C4 /* LoginViewAdapter.swift */; };
 		FEC2DA9A2AD47A48003F88C4 /* LoginViewAdapterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA992AD47A48003F88C4 /* LoginViewAdapterer.swift */; };
@@ -91,6 +92,7 @@
 		FE8EDAA12AD177C000B610A6 /* PrimaryBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryBtn.swift; sourceTree = "<group>"; };
 		FE8EDAA72AD179CF00B610A6 /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 		FEA8DD6E2AD983AA00286223 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		FEAF9CF52AE1340A001D0461 /* ProgramListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramListView.swift; sourceTree = "<group>"; };
 		FEC2DA932AD475D4003F88C4 /* GridPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPoints.swift; sourceTree = "<group>"; };
 		FEC2DA972AD4796E003F88C4 /* LoginViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAdapter.swift; sourceTree = "<group>"; };
 		FEC2DA992AD47A48003F88C4 /* LoginViewAdapterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewAdapterer.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				FE8EDAA12AD177C000B610A6 /* PrimaryBtn.swift */,
 				FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */,
 				FE3950CA2AE038DF00A3D4FF /* RoundedBtn.swift */,
+				FEAF9CF52AE1340A001D0461 /* ProgramListView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 			files = (
 				FE8EDA902AD1729E00B610A6 /* UpdateView.swift in Sources */,
 				FEC2DA9C2AD48105003F88C4 /* Spacing.swift in Sources */,
+				FEAF9CF62AE1340A001D0461 /* ProgramListView.swift in Sources */,
 				FE8EDA942AD1738600B610A6 /* LoginViewModel.swift in Sources */,
 				FE8EDA922AD1733700B610A6 /* SettingsView.swift in Sources */,
 				FE8EDAA22AD177C000B610A6 /* PrimaryBtn.swift in Sources */,

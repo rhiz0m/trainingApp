@@ -9,7 +9,8 @@ import Foundation
 import FirebaseFirestoreSwift
 
 
-struct UsersExercise: Codable{
+struct UsersExercise: Identifiable, Codable{
+  var id = UUID() 
   var category = "users_exercises"
   var name: String
   var muscleGroups: [String]?

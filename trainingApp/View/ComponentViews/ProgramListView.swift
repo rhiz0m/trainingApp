@@ -8,7 +8,7 @@ struct ProgramListView: View {
             List(viewModel.usersPrograms, id: \.id) { program in
                 NavigationLink(destination: ProgramDetailsView(program: program)) {
                     Text(program.title)
-                    // Add other details as needed
+                  
                 }
             }
             .navigationTitle("Training Programs")
@@ -27,7 +27,7 @@ struct ProgramDetailsView: View {
     var body: some View {
         VStack {
             Text("Title: \(program.title)")
-            // Add other details as needed
+          
         }
         .navigationTitle(program.title)
     }

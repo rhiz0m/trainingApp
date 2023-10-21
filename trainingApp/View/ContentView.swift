@@ -12,7 +12,8 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 //ProgramListView(programViewModel: ProgramViewModel())
-                ProgramListView(programViewModel: ProgramViewModel())
+                DetailsView()
+                
             }
         }
     }
@@ -21,6 +22,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         //ProgramListView(programViewModel: ProgramViewModel())
-        ProgramListView(programViewModel: ProgramViewModel())
+        DetailsView()
     }
 }

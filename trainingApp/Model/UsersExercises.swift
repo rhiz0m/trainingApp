@@ -9,16 +9,15 @@ import Foundation
 import FirebaseFirestoreSwift
 
 
-struct UsersExercise: Identifiable, Codable {
-  var id = UUID()
-  var category = "users_exercises"
-  var name: String
-  var date: Date
-  var muscleGroups: [String]?
-  var weight: Int = 100
-  var reps: Int
-  var sets: Int
-  var totalReps: Int
+struct UsersExercises: Codable {
+    var category = "users_exercises"
+    var name: String
+    var date: Date
+    var muscleGroups: [String] = []
+    var weight: Int = 100
+    var reps: Int
+    var sets: Int
+    var totalReps: Int
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -30,4 +29,5 @@ struct UsersExercise: Identifiable, Codable {
         case totalReps = "total_reps"
     }
 }
+
 

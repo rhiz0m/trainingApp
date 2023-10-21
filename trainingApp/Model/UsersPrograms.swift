@@ -9,13 +9,10 @@ import Foundation
 import FirebaseFirestoreSwift
 
 
-import Foundation
-import FirebaseFirestoreSwift
-
 class UsersPrograms: Identifiable, Codable {
     @DocumentID var id: String?
     var title: String
-    var exercises = [UsersExercise]()
+    var exercises = [UsersExercises]()
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -23,12 +20,11 @@ class UsersPrograms: Identifiable, Codable {
         case exercises
     }
 
-    init(id: String? = nil, title: String, exercises: [UsersExercise]) {
+    init(id: String? = nil, title: String, exercises: [UsersExercises]) {
         self.id = id
         self.title = title
         self.exercises = exercises
     }
 }
-
 
 

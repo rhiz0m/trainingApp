@@ -25,7 +25,7 @@ struct DetailsView: View {
             VStack {
                 Text("My Exercises!").padding()
                 
-                TextField("Program name: ", text: $viewModel.Id)
+                TextField("Program name: ", text: $viewModel.title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 

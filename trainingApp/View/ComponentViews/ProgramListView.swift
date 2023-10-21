@@ -1,65 +1,41 @@
-//
-//  ListView.swift
-//  trainingApp
-//
-//  Created by Andreas Antonsson on 2023-10-19.
-//
-
-import Foundation
 import SwiftUI
-import FirebaseFirestore
 
 struct ProgramListView: View {
-    @ObservedObject var programViewModel: ProgramViewModel
+    @ObservedObject var viewModel = ProgramViewModel()
 
     var body: some View {
-        VStack {
-            Text("My List View").bold()
-
-            if $programViewModel.usersPrograms.isEmpty {
-                Text("Loading...")
-                    .onAppear {
-                       
-                    }
-            } else {
-               /* List(programViewModel.usersPrograms, id: \.id) { program in
-                    VStack(alignment: .leading) {
-                        Text("Program Title: \(program.title)")
-
-                        ForEach(program.exercises, id: \.id) { exercise in
-                            ExerciseView(exercise: exercise)
-                        }
-                    }
-                }*/
+        NavigationView {
+            List(viewModel.usersPrograms, id: \.id) { program in
+                NavigationLink(destination: ProgramDetailsView(program: program)) {
+                    Text(program.title)
+                    // Add other details as needed
+                }
+            }
+            .navigationTitle("Training Programs")
+            .onAppear {
+                viewModel.getAllTrainingPrograms { programs in
+                    viewModel.usersPrograms = programs
+                }
             }
         }
     }
 }
 
-struct ExerciseView: View {
-    let exercise: UsersExercises
+struct ProgramDetailsView: View {
+    var program: UsersPrograms
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Exercise Name: \(exercise.name)")
-            Text("Date: \(exercise.date)")
-            let muscleGroups = exercise.muscleGroups 
-            Text("Muscle Groups: \(String(describing: muscleGroups))")
-            Text("Weight: \(exercise.weight)")
-            Text("Reps: \(exercise.reps)")
-            Text("Sets: \(exercise.sets)")
-            Text("Total Reps: \(exercise.totalReps)")
+        VStack {
+            Text("Title: \(program.title)")
+            // Add other details as needed
         }
+        .navigationTitle(program.title)
     }
 }
 
-
 struct ProgramListView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        
-        ProgramListView(programViewModel: ProgramViewModel())
-        
+        ProgramListView()
     }
 }
 

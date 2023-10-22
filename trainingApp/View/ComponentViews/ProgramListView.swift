@@ -6,14 +6,14 @@ struct ProgramListView: View {
     var body: some View {
         NavigationView {
             List(viewModel.usersPrograms, id: \.id) { program in
-                NavigationLink(destination: ProgramDetailsView(program: program)) {
+                NavigationLink(destination: UpdateTrainingProgramView(viewModel: viewModel, program: program)) {
                     Text(program.title)
                   
                 }
             }
             .navigationTitle("Training Programs")
             .onAppear {
-                viewModel.getAllTrainingPrograms { programs in
+                viewModel.getTrainingPrograms { programs in
                     viewModel.usersPrograms = programs
                 }
             }
@@ -21,17 +21,7 @@ struct ProgramListView: View {
     }
 }
 
-struct ProgramDetailsView: View {
-    var program: UsersPrograms
 
-    var body: some View {
-        VStack {
-            Text("Title: \(program.title)")
-          
-        }
-        .navigationTitle(program.title)
-    }
-}
 
 struct ProgramListView_Previews: PreviewProvider {
     static var previews: some View {

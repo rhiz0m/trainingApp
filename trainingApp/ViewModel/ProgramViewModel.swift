@@ -41,7 +41,7 @@ class ProgramViewModel: ObservableObject {
         }
     }
 
-    func getAllTrainingPrograms(completion: @escaping ([UsersPrograms]) -> Void) {
+    func getTrainingPrograms(completion: @escaping ([UsersPrograms]) -> Void) {
         let firebaseDb = Firestore.firestore()
 
         firebaseDb.collection("users_training_programs").getDocuments { (querySnapshot, error) in
@@ -65,7 +65,49 @@ class ProgramViewModel: ObservableObject {
             }
         }
     }
+    
+    func deleteTrainingProgram(withId id: String) {
+            let firebaseDb = Firestore.firestore()
+
+            do {
+                // Delete the program from Firestore
+                let programDocumentRef = firebaseDb.collection("users_training_programs").document(id)
+                try programDocumentRef.delete()
+
+                // Delete the program from the local array
+                if let index = usersPrograms.firstIndex(where: { $0.id == id }) {
+                    usersPrograms.remove(at: index)
+                }
+            } catch let error {
+                print("Error deleting training program: \(error.localizedDescription)")
+            }
+        }
+    
+    func updateTrainingProgram(programId: String, updatedTitle: String, updatedExercises: [UsersExercises]) {
+        let firebaseDb = Firestore.firestore()
+
+        // First, delete the existing program
+        deleteTrainingProgram(withId: programId)
+
+        // Now, create a new program with the updated data
+        let updatedProgram = UsersPrograms(id: programId, title: updatedTitle, exercises: updatedExercises)
+
+        do {
+            // Save the updated program to Firestore
+            let programsDocumentRef = firebaseDb.collection("users_training_programs").document(programId)
+            try programsDocumentRef.setData(from: updatedProgram)
+
+            // Update the local array
+            usersPrograms.append(updatedProgram)
+        } catch let error {
+            print("Error updating training program: \(error.localizedDescription)")
+        }
+    }
+    
 }
+
+
+    
 
 
 

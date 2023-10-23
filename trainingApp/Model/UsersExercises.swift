@@ -12,7 +12,6 @@ import FirebaseFirestoreSwift
 struct UsersExercises: Codable {
     var category = "users_exercises"
     var name: String
-    var date: Date
     var muscleGroups: [String] = []
     var weight: Int = 100
     var reps: Int
@@ -21,7 +20,6 @@ struct UsersExercises: Codable {
     
     enum CodingKeys: String, CodingKey {
         case name
-        case date
         case muscleGroups = "muscle_groups"
         case weight
         case reps

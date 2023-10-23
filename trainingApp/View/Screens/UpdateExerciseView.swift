@@ -1,14 +1,13 @@
 //
-//  UpdateTrainingView.swift
+//  UpdateScreen.swift
 //  trainingApp
 //
-//  Created by Andreas Antonsson on 2023-10-22.
+//  Created by Andreas Antonsson on 2023-10-07.
 //
 
 import SwiftUI
 
-struct UpdateTrainingProgramView: View {
-    
+struct UpdateExerciseView: View {
     @ObservedObject var viewModel: ProgramViewModel
     
     var program: UsersPrograms
@@ -25,28 +24,18 @@ struct UpdateTrainingProgramView: View {
 
     var body: some View {
         VStack {
-            Text("\(program.title)")
+            
             TextField("Title: \(program.title)",
                       text: $viewModel.title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-            
-            TextField("Date: \(program.date)",
-                      text: $viewModel.title)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            TextField("Description: \(program.description)",
-                      text: $viewModel.title)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-          /*
+          
             TextField("Name: \(program.exercises.map { String($0.name) }.joined(separator: ", "))",
                       text: $viewModel.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            TextField("Muscle groups: \(program.exercises.map { $0.muscleGroups.joined(separator: ", ") }.joined(separator: ", "))", 
+            TextField("Muscle groups: \(program.exercises.map { $0.muscleGroups.joined(separator: ", ") }.joined(separator: ", "))",
                       text: $viewModel.muscleGroups)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -61,15 +50,6 @@ struct UpdateTrainingProgramView: View {
             
             Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
                 .padding()
-            */
-            
-            Button(action: {
-
-            }, label: {
-                Text("Add exercise")
-            })
-            
-            ExerciseListView()
             
             Button(action: {
                    viewModel.updateTrainingProgram(
@@ -97,7 +77,7 @@ struct UpdateTrainingProgramView: View {
     }
 }
 
-struct UpdateTrainingView_Previews: PreviewProvider {
+struct UpdateView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = ProgramViewModel()
         

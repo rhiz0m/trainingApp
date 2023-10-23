@@ -4,26 +4,30 @@ import FirebaseFirestore
 class ProgramViewModel: ObservableObject {
     @Published var Id = ""
     @Published var title = ""
-    @Published var name = ""
     @Published var date = Date()
+    @Published var description = ""
+    
+    @Published var name = ""
+    
     @Published var muscleGroups = ""
     @Published var weight = ""
     @Published var reps = 0
     @Published var sets = 0
     @Published var usersPrograms: [UsersPrograms] = []
+    @Published var usersExercises: [UsersExercises] = []
 
     func createTrainingProgram() {
         if !name.isEmpty {
             let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
 
             // Create a new UsersExercises instance
-            let newExercise = UsersExercises(name: name, date: date, muscleGroups: muscleGroupsArray, reps: reps, sets: sets, totalReps: reps * sets)
+            let newExercise = UsersExercises(name: name, muscleGroups: muscleGroupsArray, reps: reps, sets: sets, totalReps: reps * sets)
 
             // Generate a unique identifier for the program
             let programId = UUID().uuidString
 
             // Create a new UsersPrograms instance using the generated Id and title
-            let newProgram = UsersPrograms(id: programId, title: title, exercises: [newExercise])
+            let newProgram = UsersPrograms(id: programId, title: title, date: date, description: description, exercises: [newExercise])
 
             let firebaseDb = Firestore.firestore()
 
@@ -40,6 +44,7 @@ class ProgramViewModel: ObservableObject {
             }
         }
     }
+
 
     func getTrainingPrograms(completion: @escaping ([UsersPrograms]) -> Void) {
         let firebaseDb = Firestore.firestore()
@@ -90,7 +95,7 @@ class ProgramViewModel: ObservableObject {
         deleteTrainingProgram(withId: programId)
 
         // Now, create a new program with the updated data
-        let updatedProgram = UsersPrograms(id: programId, title: updatedTitle, exercises: updatedExercises)
+        let updatedProgram = UsersPrograms(id: programId, title: updatedTitle, date: date, description: description, exercises: updatedExercises)
 
         do {
             // Save the updated program to Firestore
@@ -101,6 +106,26 @@ class ProgramViewModel: ObservableObject {
             usersPrograms.append(updatedProgram)
         } catch let error {
             print("Error updating training program: \(error.localizedDescription)")
+        }
+    }
+    
+    func saveProgramToFirestore(id: String, title: String, date: Date, description: String) {
+        let firebaseDb = Firestore.firestore()
+        let programId = UUID().uuidString
+
+        do {
+            // Create a new UsersPrograms instance with the provided id
+            let newProgram = UsersPrograms(id: programId, title: title, date: date, description: description)
+
+            // Save the new program to Firestore
+            let programsDocumentRef = firebaseDb.collection("users_training_programs").document(id)
+            try programsDocumentRef.setData(from: newProgram)
+
+            // Update the local array
+            usersPrograms.append(newProgram)
+
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
     

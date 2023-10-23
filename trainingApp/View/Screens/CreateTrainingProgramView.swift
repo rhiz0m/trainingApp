@@ -8,57 +8,62 @@
 import SwiftUI
 
 struct CreateTrainingProgramView: View {
-    @StateObject private var viewModel = ProgramViewModel()
+
+    @ObservedObject var viewModel: ProgramViewModel
     
+    var program: UsersPrograms
     
-    var body: some View {
-        FormCell(viewModel: viewModel)
-    }
-    
-    
-    struct FormCell: View {
-        @ObservedObject var viewModel: ProgramViewModel
-        
-        
         var body: some View {
             
             VStack {
-                Text("My Exercises!").padding()
+                Text("My programs!").padding()
                 
-                TextField("Program name: ", text: $viewModel.title)
+                TextField("Title: \(program.title)",
+                          text: $viewModel.title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-                TextField("Exercise name: ", text: $viewModel.name)
+                TextField("Description: \(program.description)",
+                          text: $viewModel.description)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-                TextField("Muscle groups: ", text: $viewModel.muscleGroups)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                DatePicker("Date:", selection: $viewModel.date, displayedComponents: .date)
+                    .datePickerStyle(WheelDatePickerStyle())
                     .padding()
-                
-                TextField("Weight: ", text: $viewModel.weight)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                Stepper("Reps: \(viewModel.reps)", value: $viewModel.reps)
-                    .padding()
-                
-                Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
-                    .padding()
-                
+            
                 Button(action: {
+                    
                     viewModel.createTrainingProgram()
-                }) {
-                    Text("Save")
-                }
+                    //viewModel.saveProgramToFirestore(id: viewModel.Id, title: viewModel.title, date: viewModel.date, description: viewModel.description)
+                }, label: {
+                    Text("Create!")
+                })
             }
+        }
+   
+
+   struct CreateTrainingView_Previews: PreviewProvider {
+        static var previews: some View {
+            let viewModel = ProgramViewModel()
+            
+            let placeholderProgram = UsersPrograms(
+                id: "1",
+                title: "Sample Program",
+                date: Date(),
+                description: "A description",
+                exercises: [
+                    UsersExercises(
+                        name: "Exercise 1",
+                        muscleGroups: ["Legs"],
+                        reps: 10,
+                        sets: 3,
+                        totalReps: 30
+                    )
+                ]
+            )
+
+            return CreateTrainingProgramView(viewModel: viewModel, program: placeholderProgram)
         }
     }
 }
-
-    struct CreateTrainingView_Previews: PreviewProvider {
-        static var previews: some View {
-            CreateTrainingProgramView()
-        }
-    }

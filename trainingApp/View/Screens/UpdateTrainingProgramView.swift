@@ -32,12 +32,12 @@ struct UpdateTrainingProgramView: View {
                 .padding()
             
             TextField("Date: \(program.date)",
-                      text: $viewModel.title)
+                      text: $viewModel.id)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
             TextField("Description: \(program.description)",
-                      text: $viewModel.title)
+                      text: $viewModel.description)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
           /*
@@ -63,11 +63,9 @@ struct UpdateTrainingProgramView: View {
                 .padding()
             */
             
-            Button(action: {
-
-            }, label: {
-                Text("Add exercise")
-            })
+            NavigationLink(destination: CreateExerciseView(), label: {
+                SharedBtnStyle(title: "Add Exercise")
+            }).padding()
             
             ExerciseListView()
             

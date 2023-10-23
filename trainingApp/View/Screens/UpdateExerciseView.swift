@@ -76,7 +76,7 @@ struct UpdateExerciseView: View {
         .navigationTitle(program.title)
     }
 }
-
+/*
 struct UpdateView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = ProgramViewModel()
@@ -100,3 +100,4 @@ struct UpdateView_Previews: PreviewProvider {
         return UpdateTrainingProgramView(viewModel: viewModel, program: placeholderProgram)
     }
 }
+*/

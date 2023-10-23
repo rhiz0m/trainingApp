@@ -2,13 +2,12 @@ import Foundation
 import FirebaseFirestore
 
 class ProgramViewModel: ObservableObject {
-    @Published var Id = ""
+    @Published var id = ""
     @Published var title = ""
     @Published var date = Date()
     @Published var description = ""
     
     @Published var name = ""
-    
     @Published var muscleGroups = ""
     @Published var weight = ""
     @Published var reps = 0
@@ -17,7 +16,7 @@ class ProgramViewModel: ObservableObject {
     @Published var usersExercises: [UsersExercises] = []
 
     func createTrainingProgram() {
-        if !name.isEmpty {
+        if !title.isEmpty {
             let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
 
             // Create a new UsersExercises instance
@@ -108,27 +107,6 @@ class ProgramViewModel: ObservableObject {
             print("Error updating training program: \(error.localizedDescription)")
         }
     }
-    
-    func saveProgramToFirestore(id: String, title: String, date: Date, description: String) {
-        let firebaseDb = Firestore.firestore()
-        let programId = UUID().uuidString
-
-        do {
-            // Create a new UsersPrograms instance with the provided id
-            let newProgram = UsersPrograms(id: programId, title: title, date: date, description: description)
-
-            // Save the new program to Firestore
-            let programsDocumentRef = firebaseDb.collection("users_training_programs").document(id)
-            try programsDocumentRef.setData(from: newProgram)
-
-            // Update the local array
-            usersPrograms.append(newProgram)
-
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
 }
 
 

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DetailsView: View {
+    
         @StateObject private var viewModel = ProgramViewModel()
 
-        
         var body: some View {
             FormCell(viewModel: viewModel)
         }
@@ -55,7 +55,6 @@ struct DetailsView: View {
             }
         }
     }
-    
 }
     struct DetailsView_Previews: PreviewProvider {
         static var previews: some View {

@@ -34,7 +34,7 @@ private struct BottomBarView: View {
 
     var body: some View {
         HStack {
-            NavigationLink(destination: CreateTrainingProgramView(viewModel: viewModel, program: placeholderProgram), label: {
+            NavigationLink(destination: CreateTrainingProgramView(), label: {
                 SharedBtnStyle(title: "Add")
             })
 

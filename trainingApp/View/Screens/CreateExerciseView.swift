@@ -25,10 +25,6 @@ struct CreateExerciseView: View {
             VStack {
                 Text("My Exercises!").padding()
                 
-                TextField("Program name: ", text: $viewModel.title)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
                 TextField("Exercise name: ", text: $viewModel.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()

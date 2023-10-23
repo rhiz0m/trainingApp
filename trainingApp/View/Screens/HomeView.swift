@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var programViewModel = ProgramViewModel()
     
-    let placeholderProgram = UsersPrograms(id: "1", title: "Sample Program", date: Date(), description: "A description", exercises: [UsersExercises(name: "Exercise 1", muscleGroups: ["Legs"], reps: 10, sets: 3, totalReps: 30)])
+    let placeholderProgram = UsersPrograms(id: "1", title: "Sample Program", date: Date(), description: "A description", exercises: [UsersExercises(name: "Exercise 1", muscleGroups: ["Legs"], weight: "100", reps: 10, sets: 3, totalReps: 30)])
     
     var body: some View {
         VStack {

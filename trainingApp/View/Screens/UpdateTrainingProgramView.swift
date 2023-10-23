@@ -76,6 +76,7 @@ struct UpdateTrainingProgramView: View {
                        updatedExercises: [UsersExercises(
                            name: viewModel.name,
                            muscleGroups: viewModel.muscleGroups.components(separatedBy: ","),
+                           weight: viewModel.weight,
                            reps: viewModel.reps,
                            sets: viewModel.sets,
                            totalReps: viewModel.reps * sets
@@ -108,6 +109,7 @@ struct UpdateTrainingView_Previews: PreviewProvider {
                 UsersExercises(
                     name: "Exercise 1",
                     muscleGroups: ["Legs"],
+                    weight: "100",
                     reps: 10,
                     sets: 3,
                     totalReps: 30

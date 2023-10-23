@@ -58,6 +58,7 @@ struct UpdateExerciseView: View {
                        updatedExercises: [UsersExercises(
                            name: viewModel.name,
                            muscleGroups: viewModel.muscleGroups.components(separatedBy: ","),
+                           weight: viewModel.weight,
                            reps: viewModel.reps,
                            sets: viewModel.sets,
                            totalReps: viewModel.reps * sets

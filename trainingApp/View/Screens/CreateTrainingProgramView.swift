@@ -19,6 +19,7 @@ struct CreateTrainingProgramView: View {
     
     struct FormCell: View {
         @ObservedObject var viewModel: ProgramViewModel
+        @Environment(\.presentationMode) var presentationMode
         
         
         var body: some View {
@@ -30,19 +31,21 @@ struct CreateTrainingProgramView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-                TextField("Date: ", text: $viewModel.description)
+                TextField("Date: ", text: $viewModel.id)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
-             TextField("Description: ", text: $viewModel.name)
+                TextField("Description: ", text: $viewModel.description)
                  .textFieldStyle(RoundedBorderTextFieldStyle())
                  .padding()
                 
                 Button(action: {
                     viewModel.createTrainingProgram()
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Save")
                 }
+                
             }
         }
     }

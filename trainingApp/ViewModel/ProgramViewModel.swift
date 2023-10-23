@@ -20,7 +20,7 @@ class ProgramViewModel: ObservableObject {
             let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
 
             // Create a new UsersExercises instance
-            let newExercise = UsersExercises(name: name, muscleGroups: muscleGroupsArray, reps: reps, sets: sets, totalReps: reps * sets)
+            let newExercise = UsersExercises(name: name, muscleGroups: muscleGroupsArray, weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
 
             // Generate a unique identifier for the program
             let programId = UUID().uuidString

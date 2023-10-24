@@ -9,38 +9,39 @@ import SwiftUI
 
 struct UpdateExerciseView: View {
     @ObservedObject var viewModel: ProgramViewModel
-    
-    var program: UsersPrograms
+
+
+    var exercise: UsersExercises
     
     @State private var reps: Int
     @State private var sets: Int
     
-    init(viewModel: ProgramViewModel, program: UsersPrograms) {
+    init(viewModel: ProgramViewModel, exercise: UsersExercises) {
         self.viewModel = viewModel
-        self.program = program
-        _reps = State(initialValue: program.exercises.first?.reps ?? 0)
-        _sets = State(initialValue: program.exercises.first?.sets ?? 0)
+        self.exercise = exercise
+        _reps = State(initialValue: exercise.reps)
+        _sets = State(initialValue: exercise.sets)
     }
 
     var body: some View {
         VStack {
             
-            TextField("Title: \(program.title)",
+         /*   TextField("Title: \(program.title)",
                       text: $viewModel.title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding() */
           
-            TextField("Name: \(program.exercises.map { String($0.name) }.joined(separator: ", "))",
+            TextField("Name: \(exercise.name)",
                       text: $viewModel.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            TextField("Muscle groups: \(program.exercises.map { $0.muscleGroups.joined(separator: ", ") }.joined(separator: ", "))",
+            TextField("Muscle groups: \(exercise.muscleGroups.joined(separator: ", "))",
                       text: $viewModel.muscleGroups)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            TextField("Weight: \(program.exercises.map { String($0.weight) }.joined(separator: ", "))",
+            TextField("Weight: \(String(exercise.weight))",
                       text: $viewModel.weight)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -52,29 +53,28 @@ struct UpdateExerciseView: View {
                 .padding()
             
             Button(action: {
-                   viewModel.updateTrainingProgram(
-                       programId: program.id ?? "",
-                       updatedTitle: viewModel.title,
-                       updatedExercises: [UsersExercises(
-                           name: viewModel.name,
-                           muscleGroups: viewModel.muscleGroups.components(separatedBy: ","),
-                           weight: viewModel.weight,
-                           reps: viewModel.reps,
-                           sets: viewModel.sets,
-                           totalReps: viewModel.reps * sets
-                       )]
-                   )
+                viewModel.updateExerciseProgram(
+                    withId: UUID(), // Replace UUID() with the actual UUID you want to update
+                    updatedName: viewModel.name,
+                    updatedMuscleGroups: viewModel.muscleGroups.components(separatedBy: ","),
+                    updatedWeight: viewModel.weight,
+                    updatedReps: viewModel.reps,
+                    updatedSets: viewModel.sets
+                )
             }, label: {
                 Text("Update")
             })
+
             
             Button(action: {
-                viewModel.deleteTrainingProgram(withId: program.id ?? "")
+                if let firstProgramId = viewModel.usersPrograms.first?.id {
+                    viewModel.deleteTrainingProgram(withId: firstProgramId)
+                }
             }, label: {
                 Text("Delete")
             })
         }
-        .navigationTitle(program.title)
+        .navigationTitle(exercise.name)
     }
 }
 /*

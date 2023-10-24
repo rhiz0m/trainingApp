@@ -9,8 +9,7 @@ import SwiftUI
 
 struct CreateTrainingProgramView: View {
 
-    
-        @StateObject private var viewModel = ProgramViewModel()
+        @ObservedObject private var viewModel = ProgramViewModel()
 
         var body: some View {
             FormCell(viewModel: viewModel)
@@ -40,7 +39,7 @@ struct CreateTrainingProgramView: View {
                  .padding()
                 
                 Button(action: {
-                    viewModel.createTrainingProgram()
+                    viewModel.createTrainingProgramWithExercise()
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Save")

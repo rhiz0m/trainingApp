@@ -25,7 +25,7 @@ struct UpdateTrainingProgramView: View {
 
     var body: some View {
         VStack {
-            Text("\(program.title)")
+        
             TextField("Title: \(program.title)",
                       text: $viewModel.title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())

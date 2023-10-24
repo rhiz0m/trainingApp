@@ -10,6 +10,7 @@ import FirebaseFirestoreSwift
 
 
 struct UsersExercises: Codable {
+    var id = UUID()
     var category = "users_exercises"
     var name: String
     var muscleGroups: [String] = []
@@ -18,14 +19,17 @@ struct UsersExercises: Codable {
     var sets: Int
     var totalReps: Int
     
-    enum CodingKeys: String, CodingKey {
-        case name
-        case muscleGroups = "muscle_groups"
-        case weight
-        case reps
-        case sets
-        case totalReps = "total_reps"
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
-}
+        enum CodingKeys: String, CodingKey {
+            case name
+            case muscleGroups = "muscle_groups"
+            case weight
+            case reps
+            case sets
+            case totalReps = "total_reps"
+        }
+    }
 
 

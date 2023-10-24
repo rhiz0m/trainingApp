@@ -13,9 +13,9 @@ struct ExerciseListView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.usersPrograms, id: \.id) { program in
-                NavigationLink(destination: UpdateExerciseView(viewModel: viewModel, program: program)) {
-                    Text(program.title)
+            List(viewModel.usersExercises, id: \.id) { program in
+                NavigationLink(destination: UpdateExerciseView(viewModel: viewModel, exercise: program)) {
+                    Text(program.name)
                     
                 }
             }

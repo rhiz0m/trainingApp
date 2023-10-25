@@ -8,26 +8,34 @@
 import SwiftUI
 
 struct ExerciseListView: View {
-    
     @ObservedObject var viewModel = ProgramViewModel()
+    @State private var selectedExercise: UsersExercises?
     
     var body: some View {
         NavigationView {
-            List(viewModel.usersExercises, id: \.id) { program in
-                NavigationLink(destination: UpdateExerciseView(viewModel: viewModel, exercise: program)) {
-                    Text(program.name)
-                    
+            List(viewModel.updatedExercises, id: \.id) { exercise in
+                Button(action: {
+                    // Set the selected exercise when the button is tapped
+                    selectedExercise = exercise
+                }) {
+                    Text(exercise.name)
                 }
             }
             .navigationTitle("Exercises")
             .onAppear {
-                viewModel.getTrainingPrograms { programs in
-                    viewModel.usersPrograms = programs
+                // Fetch the stored exercises from Firebase
+                viewModel.getTrainingExercises { exercises in
+                    viewModel.updatedExercises = exercises
                 }
+            }
+            .sheet(item: $selectedExercise) { exercise in
+                // Present the modal with the selected exercise
+                UpdateExerciseView(viewModel: viewModel, reps: viewModel.reps, sets: viewModel.sets)
             }
         }
     }
 }
+
 
 
 struct ExerciseListView_Previews: PreviewProvider {

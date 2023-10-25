@@ -14,38 +14,40 @@ class ProgramViewModel: ObservableObject {
     @Published var sets = 0
     @Published var usersPrograms: [UsersPrograms] = []
     @Published var usersExercises: [UsersExercises] = []
-    @Published var selectedProgram: UsersPrograms?
-    
-    private var currentProgramId: String = ""
+    @Published var updatedExercises: [UsersExercises] = []
+ 
 
-    func createTrainingProgramWithExercise() {
-        if !title.isEmpty {
-            let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
 
-            // Create a new UsersExercises instance
-            let newExercise = UsersExercises(name: name, muscleGroups: muscleGroupsArray, weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
-
-            // Generate a unique identifier for the program
-            let programId = UUID().uuidString
-
-            // Create a new UsersPrograms instance using the generated Id and title
-            let newProgram = UsersPrograms(id: programId, title: title, date: date, description: description, exercises: [newExercise])
-
-            let firebaseDb = Firestore.firestore()
-
-            do {
-                // Save the new program to Firestore
-                let programsDocumentRef = firebaseDb.collection("users_training_programs").document(programId)
-                try programsDocumentRef.setData(from: newProgram)
-
-                // Update the local array
-                usersPrograms.append(newProgram)
-
-            } catch let error {
-                print(error.localizedDescription)
-            }
+    func createTrainingProgramWithExercises(title: String, date: Date, description: String, exercises: [UsersExercises]) {
+        guard !title.isEmpty else {
+            return
         }
+
+        // Create a new UsersPrograms instance using the generated title, date, description, and exercises
+        let newProgram = UsersPrograms(title: title, date: date, description: description, exercises: exercises)
+
+        let firebaseDb = Firestore.firestore()
+
+        do {
+            // Save the new program to Firestore
+            let programsCollectionRef = firebaseDb.collection("users_training_programs")
+            try programsCollectionRef.addDocument(from: newProgram) { error in
+                if let error = error {
+                    print("Error adding document: \(error.localizedDescription)")
+                } else {
+                    print("Document added successfully.")
+                }
+            }
+        } catch let error {
+            print("Error encoding program: \(error.localizedDescription)")
+        }
+        print("Title: \(title)")
+        print("Date: \(date)")
+        print("Description: \(description)")
+        print("Exercises: \(exercises)")
     }
+
+
         
     func createTrainingProgram() {
         if !title.isEmpty {
@@ -54,27 +56,27 @@ class ProgramViewModel: ObservableObject {
             // Create a new UsersExercises instance
             let newExercise = UsersExercises(name: name, muscleGroups: muscleGroupsArray, weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
 
-            // Generate a unique identifier for the program
-            let programId = UUID().uuidString
-
-            // Create a new UsersPrograms instance using the generated Id and title
-            let newProgram = UsersPrograms(id: programId, title: title, date: date, description: description, exercises: [newExercise])
+            // Create a new UsersPrograms instance without providing the ID
+            let newProgram = UsersPrograms(title: title, date: date, description: description, exercises: [newExercise])
 
             let firebaseDb = Firestore.firestore()
 
             do {
                 // Save the new program to Firestore
-                let programsDocumentRef = firebaseDb.collection("users_training_programs").document(programId)
-                try programsDocumentRef.setData(from: newProgram)
-
-                // Update the local array
-                usersPrograms.append(newProgram)
-
+                let programsCollectionRef = firebaseDb.collection("users_training_programs")
+                try programsCollectionRef.addDocument(from: newProgram) { error in
+                    if let error = error {
+                        print("Error adding document: \(error.localizedDescription)")
+                    } else {
+                        print("Document added successfully.")
+                    }
+                }
             } catch let error {
-                print(error.localizedDescription)
+                print("Error encoding program: \(error.localizedDescription)")
             }
         }
     }
+
     
     func getTrainingPrograms(completion: @escaping ([UsersPrograms]) -> Void) {
         let firebaseDb = Firestore.firestore()
@@ -123,9 +125,12 @@ class ProgramViewModel: ObservableObject {
 
         // First, delete the existing program
         deleteTrainingProgram(withId: programId)
+        
+        // Store the updated exercises
+        self.updatedExercises = updatedExercises
 
         // Now, create a new program with the updated data
-        let updatedProgram = UsersPrograms(id: programId, title: updatedTitle, date: date, description: description, exercises: updatedExercises)
+        let updatedProgram = UsersPrograms(title: updatedTitle, date: date, description: description, exercises: updatedExercises)
 
         do {
             // Save the updated program to Firestore
@@ -165,7 +170,7 @@ class ProgramViewModel: ObservableObject {
     
     // Exercises
     
-  /*  func createExercise() {
+   func createExercise() {
         if !name.isEmpty {
             let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
 
@@ -186,59 +191,10 @@ class ProgramViewModel: ObservableObject {
                 print("Error creating exercise: \(error.localizedDescription)")
             }
         }
-    } */
-    
-    func createExercise() {
-        if !name.isEmpty {
-            let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
-
-            // Create a new UsersExercises instance
-            let newExercise = UsersExercises(name: name, muscleGroups: muscleGroupsArray, weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
-
-            let firebaseDb = Firestore.firestore()
-
-            do {
-                // Save the new exercise to Firestore
-                let exerciseDocumentRef = firebaseDb.collection("users_exercises").document()
-                try exerciseDocumentRef.setData(from: newExercise)
-
-                print("Exercise saved to users_exercises collection.")
-
-                // Associate the exercise with the selected program
-                if let selectedProgram = selectedProgram {
-                    // Add the new exercise to the program's array
-                    selectedProgram.exercises.append(newExercise)
-
-                    print("Exercise added to program's array.")
-
-                    // Save the updated program to Firestore
-                    let programsDocumentRef = firebaseDb.collection("users_training_programs").document(selectedProgram.id ?? "")
-                    try programsDocumentRef.setData(from: selectedProgram)
-
-                    print("Updated program saved to users_training_programs collection.")
-
-                    // Update the local array to reflect changes in Firestore
-                    if let index = usersPrograms.firstIndex(where: { $0.id == selectedProgram.id }) {
-                        usersPrograms[index] = selectedProgram
-                    }
-
-                    print("Local array updated.")
-                }
-
-            } catch let error {
-                print("Error creating exercise: \(error.localizedDescription)")
-            }
-        }
     }
-
-
-
-
-
-
-
     
-    func getTrainingExercises(completion: @escaping ([UsersExercises]) -> Void) {
+    
+  /*  func getTrainingExercises(completion: @escaping ([UsersExercises]) -> Void) {
         let firebaseDb = Firestore.firestore()
 
         firebaseDb.collection("users_exercises").getDocuments { (querySnapshot, error) in
@@ -261,51 +217,36 @@ class ProgramViewModel: ObservableObject {
                 completion(exercises)
             }
         }
-    }
+    } */
     
-    func deleteExercise(withId id: UUID) {
+    func getTrainingExercises(completion: @escaping ([UsersExercises]) -> Void) {
         let firebaseDb = Firestore.firestore()
 
-        do {
-            // Convert UUID to String before creating a document reference
-            let idString = id.uuidString
-            // Delete the exercise from Firestore
-            let exerciseDocumentRef = firebaseDb.collection("users_exercises").document(idString)
-            try exerciseDocumentRef.delete()
+        firebaseDb.collection("users_training_programs").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting exercises: \(error.localizedDescription)")
+                completion([])
+            } else {
+                var exercises: [UsersExercises] = []
 
-            // Delete the exercise from the local array
-            if let index = usersExercises.firstIndex(where: { $0.id == id }) {
-                usersExercises.remove(at: index)
+                for document in querySnapshot?.documents ?? [] {
+                    guard let exerciseArray = document["exercises"] as? [[String: Any]] else {
+                        continue
+                    }
+
+                    for exerciseData in exerciseArray {
+                        do {
+                            if let exercise = try? Firestore.Decoder().decode(UsersExercises.self, from: exerciseData) {
+                                exercises.append(exercise)
+                            }
+                        }
+                    }
+                }
+
+                completion(exercises)
             }
-        } catch let error {
-            print("Error deleting exercise: \(error.localizedDescription)")
         }
     }
-
-    func updateExerciseProgram(withId id: UUID, updatedName: String, updatedMuscleGroups: [String], updatedWeight: String, updatedReps: Int, updatedSets: Int) {
-        let firebaseDb = Firestore.firestore()
-
-        // First, delete the existing exercise
-        deleteExercise(withId: id)
-
-        // Now, create a new exercise with the updated data
-        let updatedExercise = UsersExercises(id: id, name: updatedName, muscleGroups: updatedMuscleGroups, weight: updatedWeight, reps: updatedReps, sets: updatedSets, totalReps: updatedReps * updatedSets)
-
-        do {
-            // Save the updated exercise to Firestore
-            let exerciseDocumentRef = firebaseDb.collection("users_exercises").document(id.uuidString)
-            try exerciseDocumentRef.setData(from: updatedExercise)
-
-            // Update the local array
-            if let index = usersExercises.firstIndex(where: { $0.id == id }) {
-                usersExercises[index] = updatedExercise
-            }
-        } catch let error {
-            print("Error updating exercise: \(error.localizedDescription)")
-        }
-    }
-
-
     
 }
 

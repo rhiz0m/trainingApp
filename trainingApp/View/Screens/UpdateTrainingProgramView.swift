@@ -63,7 +63,7 @@ struct UpdateTrainingProgramView: View {
                 .padding()
             */
             
-            NavigationLink(destination: CreateExerciseView(), label: {
+            NavigationLink(destination: CreateExerciseView(viewModel: viewModel, program: program), label: {
                 SharedBtnStyle(title: "Add Exercise")
             }).padding()
             
@@ -101,7 +101,6 @@ struct UpdateTrainingView_Previews: PreviewProvider {
         let viewModel = ProgramViewModel()
         
         let placeholderProgram = UsersPrograms(
-            id: "1",
             title: "Sample Program",
             date: Date(),
             description: "A description",

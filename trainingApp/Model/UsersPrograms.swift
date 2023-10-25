@@ -24,13 +24,13 @@ class UsersPrograms: Identifiable, Codable {
         case exercises
     }
 
-    init(id: String? = nil, title: String, date: Date, description: String, exercises: [UsersExercises] = [UsersExercises]()) {
-        self.id = id
+    init(title: String, date: Date, description: String, exercises: [UsersExercises] = [UsersExercises]()) {
         self.title = title
         self.date = date
         self.description = description
         self.exercises = exercises
     }
 }
+
 
 

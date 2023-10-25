@@ -9,39 +9,32 @@ import SwiftUI
 
 struct UpdateExerciseView: View {
     @ObservedObject var viewModel: ProgramViewModel
-
-
-    var exercise: UsersExercises
+ 
     
     @State private var reps: Int
     @State private var sets: Int
     
-    init(viewModel: ProgramViewModel, exercise: UsersExercises) {
+    public init(viewModel: ProgramViewModel, reps: Int, sets: Int) {
         self.viewModel = viewModel
-        self.exercise = exercise
-        _reps = State(initialValue: exercise.reps)
-        _sets = State(initialValue: exercise.sets)
+        self._reps = State(initialValue: reps)
+        self._sets = State(initialValue: sets)
     }
 
     var body: some View {
         VStack {
             
-         /*   TextField("Title: \(program.title)",
-                      text: $viewModel.title)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding() */
+ 
           
-            TextField("Name: \(exercise.name)",
+            TextField("Name: \(viewModel.name)",
                       text: $viewModel.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            TextField("Muscle groups: \(exercise.muscleGroups.joined(separator: ", "))",
-                      text: $viewModel.muscleGroups)
+            TextField("Muscle groups: ", text: $viewModel.muscleGroups)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            TextField("Weight: \(String(exercise.weight))",
+            TextField("Weight: \(String(viewModel.weight))",
                       text: $viewModel.weight)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -53,16 +46,20 @@ struct UpdateExerciseView: View {
                 .padding()
             
             Button(action: {
-                viewModel.updateExerciseProgram(
-                    withId: UUID(), // Replace UUID() with the actual UUID you want to update
-                    updatedName: viewModel.name,
-                    updatedMuscleGroups: viewModel.muscleGroups.components(separatedBy: ","),
-                    updatedWeight: viewModel.weight,
-                    updatedReps: viewModel.reps,
-                    updatedSets: viewModel.sets
-                )
+                viewModel.updateTrainingProgram(programId: viewModel.id,
+                                                    updatedTitle: viewModel.title,
+                                                    updatedExercises: [UsersExercises(
+                                                        name: viewModel.name,
+                                                        muscleGroups: viewModel.muscleGroups.components(separatedBy: ","),
+                                                        weight: viewModel.weight,
+                                                        reps: viewModel.reps,
+                                                        sets: viewModel.sets,
+                                                        totalReps: viewModel.reps * sets
+                                                    )]
+                                                )
+
             }, label: {
-                Text("Update")
+                Text("save")
             })
 
             
@@ -74,16 +71,15 @@ struct UpdateExerciseView: View {
                 Text("Delete")
             })
         }
-        .navigationTitle(exercise.name)
+        .navigationTitle(viewModel.name)
     }
 }
-/*
-struct UpdateView_Previews: PreviewProvider {
+
+struct UpdateExerciseView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = ProgramViewModel()
         
         let placeholderProgram = UsersPrograms(
-            id: "1",
             title: "Sample Program",
             date: Date(),
             description: "A description",
@@ -91,6 +87,7 @@ struct UpdateView_Previews: PreviewProvider {
                 UsersExercises(
                     name: "Exercise 1",
                     muscleGroups: ["Legs"],
+                    weight: "80",
                     reps: 10,
                     sets: 3,
                     totalReps: 30
@@ -98,7 +95,9 @@ struct UpdateView_Previews: PreviewProvider {
             ]
         )
 
-        return UpdateTrainingProgramView(viewModel: viewModel, program: placeholderProgram)
+        return UpdateExerciseView(viewModel: viewModel, reps: 10, sets: 3)
+            .environmentObject(viewModel) // Assuming ProgramViewModel is an ObservableObject
     }
 }
-*/
+
+

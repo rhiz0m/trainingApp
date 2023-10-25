@@ -9,18 +9,9 @@ import SwiftUI
 
 struct CreateTrainingProgramView: View {
 
-        @ObservedObject private var viewModel = ProgramViewModel()
+    @ObservedObject var viewModel: ProgramViewModel
+    
 
-        var body: some View {
-            FormCell(viewModel: viewModel)
-        }
-    
-    
-    struct FormCell: View {
-        @ObservedObject var viewModel: ProgramViewModel
-        @Environment(\.presentationMode) var presentationMode
-        
-        
         var body: some View {
             
             VStack {
@@ -38,20 +29,19 @@ struct CreateTrainingProgramView: View {
                  .textFieldStyle(RoundedBorderTextFieldStyle())
                  .padding()
                 
-                Button(action: {
-                    viewModel.createTrainingProgramWithExercise()
-                    presentationMode.wrappedValue.dismiss()
+            /*   Button(action: {
+                    viewModel.createTrainingProgramWithExercises(title: viewModel.title, date: viewModel.date, description: viewModel.description,exercises: [UsersExercises(name: viewModel.name, muscleGroups: viewModel.muscleGroups.components(separatedBy: ","), weight: viewModel.weight, reps: viewModel.reps, sets: viewModel.sets, totalReps: viewModel.reps * viewModel.sets)])
                 }) {
-                    Text("Save")
+                    Text("Save Exercise")
                 }
-                
+                */
             }
         }
     }
-}
+
     struct CreateTrainingProgramView_Previews: PreviewProvider {
         static var previews: some View {
-            CreateTrainingProgramView()
+            CreateTrainingProgramView(viewModel: ProgramViewModel())
         }
     }
 

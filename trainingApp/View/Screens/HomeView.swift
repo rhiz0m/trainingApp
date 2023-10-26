@@ -15,7 +15,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             ProgramListView()
-            BottomBarView(viewModel: programViewModel, placeholderProgram: placeholderProgram)
+            BottomBarView(viewModel: ProgramViewModel())
         }
 
     }
@@ -30,13 +30,16 @@ struct HomeView: View {
 
 private struct BottomBarView: View {
     @ObservedObject var viewModel: ProgramViewModel
-    let placeholderProgram: UsersPrograms
+
 
     var body: some View {
         HStack {
-            NavigationLink(destination: CreateTrainingProgramView(viewModel: viewModel), label: {
-                SharedBtnStyle(title: "Add")
-            })
+            NavigationLink(
+                destination: CreateTrainingProgramView(viewModel: viewModel),
+                label: {
+                    SharedBtnStyle(title: "Add")
+                }
+            )
 
             NavigationLink(destination: DetailsView(), label: {
                 SharedBtnStyle(title: "feat")

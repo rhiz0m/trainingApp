@@ -5,21 +5,31 @@ struct ProgramListView: View {
 
     var body: some View {
         NavigationView {
-            List(viewModel.usersPrograms, id: \.id) { program in
-                NavigationLink(destination: UpdateTrainingProgramView(viewModel: viewModel, program: program)) {
-                    Text(program.title)
+            List() {
+                    VStack(alignment: .leading) {
+                        Text(viewModel.title)
+                        Text(formatDate(viewModel.date))
+                    }
+
                   
                 }
             }
             .navigationTitle("Training Programs")
             .onAppear {
-                viewModel.getTrainingPrograms { programs in
+                viewModel.getPrograms { programs in
                     viewModel.usersPrograms = programs
                 }
             }
         }
     }
+
+private func formatDate(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .short
+    dateFormatter.timeStyle = .short
+    return dateFormatter.string(from: date)
 }
+
 
 struct ProgramListView_Previews: PreviewProvider {
     static var previews: some View {

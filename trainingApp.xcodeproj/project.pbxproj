@@ -19,7 +19,7 @@
 		FE69EAC12ADC3F0D00F3D825 /* UsersPrograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */; };
 		FE69EAC32ADC45F000F3D825 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC22ADC45F000F3D825 /* ProgramViewModel.swift */; };
 		FE6BF5172AD854C900E54679 /* UsersExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BF5162AD854C900E54679 /* UsersExercises.swift */; };
-		FE7D2A672AE5562600FEEA4D /* UpdateTrainingProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A662AE5562600FEEA4D /* UpdateTrainingProgramView.swift */; };
+		FE7D2A672AE5562600FEEA4D /* UpdateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */; };
 		FE7D2A692AE5583200FEEA4D /* CreateTrainingProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A682AE5583200FEEA4D /* CreateTrainingProgramView.swift */; };
 		FE7D2A6B2AE6AC5B00FEEA4D /* CreateExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */; };
 		FE7D2A6D2AE6AD0A00FEEA4D /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */; };
@@ -79,7 +79,7 @@
 		FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPrograms.swift; sourceTree = "<group>"; };
 		FE69EAC22ADC45F000F3D825 /* ProgramViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
 		FE6BF5162AD854C900E54679 /* UsersExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersExercises.swift; sourceTree = "<group>"; };
-		FE7D2A662AE5562600FEEA4D /* UpdateTrainingProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTrainingProgramView.swift; sourceTree = "<group>"; };
+		FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProgramView.swift; sourceTree = "<group>"; };
 		FE7D2A682AE5583200FEEA4D /* CreateTrainingProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTrainingProgramView.swift; sourceTree = "<group>"; };
 		FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseView.swift; sourceTree = "<group>"; };
 		FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 				FE8EDA8F2AD1729E00B610A6 /* UpdateExerciseView.swift */,
 				FE8EDA912AD1733700B610A6 /* SettingsView.swift */,
 				FEA8DD6E2AD983AA00286223 /* SplashScreen.swift */,
-				FE7D2A662AE5562600FEEA4D /* UpdateTrainingProgramView.swift */,
+				FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */,
 				FE7D2A682AE5583200FEEA4D /* CreateTrainingProgramView.swift */,
 				FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */,
 			);
@@ -462,7 +462,7 @@
 				FE8EDAA82AD179CF00B610A6 /* GetData.swift in Sources */,
 				FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */,
 				FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */,
-				FE7D2A672AE5562600FEEA4D /* UpdateTrainingProgramView.swift in Sources */,
+				FE7D2A672AE5562600FEEA4D /* UpdateProgramView.swift in Sources */,
 				FE8EDA962AD1760400B610A6 /* SignUpViewModel.swift in Sources */,
 				FEC2DA982AD4796E003F88C4 /* LoginViewAdapter.swift in Sources */,
 				FE8EDA8E2AD1724E00B610A6 /* DetailsView.swift in Sources */,

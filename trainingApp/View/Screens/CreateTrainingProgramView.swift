@@ -7,38 +7,73 @@
 
 import SwiftUI
 
-struct CreateTrainingProgramView: View {
+import SwiftUI
 
+struct CreateTrainingProgramView: View {
+    
     @ObservedObject var viewModel: ProgramViewModel
     
-
-        var body: some View {
+    var body: some View {
+        
+        VStack {
             
-            VStack {
-                Text("My programs!").padding()
-                
-                TextField("Program title: ", text: $viewModel.title)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                TextField("Date: ", text: $viewModel.id)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                TextField("Description: ", text: $viewModel.description)
-                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                 .padding()
-                
-            /*   Button(action: {
-                    viewModel.createTrainingProgramWithExercises(title: viewModel.title, date: viewModel.date, description: viewModel.description,exercises: [UsersExercises(name: viewModel.name, muscleGroups: viewModel.muscleGroups.components(separatedBy: ","), weight: viewModel.weight, reps: viewModel.reps, sets: viewModel.sets, totalReps: viewModel.reps * viewModel.sets)])
-                }) {
-                    Text("Save Exercise")
+            TextField("Title: \(viewModel.title)",
+                      text: $viewModel.title)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
+            
+            TextField("Date: \(viewModel.date)",
+                      text: $viewModel.id)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
+            
+            TextField("Description: \(viewModel.description)",
+                      text: $viewModel.description)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
+            
+            TextField("Name: \(viewModel.name)",
+                      text: $viewModel.name)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
+            
+            TextField("Muscle groups: \(viewModel.muscleGroups)",
+                text: $viewModel.muscleGroups)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.vertical, GridPoints.x1)
+                .padding(.horizontal, GridPoints.x4)
+            
+            TextField("Weight: \(viewModel.weight)",
+                      text: $viewModel.weight)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
+            
+            Stepper("Reps: \(viewModel.reps)", value: $viewModel.reps)
+                .padding(.vertical, GridPoints.x1)
+                .padding(.horizontal, GridPoints.x4)
+            
+            Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
+                .padding(.vertical, GridPoints.x1)
+                .padding(.horizontal, GridPoints.x4)
+            
+            
+            NavigationLink(
+                destination: CreateExerciseView(viewModel: viewModel),
+                label: {
+                    SharedBtnStyle(title: "Add Exercise")
                 }
-                */
-            }
+            ).padding()
+            
+            ExerciseListView()
+            
         }
     }
-
+}
     struct CreateTrainingProgramView_Previews: PreviewProvider {
         static var previews: some View {
             CreateTrainingProgramView(viewModel: ProgramViewModel())

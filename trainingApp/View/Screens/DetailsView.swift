@@ -48,7 +48,7 @@ struct DetailsView: View {
                     .padding()
                 
                 Button(action: {
-                    viewModel.createTrainingProgram()
+                    viewModel.createProgram()
                 }) {
                     Text("Save")
                 }

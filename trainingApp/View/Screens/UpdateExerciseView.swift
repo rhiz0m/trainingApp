@@ -13,33 +13,21 @@ struct UpdateExerciseView: View {
     var body: some View {
         VStack {
             
- 
-          
-            TextField("Name: \(viewModel.name)",
-                      text: $viewModel.name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+            ExerciseFormView(viewModel: ProgramViewModel())
             
-            TextField("Muscle groups: ", text: $viewModel.muscleGroups)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            TextField("Weight: \(String(viewModel.weight))",
-                      text: $viewModel.weight)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            Stepper("Reps: \(viewModel.reps)", value: $viewModel.reps)
-                .padding()
-            
-            Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
-                .padding()
-            
-            Button(action: {
-            }, label: {
-                Text("save")
-            })
-
+            HStack {
+                NavigationLink(
+                    destination: CreateExerciseView(viewModel: viewModel),
+                    label: {
+                        SharedBtnStyle(title: "Save")
+                    }
+                )
+                Text("test").padding()
+                
+                PrimaryBtn(title: "Cancel", onPress: {})
+            }
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
             
             Button(action: {
             }, label: {

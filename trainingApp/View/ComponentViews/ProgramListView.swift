@@ -1,24 +1,19 @@
 import SwiftUI
 
 struct ProgramListView: View {
+    
     @ObservedObject var viewModel = ProgramViewModel()
 
     var body: some View {
-        NavigationView {
             List() {
                     VStack(alignment: .leading) {
                         Text(viewModel.title)
                         Text(formatDate(viewModel.date))
                     }
-
-                  
                 }
-            }
+           
             .navigationTitle("Training Programs")
             .onAppear {
-                viewModel.getPrograms { programs in
-                    viewModel.usersPrograms = programs
-                }
             }
         }
     }

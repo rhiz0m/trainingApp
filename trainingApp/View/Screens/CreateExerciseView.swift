@@ -8,38 +8,33 @@
 import SwiftUI
 
 struct CreateExerciseView: View {
+    
     @ObservedObject var viewModel: ProgramViewModel
 
     var body: some View {
         VStack {
-            Text("My Exercises!").padding()
-
-            TextField("Exercise name: ", text: $viewModel.name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            TextField("Muscle groups: ", text: $viewModel.muscleGroups)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            TextField("Weight: ", text: $viewModel.weight)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            Stepper("Reps: \(viewModel.reps)", value: $viewModel.reps)
-                .padding()
-
-            Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
-                .padding()
+            ExerciseFormView(viewModel: ProgramViewModel())
+            
+            HStack {
+                NavigationLink(
+                    destination: CreateExerciseView(viewModel: viewModel),
+                    label: {
+                        SharedBtnStyle(title: "Save")
+                    }
+                )
+                Text("test").padding()
+                
+                PrimaryBtn(title: "Cancel", onPress: {})
+            }
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
+            
+            Button(action: {
+            }, label: {
+                Text("Delete")
+            })
         }
-        .navigationTitle("Update Exercise")
-        .navigationBarItems(
-            trailing:
-                Button(action: {
-                }, label: {
-                    Text("Update Exercise")
-                })
-        )
+        .navigationTitle(viewModel.name)
     }
 }
 

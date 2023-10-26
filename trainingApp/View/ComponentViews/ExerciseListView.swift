@@ -8,25 +8,22 @@
 import SwiftUI
 
 struct ExerciseListView: View {
+    
     @ObservedObject var viewModel = ProgramViewModel()
  
-    
     var body: some View {
-        NavigationView {
+        
             List() {
                 Button(action: {
 
                 }) {
                     Text("test")
                 }
-            }
-            .navigationTitle("Exercises")
+            }.navigationTitle(viewModel.title)
             .onAppear {
-           
-                }
-            }
         }
     }
+}
 
 
 

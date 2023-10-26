@@ -6,13 +6,11 @@ class ProgramViewModel: ObservableObject {
     @Published var title = ""
     @Published var date = Date()
     @Published var description = ""
-    
     @Published var name = ""
     @Published var muscleGroups = ""
     @Published var weight = ""
     @Published var reps = 0
     @Published var sets = 0
-    @Published var usersPrograms: [UsersPrograms] = []
   
     func createProgram() {
         if !title.isEmpty {

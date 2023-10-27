@@ -14,7 +14,7 @@ class UsersPrograms: Identifiable, Codable {
     var title: String
     var date: Date
     var description: String
-    var exercises = [UsersExercises]()
+    var exercises: [UsersExercises]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,13 +24,15 @@ class UsersPrograms: Identifiable, Codable {
         case exercises
     }
 
-    init(title: String, date: Date, description: String, exercises: [UsersExercises] = [UsersExercises]()) {
+    init(id: String? = nil, title: String, date: Date, description: String, exercises: [UsersExercises] = []) {
+        self.id = id
         self.title = title
         self.date = date
         self.description = description
         self.exercises = exercises
     }
 }
+
 
 
 

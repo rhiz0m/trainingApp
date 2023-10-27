@@ -18,13 +18,6 @@ struct HomeView: View {
     }
 }
 
-@ViewBuilder private var ListView: some View {
-
-    VStack {
-       // ProgramListView(programViewModel: programViewModel)
-    }
-}
-
 private struct BottomBarView: View {
     
     @ObservedObject var viewModel: ProgramViewModel

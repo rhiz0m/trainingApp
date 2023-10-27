@@ -47,10 +47,16 @@ struct DetailsView: View {
                 Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
                     .padding()
                 
-                Button(action: {
-                    viewModel.createProgram()
-                }) {
-                    Text("Save")
+                PrimaryBtn(title: "Save") {
+                    viewModel.createProgram { documentId in
+                        if let documentId = documentId {
+                            // Document added successfully, you can use the documentId
+                            print("Created program with ID:", documentId)
+                        } else {
+                            // Error occurred while adding the document
+                            print("Failed to create program.")
+                        }
+                    }
                 }
             }
         }

@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//  trainingApp
-//
-//  Created by Andreas Antonsson on 2023-10-26.
-//
-
 import SwiftUI
 
 struct ProgramFormView: View {
@@ -12,24 +5,22 @@ struct ProgramFormView: View {
     @ObservedObject var viewModel: ProgramViewModel
     
     var body: some View {
-        TextField("Title: \(viewModel.title)",
-                  text: $viewModel.title)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .padding(.vertical, GridPoints.x1)
-        .padding(.horizontal, GridPoints.x4)
+        TextField("Title", text: $viewModel.title)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
         
-        TextField("Date: \(viewModel.date)",
-                  text: $viewModel.id)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .padding(.vertical, GridPoints.x1)
-        .padding(.horizontal, GridPoints.x4)
+        TextField("Date",
+                  text: $viewModel.dateString)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
         
-        TextField("Description: \(viewModel.description)",
+        TextField("Description",
                   text: $viewModel.description)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .padding(.vertical, GridPoints.x1)
-        .padding(.horizontal, GridPoints.x4)
-        
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.vertical, GridPoints.x1)
+            .padding(.horizontal, GridPoints.x4)
     }
 }
 

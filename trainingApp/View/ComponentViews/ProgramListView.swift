@@ -7,6 +7,7 @@ import SwiftUI
 struct ProgramListView: View {
     
     @ObservedObject var viewModel = ProgramViewModel()
+    
     @State private var selectedProgramTitle: String? = nil
     
     var body: some View {

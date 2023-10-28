@@ -30,7 +30,10 @@ private struct BottomBarView: View {
                     SharedBtnStyle(title: "Add")
                 }
             )
-
+            .onTapGesture {
+                viewModel.clearFeilds()
+            }
+                    
             NavigationLink(destination: DetailsView(), label: {
                 SharedBtnStyle(title: "feat")
             })

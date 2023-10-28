@@ -11,6 +11,10 @@ struct CreateProgramView: View {
     
     @ObservedObject var viewModel: ProgramViewModel
     
+    @Environment(\.presentationMode) var presentationMode
+    
+
+    
     var body: some View {
         
         VStack {
@@ -29,6 +33,7 @@ struct CreateProgramView: View {
                     if let firstProgramId = viewModel.usersPrograms.first?.id {
                         viewModel.id = firstProgramId
                         viewModel.deleteProgram {
+                            presentationMode.wrappedValue.dismiss()
                             print("Deleted succesfully!")
                         }
                     } else {
@@ -41,10 +46,9 @@ struct CreateProgramView: View {
                 PrimaryBtn(title: "Update") {
                     viewModel.createProgram { documentId in
                         if let documentId = documentId {
-                            // Document added successfully, you can use the documentId
                             print("Created program with ID:", documentId)
+                            presentationMode.wrappedValue.dismiss()
                         } else {
-                            // Error occurred while adding the document
                             print("Failed to create program.")
                         }
                     }
@@ -55,7 +59,7 @@ struct CreateProgramView: View {
             
             ExerciseListView()
             
-        }
+        }.onAppear { viewModel.clearFeilds() }
     }
 }
     struct CreateProgramView_Previews: PreviewProvider {

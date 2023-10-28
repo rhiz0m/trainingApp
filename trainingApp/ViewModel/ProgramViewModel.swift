@@ -26,6 +26,21 @@ class ProgramViewModel: ObservableObject {
         dateString = dateFormatter.string(from: date)
     }
     
+    func clearFeilds() {
+        id = ""
+        title = ""
+        date = Date()
+        dateString = ""
+        description = ""
+        name = ""
+        muscleGroups = ""
+        weight = ""
+        reps = 0
+        sets = 0
+        usersPrograms = []
+        usersExercises = []
+    }
+    
     func createProgram(completion: @escaping (String?) -> Void) {
         if !title.isEmpty {
             let muscleGroupsArray = muscleGroups.components(separatedBy: ",")
@@ -140,4 +155,4 @@ class ProgramViewModel: ObservableObject {
 
 
 
-    }
+}

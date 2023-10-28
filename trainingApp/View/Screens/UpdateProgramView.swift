@@ -10,21 +10,21 @@
 //
 // Created by Andreas Antonsson on 2023-10-22.
 
-
-import SwiftUI
-
-// UpdateProgramView.swift
-
 import SwiftUI
 
 struct UpdateProgramView: View {
     
     @ObservedObject var viewModel: ProgramViewModel
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     @Binding var selectedTitle: String?
+
     
     var body: some View {
         VStack {
             ProgramFormView(viewModel: viewModel)
+            
             
             HStack {
                 NavigationLink(
@@ -38,6 +38,7 @@ struct UpdateProgramView: View {
                     if let firstProgramId = viewModel.usersPrograms.first?.id {
                         viewModel.id = firstProgramId
                         viewModel.deleteProgram {
+                            presentationMode.wrappedValue.dismiss()
                             print("Deleted successfully!")
                         }
                     } else {
@@ -74,6 +75,8 @@ struct UpdateProgramView: View {
 
                     // Call the updateProgram function
                     viewModel.updateProgram(programId: viewModel.id, updatedTitle: selectedTitle, updatedExercises: updatedExercises)
+                    
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
             .padding(.vertical, GridPoints.x1)

@@ -13,12 +13,12 @@ struct CreateProgramView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-
+    @State var selectedProgram: UsersPrograms?
     
     var body: some View {
         
         VStack {
-            ProgramFormView(viewModel: viewModel)
+            ProgramFormView(viewModel: viewModel, selectedProgram: $selectedProgram)
             ExerciseFormView(viewModel: viewModel)
             
             HStack {

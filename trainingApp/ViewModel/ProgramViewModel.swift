@@ -141,17 +141,19 @@ class ProgramViewModel: ObservableObject {
         updatedProgram.exercises = updatedExercises
 
         do {
-            // Save the updated program to Firestore
+            // Save the updated program to Firestore with merge option
             let programsDocumentRef = firebaseDb.collection("users_training_programs").document(programId)
-            try programsDocumentRef.setData(from: updatedProgram)
+            try programsDocumentRef.setData(from: updatedProgram, merge: true)
 
             // Update the local array
             usersPrograms[index] = updatedProgram
             print("Local array updated successfully.")
+            print("Updated Title:", updatedTitle)
         } catch let error {
             print("Error updating training program: \(error.localizedDescription)")
         }
     }
+
 
 
 

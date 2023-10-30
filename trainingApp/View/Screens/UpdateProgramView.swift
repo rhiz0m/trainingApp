@@ -1,68 +1,25 @@
-//
-//  UpdateTrainingView.swift
-//  trainingApp
-//
-//  Created by Andreas Antonsson on 2023-10-22.
-//
-
-// UpdateTrainingView.swift
-// trainingApp
-//
-// Created by Andreas Antonsson on 2023-10-22.
-
 import SwiftUI
 
 struct UpdateProgramView: View {
-    
     @ObservedObject var viewModel: ProgramViewModel
-    
     @Environment(\.presentationMode) var presentationMode
     
-    @Binding var selectedTitle: String?
+    @State var selectedProgram: UsersPrograms?
 
-    
     var body: some View {
         VStack {
-            ProgramFormView(viewModel: viewModel)
-            
-            
+            ProgramFormView(viewModel: viewModel, selectedProgram: $selectedProgram)
+
             HStack {
-                NavigationLink(
-                    destination: CreateExerciseView(viewModel: viewModel),
-                    label: {
-                        SharedBtnStyle(title: "Add Exercise")
-                    }
-                )
-
-                Button(action: {
-                    if let firstProgramId = viewModel.usersPrograms.first?.id {
-                        viewModel.id = firstProgramId
-                        viewModel.deleteProgram {
-                            presentationMode.wrappedValue.dismiss()
-                            print("Deleted successfully!")
-                        }
-                    } else {
-                        print("Error: No programs to delete.")
-                    }
-                }) {
-                    Text("Delete u_p")
-                }
-
                 PrimaryBtn(title: "Update") {
                     // Validate that the title is not empty
-                    guard let selectedTitle = selectedTitle else {
-                        print("Error: No program selected.")
-                        return
-                    }
-                    print("Selected Program Title:", selectedTitle)
-
-                    guard let firstProgram = viewModel.usersPrograms.first else {
-                        print("Error: No programs to update.")
+                    guard !viewModel.title.isEmpty else {
+                        print("Error: No program title.")
                         return
                     }
 
-                    // Set viewModel.id with the ID of the first program
-                    viewModel.id = firstProgram.id ?? ""
+                    // Set viewModel.id with the ID of the selected program
+                    viewModel.id = selectedProgram?.id ?? ""
 
                     let updatedExercises = [UsersExercises(
                         name: viewModel.name,
@@ -74,29 +31,30 @@ struct UpdateProgramView: View {
                     )]
 
                     // Call the updateProgram function
-                    viewModel.updateProgram(programId: viewModel.id, updatedTitle: selectedTitle, updatedExercises: updatedExercises)
-                    
+                    viewModel.updateProgram(programId: viewModel.id, updatedTitle: viewModel.title, updatedExercises: updatedExercises)
                     presentationMode.wrappedValue.dismiss()
                 }
             }
             .padding(.vertical, GridPoints.x1)
             .padding(.horizontal, GridPoints.x4)
-            
-            ExerciseListView()
         }
         .onAppear {
-            // Initialize
-            viewModel.title = selectedTitle ?? ""
-            viewModel.description = viewModel.description
+            // Set the title based on the selected program
+            viewModel.title = selectedProgram?.title ?? ""
+            viewModel.name = selectedProgram?.exercises.first?.name ?? ""
+            viewModel.muscleGroups = selectedProgram?.exercises.first?.muscleGroups.joined(separator: ",") ?? ""
         }
+
     }
 }
 
 struct UpdateProgramView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateProgramView(viewModel: ProgramViewModel(), selectedTitle: .constant("Example Title"))
+        let previewViewModel = ProgramViewModel()
+        let sampleProgram = UsersPrograms(id: "sampleId", title: "Sample Program", date: Date(), description: "Sample Description", exercises: [UsersExercises(name: "Sample Exercise", muscleGroups: ["Legs"], weight: "50", reps: 10, sets: 3, totalReps: 30)])
+        
+        return UpdateProgramView(viewModel: previewViewModel, selectedProgram: sampleProgram)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
     }
 }
-
-
 

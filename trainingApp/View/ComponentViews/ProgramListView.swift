@@ -1,25 +1,30 @@
-import SwiftUI
-
 // ProgramListView.swift
 
 import SwiftUI
 
 struct ProgramListView: View {
-    
     @ObservedObject var viewModel = ProgramViewModel()
-    
-    @State private var selectedProgramTitle: String? = nil
-    
+    @State private var selectedProgram: UsersPrograms? = nil
+    @State private var isActive: Bool = false
+
     var body: some View {
-        List {
-            ForEach(viewModel.usersPrograms) { program in
-                NavigationLink(destination: UpdateProgramView(viewModel: viewModel, selectedTitle: $selectedProgramTitle), tag: program.title, selection: $selectedProgramTitle) {
-                    VStack(alignment: .leading) {
-                        Text(program.title)
-                        Text(formatDate(program.date))
+        List(viewModel.usersPrograms) { program in
+            NavigationLink(
+                destination: UpdateProgramView(viewModel: viewModel, selectedProgram: selectedProgram),
+                isActive: Binding(
+                    get: { isActive },
+                    set: { newValue in
+                        selectedProgram = newValue ? program : nil
+                        isActive = newValue
                     }
+                )
+            ) {
+                VStack(alignment: .leading) {
+                    Text(program.title)
+                    Text(formatDate(program.date))
                 }
             }
+            .buttonStyle(PlainButtonStyle()) // Remove button styling
         }
         .navigationTitle("Training Programs")
         .onAppear {
@@ -42,12 +47,8 @@ struct ProgramListView: View {
     }
 }
 
-
 struct ProgramListView_Previews: PreviewProvider {
     static var previews: some View {
         ProgramListView()
     }
 }
-
-
-

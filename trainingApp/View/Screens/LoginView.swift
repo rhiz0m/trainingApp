@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var loginViewAdapter: LoginViewAdapterer = LoginViewAdapter()
+    @State private var authViewAdapter: AuthViewAdapterer = AuthViewAdapter()
     
     var body: some View {
         content
@@ -30,7 +30,6 @@ struct LoginView: View {
         Image(imageName)
             .resizable()
             .scaledToFill()
-        
             .edgesIgnoringSafeArea(.bottom)
             .overlay(
                 LinearGradient(
@@ -48,19 +47,20 @@ struct LoginView: View {
     
     @ViewBuilder private var textFieldsView: some View {
         CustomTextField(
-            textInput: $loginViewAdapter.emailInput,
-            title: loginViewAdapter.emailPlaceHolder,
+            textInput: $authViewAdapter.emailInput,
+            title: authViewAdapter.emailPlaceHolder,
             onPress: {
                 
             }
         ).padding(.horizontal, GridPoints.x6).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         CustomTextField(
-            textInput: $loginViewAdapter.passwordInput,
-            title: loginViewAdapter.passwordPlaceHolder,
+            textInput: $authViewAdapter.passwordInput,
+            title: authViewAdapter.passwordPlaceHolder,
             onPress: {
                 
             }
         ).padding(.horizontal, GridPoints.x6)
+            .padding(.bottom, GridPoints.x2)
     }
     
     @ViewBuilder private var buttonsView: some View {
@@ -68,19 +68,20 @@ struct LoginView: View {
         NavigationLink(destination: HomeView(), label: {
             SharedBtnStyle(title: "Login")
         })
-        .padding(.horizontal, GridPoints.x8)
+        .padding(.horizontal, GridPoints.custom(16))
         
         NavigationLink(destination: SignUpView(), label: {
             SharedBtnStyle(title: "Sign Up")
         })
-        .padding(.horizontal, GridPoints.x8)
+        .padding(.horizontal, GridPoints.custom(16))
+        .padding(.bottom, GridPoints.x2)
     }
     
 }
 
 struct LoginView_Previews: PreviewProvider {
-        static var previews: some View {
-            LoginView()
+    static var previews: some View {
+        LoginView()
     }
 }
-    
+

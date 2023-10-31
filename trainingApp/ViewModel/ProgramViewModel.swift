@@ -154,7 +154,4 @@ class ProgramViewModel: ObservableObject {
         }
     }
 
-
-
-
 }

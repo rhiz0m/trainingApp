@@ -1,13 +1,13 @@
 //
-//  CustomTextFeild.swift
+//  CustomSecureFeild.swift
 //  trainingApp
 //
-//  Created by Andreas Antonsson on 2023-10-07.
+//  Created by Andreas Antonsson on 2023-11-01.
 //
 
 import SwiftUI
 
-struct CustomTextField: View {
+struct CustomSecureFeild: View {
     
     @Binding var textInput: String
     
@@ -19,38 +19,40 @@ struct CustomTextField: View {
     var body: some View {
         VStack {
             ZStack(alignment: .leading) {
-                TextField("", text: $textInput)
+                SecureField("", text: $textInput)
                     .padding()
                     .textFieldStyle(PlainTextFieldStyle())
                     .frame(height: fixedHeight)
-                    .background(.black)
+                    .background(.white)
                     .cornerRadius(GridPoints.x6)
                     .padding(GridPoints.half)
                     .overlay(
                         RoundedRectangle(cornerRadius: GridPoints.x6)
                             .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo.opacity(0.8), Color.blue.opacity(0.6)]), startPoint: .top, endPoint: .bottom), lineWidth: 2)
-                    ).padding(.horizontal, GridPoints.x4)
-                    .overlay(
-                        Text(textInput.isEmpty ? title : textInput)
-                            .foregroundColor(textInput.isEmpty ? Color(red: 122/255, green: 245/255, blue: 255/255) : Color.white)
-                            .font(.caption)
-                            .padding(.horizontal, GridPoints.x8)
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
                     )
+                    .padding(.horizontal, GridPoints.x4)
                 
+                if textInput.isEmpty {
+                    Text(title)
+                        .font(.caption)
+                        .padding(.horizontal, GridPoints.x8)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(Color(.black))
+                }
             }
+            
         }
     }
 }
 
-struct CustomTextFeild_Previews: PreviewProvider {
+
+struct CustomSecureFeild_Previews: PreviewProvider {
     @State static var textInput: String = ""
     
     static var previews: some View {
-        CustomTextField(textInput: $textInput, title: "textFeild Title", onPress: {})
+        CustomSecureFeild(textInput: $textInput, title: "textFeild Title", onPress: {})
             .previewLayout(.sizeThatFits)
         
     }
 }
-

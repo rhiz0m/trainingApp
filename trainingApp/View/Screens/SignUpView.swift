@@ -48,7 +48,7 @@ struct SignUpView: View {
         
         CustomTextField(
             textInput: $authViewAdapter.emailInput,
-            title: authViewAdapter.confirmEmailPlaceHolder,
+            title: authViewAdapter.emailPlaceHolder,
             onPress: {}
         ).padding(.horizontal, GridPoints.x6).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         

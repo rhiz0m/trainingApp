@@ -53,7 +53,7 @@ struct LoginView: View {
                 
             }
         ).padding(.horizontal, GridPoints.x6).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        CustomTextField(
+        CustomSecureFeild(
             textInput: $authViewAdapter.passwordInput,
             title: authViewAdapter.passwordPlaceHolder,
             onPress: {

@@ -9,7 +9,9 @@ import Foundation
 
 protocol AuthViewAdapterer {
     var emailInput: String { get set }
+    var confirmEmailInput: String { get set }
     var passwordInput: String { get set }
+    var confirmPasswordInput: String { get set }
     var emailPlaceHolder: String { get }
     var confirmEmailPlaceHolder: String { get }
     var passwordPlaceHolder: String { get }

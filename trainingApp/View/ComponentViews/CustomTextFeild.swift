@@ -20,6 +20,7 @@ struct CustomTextField: View {
         VStack {
             ZStack(alignment: .leading) {
                 TextField("", text: $textInput)
+                    .autocapitalization(.none)
                     .padding()
                     .textFieldStyle(PlainTextFieldStyle())
                     .frame(height: fixedHeight)

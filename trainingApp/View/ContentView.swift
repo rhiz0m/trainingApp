@@ -8,10 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var fireBaseDb = DbViewModel()
+    @StateObject var authViewAdapter = AuthViewAdapter()
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                LoginView()
+        
+                if let user = fireBaseDb.currentUser {
+                    VStack {
+                        Text("Du är inloggad!")
+                    }
+                } else {
+                    NavigationView {
+                    LoginView(database: fireBaseDb, authViewAdapter: authViewAdapter)
             }
         }
     }
@@ -19,6 +28,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(authViewAdapter: AuthViewAdapter())
     }
 }
+
+// StateObject = Används när vi skapar en instans första gången. Efter det används ObservedObject.
+// ObservedObject

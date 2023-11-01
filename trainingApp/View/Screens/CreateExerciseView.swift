@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CreateExerciseView: View {
     
-    @ObservedObject var viewModel: ProgramViewModel
+    @ObservedObject var viewModel: DbViewModel
 
     var body: some View {
         VStack {
-            ExerciseFormView(viewModel: ProgramViewModel())
+            ExerciseFormView(viewModel: DbViewModel())
             
             HStack {
                 NavigationLink(
@@ -40,6 +40,6 @@ struct CreateExerciseView: View {
 
 struct CreateExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateExerciseView(viewModel: ProgramViewModel())
+        CreateExerciseView(viewModel: DbViewModel())
     }
 }

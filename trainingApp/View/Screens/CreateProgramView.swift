@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateProgramView: View {
     
-    @ObservedObject var viewModel: ProgramViewModel
+    @ObservedObject var viewModel: DbViewModel
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -64,7 +64,7 @@ struct CreateProgramView: View {
 }
     struct CreateProgramView_Previews: PreviewProvider {
         static var previews: some View {
-            CreateProgramView(viewModel: ProgramViewModel())
+            CreateProgramView(viewModel: DbViewModel())
         }
     }
 

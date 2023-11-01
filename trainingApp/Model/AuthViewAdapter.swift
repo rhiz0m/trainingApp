@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct AuthViewAdapter: AuthViewAdapterer {
-    var emailInput = ""
-    var passwordInput = ""
+class AuthViewAdapter: ObservableObject, AuthViewAdapterer {
+    @Published var emailInput = ""
+    @Published var confirmEmailInput = ""
+    @Published var passwordInput = ""
+    @Published var confirmPasswordInput = ""
     var emailPlaceHolder = "Email"
     var confirmEmailPlaceHolder = "Confirm email"
     var passwordPlaceHolder = "Password"

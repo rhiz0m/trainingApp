@@ -17,7 +17,7 @@
 		FE67B03D2AD997B100CAD12E /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FE67B03C2AD997B100CAD12E /* FirebaseFirestoreCombine-Community */; };
 		FE67B03F2AD997B100CAD12E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE67B03E2AD997B100CAD12E /* FirebaseFirestoreSwift */; };
 		FE69EAC12ADC3F0D00F3D825 /* UsersPrograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */; };
-		FE69EAC32ADC45F000F3D825 /* ProgramViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC22ADC45F000F3D825 /* ProgramViewModel.swift */; };
+		FE69EAC32ADC45F000F3D825 /* DbViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC22ADC45F000F3D825 /* DbViewModel.swift */; };
 		FE6BF5172AD854C900E54679 /* UsersExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BF5162AD854C900E54679 /* UsersExercises.swift */; };
 		FE7D2A672AE5562600FEEA4D /* UpdateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */; };
 		FE7D2A692AE5583200FEEA4D /* CreateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A682AE5583200FEEA4D /* CreateProgramView.swift */; };
@@ -75,7 +75,7 @@
 		FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFeild.swift; sourceTree = "<group>"; };
 		FE67B0312AD9930600CAD12E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPrograms.swift; sourceTree = "<group>"; };
-		FE69EAC22ADC45F000F3D825 /* ProgramViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramViewModel.swift; sourceTree = "<group>"; };
+		FE69EAC22ADC45F000F3D825 /* DbViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbViewModel.swift; sourceTree = "<group>"; };
 		FE6BF5162AD854C900E54679 /* UsersExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersExercises.swift; sourceTree = "<group>"; };
 		FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProgramView.swift; sourceTree = "<group>"; };
 		FE7D2A682AE5583200FEEA4D /* CreateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProgramView.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 		FE8EDA842AD16B7500B610A6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FE69EAC22ADC45F000F3D825 /* ProgramViewModel.swift */,
+				FE69EAC22ADC45F000F3D825 /* DbViewModel.swift */,
 				FE8EDA932AD1738600B610A6 /* LoginViewModel.swift */,
 				FE8EDA952AD1760400B610A6 /* SignUpViewModel.swift */,
 			);
@@ -448,7 +448,7 @@
 				FE8EDA882AD171D000B610A6 /* LoginView.swift in Sources */,
 				FEA386522AEA9326006189E5 /* ExerciseFormView.swift in Sources */,
 				FEC2DA9E2AD481BF003F88C4 /* FontSizes.swift in Sources */,
-				FE69EAC32ADC45F000F3D825 /* ProgramViewModel.swift in Sources */,
+				FE69EAC32ADC45F000F3D825 /* DbViewModel.swift in Sources */,
 				FE7D2A6D2AE6AD0A00FEEA4D /* ExerciseListView.swift in Sources */,
 				FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */,
 				FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */,

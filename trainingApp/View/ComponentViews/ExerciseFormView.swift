@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExerciseFormView: View {
     
-    @ObservedObject var viewModel: ProgramViewModel
+    @ObservedObject var viewModel: DbViewModel
     
     var body: some View {
         TextField("Name: \(viewModel.name)",
@@ -39,5 +39,5 @@ struct ExerciseFormView: View {
     }
 }
 #Preview {
-    ExerciseFormView(viewModel: ProgramViewModel())
+    ExerciseFormView(viewModel: DbViewModel())
 }

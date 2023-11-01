@@ -12,7 +12,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             ProgramListView()
-            BottomBarView(viewModel: ProgramViewModel())
+            BottomBarView(viewModel: DbViewModel())
         }
 
     }
@@ -20,7 +20,7 @@ struct HomeView: View {
 
 private struct BottomBarView: View {
     
-    @ObservedObject var viewModel: ProgramViewModel
+    @ObservedObject var viewModel: DbViewModel
 
     var body: some View {
         HStack {

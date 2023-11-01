@@ -3,7 +3,7 @@
 import SwiftUI
 
 struct ProgramListView: View {
-    @ObservedObject var viewModel = ProgramViewModel()
+    @ObservedObject var viewModel = DbViewModel()
     @State private var selectedProgram: UsersPrograms? = nil
     @State private var isActive: Bool = false
 

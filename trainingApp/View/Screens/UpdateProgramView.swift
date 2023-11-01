@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct UpdateProgramView: View {
-    @ObservedObject var viewModel: ProgramViewModel
+    @ObservedObject var viewModel: DbViewModel
     @Environment(\.presentationMode) var presentationMode
     
     @State var selectedProgram: UsersPrograms?
@@ -50,7 +50,7 @@ struct UpdateProgramView: View {
 
 struct UpdateProgramView_Previews: PreviewProvider {
     static var previews: some View {
-        let previewViewModel = ProgramViewModel()
+        let previewViewModel = DbViewModel()
         let sampleProgram = UsersPrograms(id: "sampleId", title: "Sample Program", date: Date(), description: "Sample Description", exercises: [UsersExercises(name: "Sample Exercise", muscleGroups: ["Legs"], weight: "50", reps: 10, sets: 3, totalReps: 30)])
         
         return UpdateProgramView(viewModel: previewViewModel, selectedProgram: sampleProgram)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailsView: View {
     
-        @StateObject private var viewModel = ProgramViewModel()
+        @StateObject private var viewModel = DbViewModel()
 
         var body: some View {
             FormCell(viewModel: viewModel)
@@ -17,7 +17,7 @@ struct DetailsView: View {
     
     
     struct FormCell: View {
-        @ObservedObject var viewModel: ProgramViewModel
+        @ObservedObject var viewModel: DbViewModel
         
         
         var body: some View {

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ProgramFormView: View {
     
-    @ObservedObject var viewModel: ProgramViewModel
+    @ObservedObject var viewModel: DbViewModel
     
     @Binding var selectedProgram: UsersPrograms?
 
@@ -28,7 +28,7 @@ struct ProgramFormView: View {
 
 struct ProgramFormView_Previews: PreviewProvider {
     static var previews: some View {
-            let viewModel = ProgramViewModel()
+            let viewModel = DbViewModel()
             let selectedProgram = Binding<UsersPrograms?>(
                 get: { nil },
                 set: { _ in }

@@ -9,8 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var authViewAdapter: AuthViewAdapterer = AuthViewAdapter()
-    
+    @ObservedObject var database: DbViewModel
+    @ObservedObject var authViewAdapter: AuthViewAdapter
+        
     var body: some View {
         content
     }
@@ -67,10 +68,14 @@ struct LoginView: View {
         
         NavigationLink(destination: HomeView(), label: {
             SharedBtnStyle(title: "Login")
+            if !authViewAdapter.emailInput.isEmpty && !authViewAdapter.passwordInput.isEmpty {
+                // Logga in användaren
+            }
+            
         })
         .padding(.horizontal, GridPoints.custom(16))
         
-        NavigationLink(destination: SignUpView(), label: {
+        NavigationLink(destination: SignUpView(database: database, authViewAdapter: authViewAdapter), label: {
             SharedBtnStyle(title: "Sign Up")
         })
         .padding(.horizontal, GridPoints.custom(16))
@@ -81,7 +86,8 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+
+        LoginView(database: DbViewModel(), authViewAdapter: AuthViewAdapter())
     }
 }
 

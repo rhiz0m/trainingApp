@@ -17,12 +17,13 @@
 		FE67B03D2AD997B100CAD12E /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FE67B03C2AD997B100CAD12E /* FirebaseFirestoreCombine-Community */; };
 		FE67B03F2AD997B100CAD12E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE67B03E2AD997B100CAD12E /* FirebaseFirestoreSwift */; };
 		FE69EAC12ADC3F0D00F3D825 /* UsersPrograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */; };
-		FE69EAC32ADC45F000F3D825 /* DbViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC22ADC45F000F3D825 /* DbViewModel.swift */; };
+		FE69EAC32ADC45F000F3D825 /* DbConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC22ADC45F000F3D825 /* DbConnection.swift */; };
 		FE6BF5172AD854C900E54679 /* UsersExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BF5162AD854C900E54679 /* UsersExercises.swift */; };
 		FE7D2A672AE5562600FEEA4D /* UpdateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */; };
 		FE7D2A692AE5583200FEEA4D /* CreateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A682AE5583200FEEA4D /* CreateProgramView.swift */; };
 		FE7D2A6B2AE6AC5B00FEEA4D /* CreateExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */; };
 		FE7D2A6D2AE6AD0A00FEEA4D /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */; };
+		FE86BE7D2AF3A22A00863EA4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86BE7C2AF3A22A00863EA4 /* UserData.swift */; };
 		FE8A7B052AF25E1E0000A75E /* CustomSecureFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A7B042AF25E1E0000A75E /* CustomSecureFeild.swift */; };
 		FE8ECEE72AD6C05C008B5E15 /* SharedBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */; };
 		FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA802AD16B4A00B610A6 /* auth.swift */; };
@@ -75,12 +76,13 @@
 		FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFeild.swift; sourceTree = "<group>"; };
 		FE67B0312AD9930600CAD12E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE69EAC02ADC3F0D00F3D825 /* UsersPrograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersPrograms.swift; sourceTree = "<group>"; };
-		FE69EAC22ADC45F000F3D825 /* DbViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbViewModel.swift; sourceTree = "<group>"; };
+		FE69EAC22ADC45F000F3D825 /* DbConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbConnection.swift; sourceTree = "<group>"; };
 		FE6BF5162AD854C900E54679 /* UsersExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersExercises.swift; sourceTree = "<group>"; };
 		FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProgramView.swift; sourceTree = "<group>"; };
 		FE7D2A682AE5583200FEEA4D /* CreateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProgramView.swift; sourceTree = "<group>"; };
 		FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseView.swift; sourceTree = "<group>"; };
 		FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
+		FE86BE7C2AF3A22A00863EA4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FE8A7B042AF25E1E0000A75E /* CustomSecureFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureFeild.swift; sourceTree = "<group>"; };
 		FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedBtnStyle.swift; sourceTree = "<group>"; };
 		FE8EDA802AD16B4A00B610A6 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
@@ -173,7 +175,7 @@
 		FE8EDA842AD16B7500B610A6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FE69EAC22ADC45F000F3D825 /* DbViewModel.swift */,
+				FE69EAC22ADC45F000F3D825 /* DbConnection.swift */,
 				FE8EDA932AD1738600B610A6 /* LoginViewModel.swift */,
 				FE8EDA952AD1760400B610A6 /* SignUpViewModel.swift */,
 			);
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				FE8EDA802AD16B4A00B610A6 /* auth.swift */,
+				FE86BE7C2AF3A22A00863EA4 /* UserData.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -448,7 +451,7 @@
 				FE8EDA882AD171D000B610A6 /* LoginView.swift in Sources */,
 				FEA386522AEA9326006189E5 /* ExerciseFormView.swift in Sources */,
 				FEC2DA9E2AD481BF003F88C4 /* FontSizes.swift in Sources */,
-				FE69EAC32ADC45F000F3D825 /* DbViewModel.swift in Sources */,
+				FE69EAC32ADC45F000F3D825 /* DbConnection.swift in Sources */,
 				FE7D2A6D2AE6AD0A00FEEA4D /* ExerciseListView.swift in Sources */,
 				FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */,
 				FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */,
@@ -457,6 +460,7 @@
 				FE8A7B052AF25E1E0000A75E /* CustomSecureFeild.swift in Sources */,
 				FEC2DA982AD4796E003F88C4 /* AuthViewAdapterer.swift in Sources */,
 				FEA386502AEA925C006189E5 /* ProgramFormView.swift in Sources */,
+				FE86BE7D2AF3A22A00863EA4 /* UserData.swift in Sources */,
 				FE8EDA8E2AD1724E00B610A6 /* DetailsView.swift in Sources */,
 				FEC2DA9A2AD47A48003F88C4 /* AuthViewAdapter.swift in Sources */,
 				FE6BF5172AD854C900E54679 /* UsersExercises.swift in Sources */,

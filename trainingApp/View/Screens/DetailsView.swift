@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailsView: View {
     
-        @StateObject private var viewModel = DbViewModel()
+        @StateObject private var viewModel = DbConnection()
 
         var body: some View {
             FormCell(viewModel: viewModel)
@@ -17,7 +17,7 @@ struct DetailsView: View {
     
     
     struct FormCell: View {
-        @ObservedObject var viewModel: DbViewModel
+        @ObservedObject var viewModel: DbConnection
         
         
         var body: some View {
@@ -47,7 +47,7 @@ struct DetailsView: View {
                 Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
                     .padding()
                 
-                PrimaryBtn(title: "Save") {
+             /*   PrimaryBtn(title: "Save") {
                     viewModel.createProgram { documentId in
                         if let documentId = documentId {
                             // Document added successfully, you can use the documentId
@@ -57,7 +57,7 @@ struct DetailsView: View {
                             print("Failed to create program.")
                         }
                     }
-                }
+                } */
             }
         }
     }

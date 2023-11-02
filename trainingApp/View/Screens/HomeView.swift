@@ -11,8 +11,8 @@ struct HomeView: View {
 
     var body: some View {
         VStack {
-            ProgramListView()
-            BottomBarView(viewModel: DbViewModel())
+            ProgramListView(db: DbConnection())
+            BottomBarView(viewModel: DbConnection())
         }
 
     }
@@ -20,12 +20,12 @@ struct HomeView: View {
 
 private struct BottomBarView: View {
     
-    @ObservedObject var viewModel: DbViewModel
+    @ObservedObject var viewModel: DbConnection
 
     var body: some View {
         HStack {
             NavigationLink(
-                destination: CreateProgramView(viewModel: viewModel),
+                destination: CreateProgramView(db: viewModel),
                 label: {
                     SharedBtnStyle(title: "Add")
                 }

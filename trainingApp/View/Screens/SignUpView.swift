@@ -9,11 +9,9 @@ import SwiftUI
 
 struct SignUpView: View {
     
-    @ObservedObject var database: DbViewModel
+    @ObservedObject var database: DbConnection
     @ObservedObject var authViewAdapter: AuthViewAdapter
-    
-    @State var email = ""
-    @State var password = ""
+
     @State var confirmPassword = ""
     
     var body: some View {
@@ -53,19 +51,13 @@ struct SignUpView: View {
     @ViewBuilder private var textFieldsView: some View {
         
         CustomTextField(
-            textInput: $email,
+            textInput: $authViewAdapter.emailInput,
             title: authViewAdapter.emailPlaceHolder,
             onPress: {}
         ).padding(.horizontal, GridPoints.x6).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         
-        /*  CustomTextField(
-         textInput: $authViewAdapter.confirmEmailInput,
-         title: authViewAdapter.confirmEmailPlaceHolder,
-         onPress: {}
-         ).padding(.horizontal, GridPoints.x6) */
-        
         CustomTextField(
-            textInput: $password,
+            textInput: $authViewAdapter.passwordInput,
             title: authViewAdapter.passwordPlaceHolder,
             onPress: {}
         ).padding(.horizontal, GridPoints.x6)
@@ -83,11 +75,10 @@ struct SignUpView: View {
     @ViewBuilder private var buttonsView: some View {
         
         PrimaryBtn(title: "Sign Up", onPress: {
-            if !email.isEmpty && !password.isEmpty && password == confirmPassword {
-                database.registerUser(email: email, password: password) { success in
+            if !authViewAdapter.emailInput.isEmpty && !authViewAdapter.passwordInput.isEmpty && authViewAdapter.passwordInput == confirmPassword {
+                database.registerUser(email: authViewAdapter.emailInput, password: authViewAdapter.passwordInput) { success in
                     if success {
                         print("Successfully created account")
-                        // You might want to navigate to a different view or perform other actions here
                     } else {
                         print("Failed to create account")
                     }
@@ -104,6 +95,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(database: DbViewModel(), authViewAdapter: AuthViewAdapter())
+        SignUpView(database: DbConnection(), authViewAdapter: AuthViewAdapter())
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @ObservedObject var database: DbViewModel
+    @ObservedObject var database: DbConnection
     @ObservedObject var authViewAdapter: AuthViewAdapter
         
     var body: some View {
@@ -87,7 +87,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
 
-        LoginView(database: DbViewModel(), authViewAdapter: AuthViewAdapter())
+        LoginView(database: DbConnection(), authViewAdapter: AuthViewAdapter())
     }
 }
 

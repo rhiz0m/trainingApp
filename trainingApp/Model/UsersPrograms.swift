@@ -1,9 +1,3 @@
-//
-//  usersPrograms.swift
-//  trainingApp
-//
-//  Created by Andreas Antonsson on 2023-10-15.
-//
 
 import Foundation
 import FirebaseFirestoreSwift

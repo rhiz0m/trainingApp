@@ -9,35 +9,59 @@ import SwiftUI
 
 struct ExerciseFormView: View {
     
-    @ObservedObject var viewModel: DbConnection
+    @ObservedObject var db: DbConnection
+    
+    @Binding var name: String
+    @Binding var muscleGroups: String
+    @Binding var weight: String
+    @Binding var reps: Int
+    @Binding var sets: Int
+    @Binding var selectedExercice: UsersExercises?
     
     var body: some View {
-        TextField("Name: \(viewModel.name)",
-                  text: $viewModel.name)
+        TextField("Name: \(name)",
+                  text: $name)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .padding(.vertical, GridPoints.x1)
         .padding(.horizontal, GridPoints.x4)
         
-        TextField("Muscle groups: \(viewModel.muscleGroups)",
-                  text: $viewModel.muscleGroups)
+        TextField("Muscle groups: \(muscleGroups)",
+                  text: $muscleGroups)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .padding(.vertical, GridPoints.x1)
         .padding(.horizontal, GridPoints.x4)
         
-        TextField("Weight: \(viewModel.weight)",
-                  text: $viewModel.weight)
+        TextField("Weight: \(weight)",
+                  text: $weight)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .padding(.vertical, GridPoints.x1)
         .padding(.horizontal, GridPoints.x4)
         
         HStack() {
-            Stepper("Reps: \(viewModel.reps)", value: $viewModel.reps)
-            Stepper("Sets: \(viewModel.sets)", value: $viewModel.sets)
+            Stepper("Reps: \(reps)", value: $reps)
+            Stepper("Sets: \(sets)", value: $sets)
         }.padding(.vertical, GridPoints.x1)
             .padding(.horizontal, GridPoints.x4)
         
     }
 }
-#Preview {
-    ExerciseFormView(viewModel: DbConnection())
+
+struct ExerciseFormView_Previews: PreviewProvider {
+    static var previews: some View {
+            let db = DbConnection()
+            let selectedExercice = Binding<UsersExercises?>(
+                get: { nil },
+                set: { _ in }
+            )
+            
+        return ExerciseFormView(
+                 db: db,
+                 name: Binding.constant("ovning"),
+                 muscleGroups: Binding.constant("core,back,legs"),
+                 weight: Binding.constant("100"),
+                 reps: Binding.constant(5),
+                 sets: Binding.constant(6),
+                 selectedExercice: selectedExercice
+             )
+        }
 }

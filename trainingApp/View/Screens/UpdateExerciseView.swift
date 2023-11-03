@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct UpdateExerciseView: View {
-    @ObservedObject var viewModel: DbConnection
+    @ObservedObject var db: DbConnection
+    
+    @Binding var name: String
+    @Binding var muscleGroups: String
+    @Binding var weight: String
+    @Binding var reps: Int
+    @Binding var sets: Int
+    @Binding var selectedExercice: UsersExercises?
  
     var body: some View {
         VStack {
             
-            ExerciseFormView(viewModel: DbConnection())
+            ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice)
             
             HStack {
                 NavigationLink(
-                    destination: CreateExerciseView(viewModel: viewModel),
+                    destination: CreateExerciseView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice),
                     label: {
                         SharedBtnStyle(title: "Save")
                     }
@@ -34,13 +41,28 @@ struct UpdateExerciseView: View {
                 Text("Delete")
             })
         }
-        .navigationTitle(viewModel.name)
+        .navigationTitle(db.name)
     }
 }
 
 struct UpdateExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdateExerciseView(viewModel: DbConnection())
+        let db = DbConnection()
+        let selectedExercice = Binding<UsersExercises?>(
+            get: { nil },
+            set: { _ in }
+        )
+            let dateString = Binding.constant("2023-11-02")
+                
+                return UpdateExerciseView(
+                         db: db,
+                         name: Binding.constant("ovning"),
+                         muscleGroups: Binding.constant("core,back,legs"),
+                         weight: Binding.constant("100"),
+                         reps: Binding.constant(5),
+                         sets: Binding.constant(6),
+                         selectedExercice: selectedExercice
+                     )
     }
 }
 

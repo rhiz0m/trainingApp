@@ -2,7 +2,6 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-
 struct UsersExercises: Identifiable, Codable {
     var id = UUID()
     var category = "users_exercises"
@@ -12,7 +11,7 @@ struct UsersExercises: Identifiable, Codable {
     var reps: Int
     var sets: Int
     var totalReps: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case muscleGroups = "muscle_groups"
@@ -22,5 +21,4 @@ struct UsersExercises: Identifiable, Codable {
         case totalReps = "total_reps"
     }
 }
-
 

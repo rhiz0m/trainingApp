@@ -16,6 +16,7 @@ struct ExerciseFormView: View {
     @Binding var weight: String
     @Binding var reps: Int
     @Binding var sets: Int
+    
     @Binding var selectedExercice: UsersExercises?
     
     var body: some View {

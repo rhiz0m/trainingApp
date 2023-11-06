@@ -2,16 +2,28 @@ import SwiftUI
 
 struct UpdateProgramView: View {
     @ObservedObject var db: DbConnection
-    //@Environment(\.presentationMode) var presentationMode
+    
+    @Environment(\.dismiss) private var dismiss
     
     @State var title = ""
     @State var description = ""
-    @State var dateString = ""
+    @State var date = ""
+    
+    @State var name = ""
+    @State var muscleGroups = ""
+    @State var weight = ""
+    @State var reps = 0
+    @State var sets = 0
+    
     @State var selectedProgram: UsersPrograms?
+    @State var selectedExercise: UsersExercises? 
     
     var body: some View {
         VStack {
-            ProgramFormView(db: db,  title: $title, description: $description, dateString: $dateString, selectedProgram: $selectedProgram)
+            ProgramFormView(db: db,  
+                            title: $title,
+                            date: $date,
+                            selectedProgram: $selectedProgram)
             
             HStack {
                 

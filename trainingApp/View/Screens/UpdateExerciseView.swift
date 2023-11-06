@@ -15,6 +15,8 @@ struct UpdateExerciseView: View {
     @Binding var weight: String
     @Binding var reps: Int
     @Binding var sets: Int
+    
+    @Binding var selectedProgram: UsersPrograms?
     @Binding var selectedExercice: UsersExercises?
  
     var body: some View {
@@ -24,7 +26,7 @@ struct UpdateExerciseView: View {
             
             HStack {
                 NavigationLink(
-                    destination: CreateExerciseView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice),
+                    destination: CreateExerciseView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedProgram: $selectedProgram, selectedExercice: $selectedExercice),
                     label: {
                         SharedBtnStyle(title: "Save")
                     }
@@ -52,6 +54,11 @@ struct UpdateExerciseView_Previews: PreviewProvider {
             get: { nil },
             set: { _ in }
         )
+        
+        let selectedProgram = Binding<UsersPrograms?>(
+            get: { nil },
+            set: { _ in }
+        )
             let dateString = Binding.constant("2023-11-02")
                 
                 return UpdateExerciseView(
@@ -61,6 +68,7 @@ struct UpdateExerciseView_Previews: PreviewProvider {
                          weight: Binding.constant("100"),
                          reps: Binding.constant(5),
                          sets: Binding.constant(6),
+                         selectedProgram: selectedProgram,
                          selectedExercice: selectedExercice
                      )
     }

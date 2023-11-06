@@ -12,40 +12,49 @@ struct HomeView: View {
     var body: some View {
         VStack {
             ProgramListView(db: DbConnection())
-            BottomBarView(viewModel: DbConnection())
-        }
-
+            BottomBarView(db: DbConnection())
+        }.navigationBarBackButtonHidden(true)
     }
 }
 
+
 private struct BottomBarView: View {
     
-    @ObservedObject var viewModel: DbConnection
-
+    @ObservedObject var db: DbConnection
+    
     var body: some View {
-        HStack {
-            NavigationLink(
-                destination: CreateProgramView(db: viewModel),
-                label: {
-                    SharedBtnStyle(title: "Add")
+        
+        NavigationStack {
+            HStack {
+                NavigationLink(
+                    destination: CreateProgramView(db: db),
+                    label: {
+                        SharedBtnStyle(title: "Add")
+                    }
+                )
+                .onTapGesture {
+                    db.clearFeilds()
                 }
-            )
-            .onTapGesture {
-                viewModel.clearFeilds()
-            }
+                
+                NavigationLink(destination: DetailsView(), label: {
+                    SharedBtnStyle(title: "feat")
+                })
+                
+                NavigationLink(destination: DetailsView(), label: {
                     
-            NavigationLink(destination: DetailsView(), label: {
-                SharedBtnStyle(title: "feat")
-            })
-
-            NavigationLink(destination: DetailsView(), label: {
-                SharedBtnStyle(title: "feat 2")
-            })
-
-            NavigationLink(destination: DetailsView(), label: {
-                SharedBtnStyle(title: "feat 3")
-            })
-        }.padding(.horizontal, GridPoints.x4)
+                    SharedBtnStyle(title: "feat 2")
+                })
+                
+                NavigationLink(destination: DetailsView(), label: {
+                    SharedBtnStyle(title: "feat 3")
+                })
+                Button(action: {
+                    db.logout()
+                }, label: {
+                    Text("Logout")
+                })
+            }.padding(.horizontal, GridPoints.x4)
+        }
     }
 }
 

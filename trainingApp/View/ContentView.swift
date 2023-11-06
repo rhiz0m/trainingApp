@@ -34,7 +34,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-// StateObject = Används när vi skapar en instans första gången. Efter det används ObservedObject.
-// ObservedObject
-
-// testar nya grejer så reverta gällande authViewAdapter

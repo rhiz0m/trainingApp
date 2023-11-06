@@ -15,7 +15,7 @@ struct CreateProgramView: View {
     
     @State var title = ""
     @State var description = ""
-    @State var dateString = ""
+    @State var date = ""
     
     @State var name = ""
     @State var muscleGroups = ""
@@ -24,42 +24,48 @@ struct CreateProgramView: View {
     @State var sets = 0
     
     @State var selectedProgram: UsersPrograms?
-    @State var selectedExercice: UsersExercises?
-    
+    @State var selectedExercise: UsersExercises? 
     
     var body: some View {
         
         VStack {
-            ProgramFormView(db: db,  title: $title, description: $description, dateString: $dateString, selectedProgram: $selectedProgram)
-            ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice)
+            ProgramFormView(db: db, title: $title, date: $date, selectedProgram: $selectedProgram)
+            ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercise)
             
             HStack {
                 NavigationLink(
-                    destination: CreateExerciseView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice),
+                    destination: CreateExerciseView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedProgram: $selectedProgram, selectedExercice: $selectedExercise),
                     label: {
                         SharedBtnStyle(title: "Add Exercise")
                     }
                 )
                 
-                
-                PrimaryBtn(title: "Add", onPress: {
+                PrimaryBtn(title: "save", onPress: {
                     
                     if !title.isEmpty {
                         
-                        let newExercise = UsersExercises(name: name, muscleGroups: [muscleGroups], weight: weight, reps: reps, sets: sets,  totalReps: reps * sets)
-                        let newProgram = UsersPrograms(title: title, date: Date(), description: description, exercises: [newExercise])
+                        let newExercise = UsersExercises(name: name, muscleGroups: [muscleGroups], weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
+                        
+                        let exerciseId = selectedExercise?.id ?? UUID()
+                        
+                        let newProgram = UsersPrograms(
+                            id: UUID(),
+                            category: "users_programs",
+                            exerciseIds: [exerciseId],
+                            title: title,
+                            date: Date(),
+                            description: description,
+                            exercises: [newExercise]
+                        )
                         
                         db.addProgramToDb(userProgram: newProgram)
-                       // db.addExercisesToDb(userExercises: newExercise)
-
+                        
                         dismiss()
                     }
                 })
             }
             .padding(.vertical, GridPoints.x1)
             .padding(.horizontal, GridPoints.x4)
-            
-            ExerciseListView()
             
         }.onAppear { db.clearFeilds() }
     }

@@ -1,5 +1,4 @@
 import Foundation
-//import FirebaseFirestore
 import Firebase
 
 class DbConnection: ObservableObject {
@@ -25,6 +24,7 @@ class DbConnection: ObservableObject {
     var db = Firestore.firestore()
     var auth = Auth.auth()
     let USER_DATA_COLLECTION = "user_data"
+    let USER_PROGRAMS = "programs"
     var dbListener: ListenerRegistration?
     
     
@@ -74,34 +74,8 @@ class DbConnection: ObservableObject {
     }
     
     
-    func addProgramToDb(userProgram: UsersPrograms) {
-        
-        if let currentUser = currentUser {
-            do {
-                try db.collection(USER_DATA_COLLECTION)
-                    .document(currentUser.uid)
-                    .updateData(["programs": FieldValue.arrayUnion([Firestore.Encoder().encode(userProgram)])])
-            } catch {
-                
-            }
-        }
-    }
-    
-    func addExercisesToDb(userExercises: UsersExercises) {
-        if let currentUser = currentUser {
-            do {
-                try db.collection(USER_DATA_COLLECTION)
-                    .document(currentUser.uid)
-                    .updateData(["exercises": FieldValue.arrayUnion([Firestore.Encoder().encode(userExercises)])])
-            } catch {
-                // Handle error
-                print(error.localizedDescription)
-            }
-        }
-    }
-
    
-    func startListningToDb() {
+func startListningToDb() {
         guard let user = currentUser else { return }
         
         dbListener = db.collection(self.USER_DATA_COLLECTION).document(user.uid).addSnapshotListener {
@@ -127,6 +101,45 @@ class DbConnection: ObservableObject {
             
             }
         }
+    
+    func addProgramToDb(userProgram: UsersPrograms) {
+        if let currentUser = currentUser {
+            do {
+                // Update Firestore with arrayUnion to add the new program
+                try db.collection(USER_DATA_COLLECTION)
+                    .document(currentUser.uid)
+                    .updateData([
+                        "programs": FieldValue.arrayUnion([try Firestore.Encoder().encode(userProgram)])
+                    ])
+            } catch {
+                // Handle error
+                print("Error updating Firestore: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func deleteProgram(program: UsersPrograms) {
+        if let currentUser = currentUser {
+            do {
+         
+                var currentPrograms = currentUserData?.programs ?? []
+
+                // Remove the program from the local array
+                currentPrograms.removeAll { $0.id == program.id }
+
+                // Update Firestore with the modified array
+                try db.collection(USER_DATA_COLLECTION)
+                    .document(currentUser.uid)
+                    .updateData([
+                        "programs": try currentPrograms.map { try Firestore.Encoder().encode($0) }
+                    ])
+            } catch {
+                // Handle error
+                print("Error updating Firestore: \(error.localizedDescription)")
+            }
+        }
+    }
+
     
     func registerUser(email: String, password: String, completion: @escaping (Bool) -> Void) {
         
@@ -177,5 +190,14 @@ class DbConnection: ObservableObject {
             }
         }
         return success
+    }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            print("User logged out")
+        } catch let error as NSError {
+            print("Error logout: \(error.localizedDescription)")
+        }
     }
 }

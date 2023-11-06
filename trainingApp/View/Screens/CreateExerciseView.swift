@@ -11,24 +11,34 @@ struct CreateExerciseView: View {
     
     @ObservedObject var db: DbConnection
     
+    @Environment(\.dismiss) private var dismiss
+    
     @Binding var name: String
     @Binding var muscleGroups: String
     @Binding var weight: String
     @Binding var reps: Int
     @Binding var sets: Int
+    
+    @Binding var selectedProgram: UsersPrograms?
     @Binding var selectedExercice: UsersExercises?
-
+    
     var body: some View {
         VStack {
             ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice)
             
             HStack {
-                NavigationLink(
-                    destination: CreateExerciseView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice),
-                    label: {
-                        SharedBtnStyle(title: "Save")
+                PrimaryBtn(title: "Add exercice", onPress: {
+                    if !name.isEmpty, var currentProgram = selectedProgram {
+                        let newExercise = UsersExercises(name: name, muscleGroups: [muscleGroups], weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
+                        
+                        currentProgram.exercises.append(newExercise)
+                        
+                        db.addProgramToDb(userProgram: currentProgram)
+                        
+                        dismiss()
                     }
-                )
+                })
+
                 Text("test").padding()
                 
                 PrimaryBtn(title: "Cancel", onPress: {})
@@ -37,6 +47,7 @@ struct CreateExerciseView: View {
             .padding(.horizontal, GridPoints.x4)
             
             Button(action: {
+                // Handle delete action if needed
             }, label: {
                 Text("Delete")
             })
@@ -52,17 +63,22 @@ struct CreateExerciseView_Previews: PreviewProvider {
             get: { nil },
             set: { _ in }
         )
-    
-    let dateString = Binding.constant("2023-11-02")
+        
+        let selectedProgram = Binding<UsersPrograms?>(
+            get: { nil },
+            set: { _ in }
+        )
         
         return CreateExerciseView(
-                 db: db,
-                 name: Binding.constant("ovning"),
-                 muscleGroups: Binding.constant("core,back,legs"),
-                 weight: Binding.constant("100"),
-                 reps: Binding.constant(5),
-                 sets: Binding.constant(6),
-                 selectedExercice: selectedExercice
-             )
+            db: db,
+            name: Binding.constant("Squats"),  // Adjust the exercise name
+            muscleGroups: Binding.constant("Legs"),
+            weight: Binding.constant("100"),
+            reps: Binding.constant(10),
+            sets: Binding.constant(3),
+            selectedProgram: selectedProgram,
+            selectedExercice: selectedExercice
+        )
     }
 }
+

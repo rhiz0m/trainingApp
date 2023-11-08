@@ -11,31 +11,39 @@ import MapKit
 struct MapsView: View {
     
     // 59.33238615143806, 18.064544482829312
-    
-    @State var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 59.33238615143806, longitude: 18.064544482829312), span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+    @State private var cameraPosition: MapCameraPosition = .region(.userReigion)
     
     var body: some View {
         
         GeometryReader { geometry in
             ZStack {
-                Map(coordinateRegion: $region).ignoresSafeArea()
+                Map(position: $cameraPosition)
                 
-                VStack(alignment: .leading) {
+                VStack() {
              
                     Text("Find your training center!")
-                        .foregroundColor(.black)
+                        .foregroundColor(.cyan)
                         .padding()
                 }
-                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.05)
-                .background(Color.white)
+                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.15)
+                .background(Color.black)
                 .cornerRadius(9)
                 .shadow(radius: 10)
-                .padding()
-                
+                .offset(y: -geometry.size.height * 0.4)
             }
         }
-    
+    }
+}
 
+extension CLLocationCoordinate2D {
+    static var userLocation: CLLocationCoordinate2D {
+        return .init(latitude: 59.33238615143806, longitude: 18.064544482829312)
+    }
+}
+
+extension MKCoordinateRegion {
+    static var userReigion: MKCoordinateRegion {
+        return .init(center: .userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
     }
 }
 

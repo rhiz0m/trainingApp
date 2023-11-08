@@ -6,7 +6,7 @@ struct ProgramFormView: View {
     
     @Binding var title: String
     @Binding var date: String
-    @Binding var selectedProgram: UsersPrograms?
+    var selectedProgram: UsersPrograms?
 
     var body: some View {
         TextField("Title", text: $title)
@@ -24,14 +24,11 @@ struct ProgramFormView: View {
 
 struct ProgramFormView_Previews: PreviewProvider {
     static var previews: some View {
-            let db = DbConnection()
-            let selectedProgram = Binding<UsersPrograms?>(
-                get: { nil },
-                set: { _ in }
-            )
-        
+        let db = DbConnection()
+        let selectedProgram = UsersPrograms(id: UUID(), exerciseIds: [], title: "Test", date: Date(), description: "Description", exercises: [])
+
         let date = Binding.constant("2023-11-02")
-            
+        
         return ProgramFormView(db: db, title: .constant("test"), date: date, selectedProgram: selectedProgram)
-        }
+    }
 }

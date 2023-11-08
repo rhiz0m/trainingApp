@@ -16,18 +16,20 @@ struct UpdateProgramView: View {
     @State var sets = 0
     
     @State var selectedProgram: UsersPrograms?
-    @State var selectedExercise: UsersExercises? 
+    @State var selectedExercise: UsersExercises?
     
     var body: some View {
         VStack {
-            ProgramFormView(db: db,  
-                            title: $title,
-                            date: $date,
-                            selectedProgram: $selectedProgram)
+            ProgramFormView(db: db, title: $title, date: $date)
+            ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercise)
             
             HStack {
                 
-                PrimaryBtn(title: "add exercice", onPress: {})
+                PrimaryBtn(title: "update") {
+                    if let program = selectedProgram {
+                        db.updateProgram(program: program)
+                    }
+                }
 
             }
             .padding(.vertical, GridPoints.x1)
@@ -37,9 +39,7 @@ struct UpdateProgramView: View {
         }
         .onAppear {
             // Set the title based on the selected program
-            db.title = selectedProgram?.title ?? ""
-            db.name = selectedProgram?.exercises.first?.name ?? ""
-            db.muscleGroups = selectedProgram?.exercises.first?.muscleGroups.joined(separator: ",") ?? ""
+
         }
         
     }

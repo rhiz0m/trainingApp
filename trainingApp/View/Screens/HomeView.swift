@@ -36,17 +36,17 @@ private struct BottomBarView: View {
                     db.clearFeilds()
                 }
                 
-                NavigationLink(destination: DetailsView(), label: {
-                    SharedBtnStyle(title: "feat")
+                NavigationLink(destination: SearchView(), label: {
+                    SharedBtnStyle(title: "search")
                 })
                 
-                NavigationLink(destination: DetailsView(), label: {
+                NavigationLink(destination: MapsView(), label: {
                     
-                    SharedBtnStyle(title: "feat 2")
+                    SharedBtnStyle(title: "maps")
                 })
                 
-                NavigationLink(destination: DetailsView(), label: {
-                    SharedBtnStyle(title: "feat 3")
+                NavigationLink(destination: SettingsView(), label: {
+                    SharedBtnStyle(title: "Settings")
                 })
                 Button(action: {
                     db.logout()

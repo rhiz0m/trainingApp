@@ -29,7 +29,7 @@ struct CreateProgramView: View {
     var body: some View {
         
         VStack {
-            ProgramFormView(db: db, title: $title, date: $date, selectedProgram: $selectedProgram)
+            ProgramFormView(db: db, title: $title, date: $date)
             ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercise)
             
             HStack {

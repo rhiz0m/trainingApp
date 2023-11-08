@@ -139,6 +139,25 @@ func startListningToDb() {
             }
         }
     }
+    
+    func updateProgram(program: UsersPrograms) {
+        if let currentUser = currentUser {
+            do {
+                // Convert the program to a dictionary using Firestore encoder
+                let programData = try Firestore.Encoder().encode(program)
+
+                // Update Firestore with the modified program data
+                try db.collection(USER_DATA_COLLECTION)
+                    .document(currentUser.uid)
+                    .updateData([
+                        "programs.\(program.id.uuidString)": programData
+                    ])
+            } catch {
+                // Handle error
+                print("Error updating Firestore: \(error.localizedDescription)")
+            }
+        }
+    }
 
     
     func registerUser(email: String, password: String, completion: @escaping (Bool) -> Void) {

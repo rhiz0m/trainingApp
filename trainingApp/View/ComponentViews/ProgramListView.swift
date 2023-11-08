@@ -1,44 +1,51 @@
 // ProgramListView.swift
 
-import SwiftUI
 
 import SwiftUI
 
 struct ProgramListView: View {
-    
     @ObservedObject var db: DbConnection
+    @State private var selectedProgram: UsersPrograms?
     
     var body: some View {
-        VStack {
-            Text("Your Programs")
-                .font(.title)
-                .bold()
-            
-            if let userData = db.currentUserData {
-                if userData.programs.isEmpty {
-                    Text("No programs yet")
-                } else {
-                    VStack(alignment: .leading, spacing: 10) {
-                        ForEach(userData.programs, id: \.id) { program in
-                    
+        NavigationView {
+            VStack {
+                Text("Your Programs")
+                    .font(.title)
+                    .bold()
+                
+                if let userData = db.currentUserData {
+                    if userData.programs.isEmpty {
+                        Text("No programs yet")
+                    } else {
+                        VStack() {
+                            List(userData.programs, id: \.id) { program in
+                                NavigationLink(destination: UpdateProgramView(db: db, selectedProgram: program)) {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        Text(program.title)
+                                            .font(.headline)
+                                    }
+                                    
+                                }.listRowBackground(Color.white)
                                 Button(action: {
                                     db.deleteProgram(program: program)
                                 }) {
                                     Text("Delete")
-                                        .foregroundColor(.red)
+                                        .foregroundColor(.cyan)
                                 }
-                                Text(program.title)
-                                    .font(.headline)
+                                    
+                            }
                         }
+                        
                     }
+                } else {
+                    Text("An unexpected error occurred")
                 }
-            } else {
-                Text("An unexpected error occurred")
+                
             }
+            
         }
-        .padding()
     }
-    
     
     private func formatDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
@@ -53,7 +60,3 @@ struct ProgramListView_Previews: PreviewProvider {
         ProgramListView(db: DbConnection())
     }
 }
-
-
-
-

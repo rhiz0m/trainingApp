@@ -8,11 +8,63 @@
 import SwiftUI
 
 struct SplashScreen: View {
+    @State private var selected: Bool = false
+    
+    
     var body: some View {
-        Text("Splash Screen!")
+        content
+    }
+    
+    @ViewBuilder private var content: some View {
+        ZStack {
+            backgroundImageView(imageName: "gym_loginBg")
+            VStack() {
+                splashLogo()
+            }
+        }
+    }
+    
+    @ViewBuilder private func backgroundImageView(imageName: String) -> some View {
+        Image(imageName)
+            .resizable()
+            .scaledToFill()
+            .edgesIgnoringSafeArea(.bottom)
+            .overlay(
+                LinearGradient(
+                    gradient: Gradient(
+                        colors: [
+                            Color.indigo.opacity(0.5),
+                            Color.black.opacity(0.9)]
+                    ),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .edgesIgnoringSafeArea(.bottom)
+            )
+    }
+    
+    struct splashLogo: View {
+        
+        @State private var selected: Bool = false
+        
+        var body: some View {
+            
+            ZStack {
+                Image(.swiftui128X128)
+                //.frame(width: geometry.size.width * 0.5, height: geometry.size.height * 0.5)
+                    .scaleEffect(selected ? 1.5 : 1.0)
+                    .onTapGesture {
+                        withAnimation(.bouncy) {
+                            selected.toggle()
+                        }
+                    }
+            }
+        }
     }
 }
 
-#Preview {
-    SplashScreen()
+struct SplashScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        SplashScreen()
+    }
 }

@@ -1,37 +1,47 @@
-//
-//  MapsView.swift
-//  trainingApp
-//
-//  Created by Andreas Antonsson on 2023-11-08.
-//
-
 import SwiftUI
 import MapKit
 
 struct MapsView: View {
-    
-    // 59.33238615143806, 18.064544482829312
-    @State private var cameraPosition: MapCameraPosition = .region(.userReigion)
+    @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
+    @State private var searchText = ""
+    @State private var results = [MKMapItem]()
     
     var body: some View {
-        
-        GeometryReader { geometry in
-            ZStack {
-                Map(position: $cameraPosition)
-                
-                VStack() {
-             
-                    Text("Find your training center!")
-                        .foregroundColor(.cyan)
-                        .padding()
-                }
-                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.15)
-                .background(Color.black)
-                .cornerRadius(9)
-                .shadow(radius: 10)
-                .offset(y: -geometry.size.height * 0.4)
+        Map(position: $cameraPosition) {
+            Marker("my coordinate", systemImage: "paperplane" ,coordinate: .userLocation)
+                .tint(.cyan)
+      
+        ForEach(results, id: \.self) { item in
+            let placemark = item.placemark
+            Marker(placemark.name ?? "", coordinate: placemark.coordinate)
             }
         }
+        .overlay(alignment: .top) {
+            TextField("Search gym", text: $searchText)
+                .font(.subheadline).padding(12)
+                .background(.white)
+                .padding()
+                .shadow(radius: 12)
+        }
+
+        .onSubmit(of: .text) {
+            Task { await search() }
+        }
+        .mapControls {
+            MapCompass()
+            MapUserLocationButton()
+        }
+    }
+}
+
+extension MapsView {
+    func search() async {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = searchText
+        request.region = .userRegion // Fix the typo here
+        
+        let results = try? await MKLocalSearch(request: request).start()
+        self.results = results?.mapItems ?? []
     }
 }
 
@@ -42,11 +52,21 @@ extension CLLocationCoordinate2D {
 }
 
 extension MKCoordinateRegion {
-    static var userReigion: MKCoordinateRegion {
+    static var userRegion: MKCoordinateRegion { // Fix the typo here
         return .init(center: .userLocation, latitudinalMeters: 500, longitudinalMeters: 500)
     }
 }
 
+struct MapsView_Previews: PreviewProvider {
+    static var previews: some View {
+        MapsView()
+    }
+}
+
+
 #Preview {
     MapsView()
 }
+
+// option + mouse. 2D/3D
+//. Gym

@@ -2,7 +2,8 @@
 
 .DS_Store
 trainingApp/Model/Auth/auth.swift
-.auth.swift
+trainingApp/ViewModel/SearchViewModel.swift
+trainingApp/Model/Auth/API.swift
 
 # Xcode
 #

@@ -10,5 +10,5 @@ import FirebaseFirestoreSwift
 
 struct UserData: Codable {
     @DocumentID var id: String?
-    var programs: [UsersPrograms]
+    var usersExercises: [UsersExcercise]
 }

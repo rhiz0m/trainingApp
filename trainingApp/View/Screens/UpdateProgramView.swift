@@ -5,29 +5,36 @@ struct UpdateProgramView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @State var title = ""
-    @State var description = ""
-    @State var date = ""
+    @Binding var exerciseName: String
+    @Binding var date: String
+    @Binding var type: String
+    @Binding var muscleGroups: String
+
+    @Binding var weight: String
+    @Binding var reps: Int
+    @Binding var sets: Int
     
-    @State var name = ""
-    @State var muscleGroups = ""
-    @State var weight = ""
-    @State var reps = 0
-    @State var sets = 0
-    
-    @State var selectedProgram: UsersPrograms?
-    @State var selectedExercise: UsersExercises?
+    @Binding var selectedProgram: UsersExcercise?
+    @Binding var selectedExercice: UsersTrainingRecord?
     
     var body: some View {
         VStack {
-            ProgramFormView(db: db, title: $title, date: $date)
-            ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercise)
+            ExerciseFormView(db: db, 
+                             exerciceName: $exerciseName,
+                             date: $date,
+                             type: $type,
+                             muscleGroups: $muscleGroups)
+            
+            TrainingRecordFormView(db: db,
+                                   weight: $weight,
+                                   reps: $reps,
+                                   sets: $sets)
             
             HStack {
                 
                 PrimaryBtn(title: "update") {
                     if let program = selectedProgram {
-                        db.updateProgram(program: program)
+                        db.updateProgram(exercise: program)
                     }
                 }
 
@@ -46,8 +53,22 @@ struct UpdateProgramView: View {
 }
 
 struct UpdateProgramView_Previews: PreviewProvider {
-    static var previews: some View {
-        UpdateProgramView(db: DbConnection())
+        static var previews: some View {
+            let db = DbConnection()
+            let selectedExercice = Binding<UsersTrainingRecord?>(
+                get: { nil },
+                set: { _ in }
+            )
+            
+            let selectedProgram = Binding<UsersExcercise?>(
+                get: { nil },
+                set: { _ in }
+            )
+            
+            return CreateExerciseView(
+                db: db
+            )
+        }
     }
-}
+
 

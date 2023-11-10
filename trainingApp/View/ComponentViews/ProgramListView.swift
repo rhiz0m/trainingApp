@@ -5,47 +5,45 @@ import SwiftUI
 
 struct ProgramListView: View {
     @ObservedObject var db: DbConnection
-    @State private var selectedProgram: UsersPrograms?
+    @State private var selectedProgram: UsersExcercise?
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Your Programs")
-                    .font(.title)
-                    .bold()
-                
-                if let userData = db.currentUserData {
-                    if userData.programs.isEmpty {
-                        Text("No programs yet")
-                    } else {
-                        VStack() {
-                            List(userData.programs, id: \.id) { program in
-                                NavigationLink(destination: UpdateProgramView(db: db, selectedProgram: program)) {
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Text(program.title)
-                                            .font(.headline)
-                                    }
-                                    
-                                }.listRowBackground(Color.white)
-                                Button(action: {
-                                    db.deleteProgram(program: program)
-                                }) {
-                                    Text("Delete")
-                                        .foregroundColor(.cyan)
-                                }
-                                    
+        VStack {
+            Text("Your Exercises").font(.title).bold()
+            
+            if let userData = db.currentUserData {
+                if userData.usersExercises.isEmpty {
+                    Text("No programs yet")
+                } else {
+                    List(userData.usersExercises) { exercise in
+                        VStack(alignment: .leading) {
+                            Text(exercise.exerciseName).bold()
+                            Text("\(formatDate(exercise.date))")
+                            Text(exercise.type)
+                            Text("\(exercise.muscleGroups.joined(separator: " "))")
+                        }
+                        ForEach(exercise.usersTrainingRecords) { trainingRecord in
+                            VStack(alignment: .leading) {
+                                Text("Weight: \(trainingRecord.weight)")
+                                Text("Sets: " + String(trainingRecord.sets))
+                                Text("Reps: " + String(trainingRecord.reps))
+                                Text("Total Reps: " + String(trainingRecord.totalReps))
                             }
                         }
                         
+
+                        Button(action: {
+                            db.deleteProgram(exercise: exercise)
+                        }, label: {
+                            Text("delete")
+                        })
+                            }
+                           
+                        }
                     }
-                } else {
-                    Text("An unexpected error occurred")
                 }
-                
             }
-            
-        }
-    }
+        
     
     private func formatDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()

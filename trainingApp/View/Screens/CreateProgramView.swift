@@ -13,28 +13,28 @@ struct CreateProgramView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @State var title = ""
-    @State var description = ""
+    @State var exerciseName = ""
     @State var date = ""
-    
-    @State var name = ""
+    @State var type = ""
     @State var muscleGroups = ""
+    
     @State var weight = ""
     @State var reps = 0
     @State var sets = 0
     
-    @State var selectedProgram: UsersPrograms?
-    @State var selectedExercise: UsersExercises? 
+    @State var selectedProgram: UsersExcercise?
+    @State var selectedExercise: UsersTrainingRecord? 
     
     var body: some View {
         
         VStack {
-            ProgramFormView(db: db, title: $title, date: $date)
-            ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercise)
+            ExerciseFormView(db: db, exerciceName: $exerciseName, date: $date, type: $type, muscleGroups: $muscleGroups)
+            
+            TrainingRecordFormView(db: db, weight: $weight, reps: $reps, sets: $sets)
             
             HStack {
                 NavigationLink(
-                    destination: CreateExerciseView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedProgram: $selectedProgram, selectedExercice: $selectedExercise),
+                    destination: CreateExerciseView(db: db, exerciseName: exerciseName, date: date, type: type, muscleGroups: muscleGroups, weight: weight, reps: reps, sets: sets, selectedExercise: selectedProgram),
                     label: {
                         SharedBtnStyle(title: "Add Exercise")
                     }
@@ -42,23 +42,24 @@ struct CreateProgramView: View {
                 
                 PrimaryBtn(title: "save", onPress: {
                     
-                    if !title.isEmpty {
+                    if !exerciseName.isEmpty {
                         
-                        let newExercise = UsersExercises(name: name, muscleGroups: [muscleGroups], weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
+                        let usersTrainingRecord = UsersTrainingRecord(weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
                         
-                        let exerciseId = selectedExercise?.id ?? UUID()
+                        let trainingRecordsId = selectedExercise?.id ?? UUID()
                         
-                        let newProgram = UsersPrograms(
+                        let newExercise = UsersExcercise(
                             id: UUID(),
-                            category: "users_programs",
-                            exerciseIds: [exerciseId],
-                            title: title,
+                            category: "users_exercise",
+                            exerciseName: exerciseName,
                             date: Date(),
-                            description: description,
-                            exercises: [newExercise]
+                            type: type,
+                            muscleGroups: [muscleGroups],
+                            trainingRecordIds: [trainingRecordsId],
+                            usersTrainingRecords: [usersTrainingRecord]
                         )
                         
-                        db.addProgramToDb(userProgram: newProgram)
+                        db.addProgramToDb(userExercise: newExercise)
                         
                         dismiss()
                     }

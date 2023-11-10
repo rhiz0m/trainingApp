@@ -10,23 +10,26 @@ import SwiftUI
 struct UpdateExerciseView: View {
     @ObservedObject var db: DbConnection
     
-    @Binding var name: String
+    @Binding var exerciseName: String
+    @Binding var date: String
+    @Binding var type: String
     @Binding var muscleGroups: String
+
     @Binding var weight: String
     @Binding var reps: Int
     @Binding var sets: Int
     
-    @Binding var selectedProgram: UsersPrograms?
-    @Binding var selectedExercice: UsersExercises?
+    @Binding var selectedProgram: UsersExcercise?
+    @Binding var selectedExercice: UsersTrainingRecord?
  
     var body: some View {
         VStack {
             
-            ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice)
+            ExerciseFormView(db: db, exerciceName: $exerciseName, date: $date, type: $type, muscleGroups: $muscleGroups)
             
             HStack {
                 NavigationLink(
-                    destination: CreateExerciseView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedProgram: $selectedProgram, selectedExercice: $selectedExercice),
+                    destination: CreateExerciseView(db: db, exerciseName: exerciseName, date: date, type: type, muscleGroups: muscleGroups, weight: weight, reps: reps, sets: sets, selectedExercise: selectedProgram),
                     label: {
                         SharedBtnStyle(title: "Save")
                     }
@@ -50,12 +53,12 @@ struct UpdateExerciseView: View {
 struct UpdateExerciseView_Previews: PreviewProvider {
     static var previews: some View {
         let db = DbConnection()
-        let selectedExercice = Binding<UsersExercises?>(
+        let selectedExercice = Binding<UsersTrainingRecord?>(
             get: { nil },
             set: { _ in }
         )
         
-        let selectedProgram = Binding<UsersPrograms?>(
+        let selectedProgram = Binding<UsersExcercise?>(
             get: { nil },
             set: { _ in }
         )
@@ -63,7 +66,9 @@ struct UpdateExerciseView_Previews: PreviewProvider {
                 
                 return UpdateExerciseView(
                          db: db,
-                         name: Binding.constant("ovning"),
+                         exerciseName: Binding.constant("ovning"),
+                         date:  Binding.constant("2023"),
+                         type: Binding.constant("strenth"),
                          muscleGroups: Binding.constant("core,back,legs"),
                          weight: Binding.constant("100"),
                          reps: Binding.constant(5),

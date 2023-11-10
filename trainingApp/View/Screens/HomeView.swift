@@ -1,14 +1,8 @@
-//
-//  HomeScreen.swift
-//  trainingApp
-//
-//  Created by Andreas Antonsson on 2023-10-07.
-//
+
 
 import SwiftUI
 
 struct HomeView: View {
-
     var body: some View {
         VStack {
             ProgramListView(db: DbConnection())
@@ -17,17 +11,14 @@ struct HomeView: View {
     }
 }
 
-
-private struct BottomBarView: View {
-    
+struct BottomBarView: View {
     @ObservedObject var db: DbConnection
     
     var body: some View {
-        
         NavigationStack {
             HStack {
                 NavigationLink(
-                    destination: CreateProgramView(db: db),
+                    destination: CreateExerciseView(db: db),
                     label: {
                         SharedBtnStyle(title: "Add")
                     }
@@ -35,19 +26,19 @@ private struct BottomBarView: View {
                 .onTapGesture {
                     db.clearFeilds()
                 }
-                
+
                 NavigationLink(destination: SearchView(), label: {
                     SharedBtnStyle(title: "search")
                 })
-                
+
                 NavigationLink(destination: MapsView(), label: {
-                    
                     SharedBtnStyle(title: "maps")
                 })
-                
+
                 NavigationLink(destination: SettingsView(), label: {
                     SharedBtnStyle(title: "Settings")
                 })
+
                 Button(action: {
                     db.logout()
                 }, label: {
@@ -57,8 +48,6 @@ private struct BottomBarView: View {
         }
     }
 }
-
-
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

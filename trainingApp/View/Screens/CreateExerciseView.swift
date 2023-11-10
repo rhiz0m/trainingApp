@@ -8,32 +8,48 @@
 import SwiftUI
 
 struct CreateExerciseView: View {
-    
     @ObservedObject var db: DbConnection
-    
     @Environment(\.dismiss) private var dismiss
     
-    @Binding var name: String
-    @Binding var muscleGroups: String
-    @Binding var weight: String
-    @Binding var reps: Int
-    @Binding var sets: Int
+    @State var exerciseName = ""
+    @State var date = ""
+    @State var type = ""
+    @State var muscleGroups = ""
+    @State var weight = ""
+    @State var reps = 0
+    @State var sets = 0
     
-    @Binding var selectedProgram: UsersPrograms?
-    @Binding var selectedExercice: UsersExercises?
+    @State var selectedExercise: UsersExcercise?
+    
     
     var body: some View {
         VStack {
-            ExerciseFormView(db: db, name: $name, muscleGroups: $muscleGroups, weight: $weight, reps: $reps, sets: $sets, selectedExercice: $selectedExercice)
+            ExerciseFormView(db: db, exerciceName: $exerciseName, date: $date, type: $type, muscleGroups: $muscleGroups)
+            
+            TrainingRecordFormView(db: db, weight: $weight, reps: $reps, sets: $sets)
             
             HStack {
-                PrimaryBtn(title: "Add exercice", onPress: {
-                    if !name.isEmpty, var currentProgram = selectedProgram {
-                        let newExercise = UsersExercises(name: name, muscleGroups: [muscleGroups], weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
+                PrimaryBtn(title: "Save", onPress: {
+                    if !exerciseName.isEmpty {
+                        let newTrainingRecord = UsersTrainingRecord(
+                            weight: weight,
+                            reps: reps,
+                            sets: sets,
+                            totalReps: reps * sets)
                         
-                        currentProgram.exercises.append(newExercise)
+                        let exerciseId = selectedExercise?.id ?? UUID()
                         
-                        db.addProgramToDb(userProgram: currentProgram)
+                        let newExercise = UsersExcercise(
+                            id: UUID(),
+                            category: "users_programs",
+                            exerciseName: exerciseName,
+                            date: Date(),
+                            type: type,
+                            muscleGroups: [muscleGroups],
+                            trainingRecordIds: [exerciseId],
+                            usersTrainingRecords: [newTrainingRecord])
+                        
+                        db.addProgramToDb(userExercise: newExercise)
                         
                         dismiss()
                     }
@@ -41,7 +57,9 @@ struct CreateExerciseView: View {
 
                 Text("test").padding()
                 
-                PrimaryBtn(title: "Cancel", onPress: {})
+                PrimaryBtn(title: "Cancel", onPress: {
+                    dismiss()
+                })
             }
             .padding(.vertical, GridPoints.x1)
             .padding(.horizontal, GridPoints.x4)
@@ -59,26 +77,20 @@ struct CreateExerciseView: View {
 struct CreateExerciseView_Previews: PreviewProvider {
     static var previews: some View {
         let db = DbConnection()
-        let selectedExercice = Binding<UsersExercises?>(
-            get: { nil },
-            set: { _ in }
-        )
-        
-        let selectedProgram = Binding<UsersPrograms?>(
+        let selectedExercise = Binding<UsersExcercise?>(
             get: { nil },
             set: { _ in }
         )
         
         return CreateExerciseView(
             db: db,
-            name: Binding.constant("Squats"),  // Adjust the exercise name
-            muscleGroups: Binding.constant("Legs"),
-            weight: Binding.constant("100"),
-            reps: Binding.constant(10),
-            sets: Binding.constant(3),
-            selectedProgram: selectedProgram,
-            selectedExercice: selectedExercice
+            exerciseName: "Squats",
+            date: "2023",
+            type: "strength",
+            muscleGroups: "Legs",
+            weight: "100",
+            reps: 10,
+            sets: 3
         )
     }
 }
-

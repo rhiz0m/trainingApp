@@ -12,8 +12,8 @@ class DbConnection: ObservableObject {
     @Published var weight = ""
     @Published var reps = 0
     @Published var sets = 0
-    @Published var usersPrograms: [UsersPrograms] = []
-    @Published var usersExercises: [UsersExercises] = []
+    @Published var usersPrograms: [UsersExcercise] = []
+    @Published var usersExercises: [UsersTrainingRecord] = []
     
     @Published var currentUser: User?
     @Published var currentUserData: UserData?
@@ -24,7 +24,7 @@ class DbConnection: ObservableObject {
     var db = Firestore.firestore()
     var auth = Auth.auth()
     let USER_DATA_COLLECTION = "user_data"
-    let USER_PROGRAMS = "programs"
+    let USER_EXERCISES = "usersExercises"
     var dbListener: ListenerRegistration?
     
     
@@ -35,7 +35,7 @@ class DbConnection: ObservableObject {
                 print("A user has been logged in \(user.email ?? "No Email")")
 
                 self.currentUser = user
-                self.startListningToDb()
+                self.startListeningToDb()
 
             } else {
                 // A user has logged out. Clear all data
@@ -75,14 +75,17 @@ class DbConnection: ObservableObject {
     
     
    
-func startListningToDb() {
+    func startListeningToDb() {
         guard let user = currentUser else { return }
         
-        dbListener = db.collection(self.USER_DATA_COLLECTION).document(user.uid).addSnapshotListener {
-            snapshot, error in
-            
+        
+        let documentPath = "\(USER_DATA_COLLECTION)/\(user.uid)"
+        print("Listening to Firestore document: \(documentPath)")
+        
+        dbListener = db.collection(self.USER_DATA_COLLECTION).document(user.uid).addSnapshotListener { snapshot, error in
+
             if let error = error {
-                print("error occured \(error.localizedDescription)")
+                print("Error occurred: \(error.localizedDescription)")
                 return
             }
             
@@ -93,23 +96,23 @@ func startListningToDb() {
             }
             
             switch result {
-            case .success(let UserData):
-                self.currentUserData = UserData
+            case .success(let userData):
+                self.currentUserData = userData
             case .failure(let error):
-                print("\(error.localizedDescription)")
-            }
-            
+                print("Error decoding data: \(error.localizedDescription)")
             }
         }
+    }
+
     
-    func addProgramToDb(userProgram: UsersPrograms) {
+    func addProgramToDb(userExercise: UsersExcercise) {
         if let currentUser = currentUser {
             do {
-                // Update Firestore with arrayUnion to add the new program
+                // Update Firestore with arrayUnion to add the new exercise
                 try db.collection(USER_DATA_COLLECTION)
                     .document(currentUser.uid)
                     .updateData([
-                        "programs": FieldValue.arrayUnion([try Firestore.Encoder().encode(userProgram)])
+                        USER_EXERCISES: FieldValue.arrayUnion([try Firestore.Encoder().encode(userExercise)])
                     ])
             } catch {
                 // Handle error
@@ -118,20 +121,20 @@ func startListningToDb() {
         }
     }
 
-    func deleteProgram(program: UsersPrograms) {
+    func deleteProgram(exercise: UsersExcercise) {
         if let currentUser = currentUser {
             do {
          
-                var currentPrograms = currentUserData?.programs ?? []
+                var currentPrograms = currentUserData?.usersExercises ?? []
 
                 // Remove the program from the local array
-                currentPrograms.removeAll { $0.id == program.id }
+                currentPrograms.removeAll { $0.id == exercise.id }
 
                 // Update Firestore with the modified array
                 try db.collection(USER_DATA_COLLECTION)
                     .document(currentUser.uid)
                     .updateData([
-                        "programs": try currentPrograms.map { try Firestore.Encoder().encode($0) }
+                        USER_EXERCISES: try currentPrograms.map { try Firestore.Encoder().encode($0) }
                     ])
             } catch {
                 // Handle error
@@ -140,17 +143,17 @@ func startListningToDb() {
         }
     }
     
-    func updateProgram(program: UsersPrograms) {
+    func updateProgram(exercise: UsersExcercise) {
         if let currentUser = currentUser {
             do {
                 // Convert the program to a dictionary using Firestore encoder
-                let programData = try Firestore.Encoder().encode(program)
+                let programData = try Firestore.Encoder().encode(exercise)
 
                 // Update Firestore with the modified program data
-                try db.collection(USER_DATA_COLLECTION)
+            try db.collection(USER_DATA_COLLECTION)
                     .document(currentUser.uid)
                     .updateData([
-                        "programs.\(program.id.uuidString)": programData
+                        "programs.\(exercise.id.uuidString)": programData
                     ])
             } catch {
                 // Handle error
@@ -177,7 +180,7 @@ func startListningToDb() {
                 
                 // create a user in database
                 
-                let newUserData = UserData(programs: [])
+                let newUserData = UserData(usersExercises: [])
                 
                 // create a doc in database
                 

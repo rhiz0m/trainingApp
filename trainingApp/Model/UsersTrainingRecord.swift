@@ -9,12 +9,14 @@ struct UsersTrainingRecord: Identifiable, Codable {
     var reps: Int
     var sets: Int
     var totalReps: Int
+    var totalWeight: Int
     
     enum CodingKeys: String, CodingKey {
         case weight
         case reps
         case sets
         case totalReps = "total_reps"
+        case totalWeight = "total_weight"
         
     }
 }

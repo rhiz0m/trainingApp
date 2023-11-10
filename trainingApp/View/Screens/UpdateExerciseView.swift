@@ -25,7 +25,7 @@ struct UpdateExerciseView: View {
     var body: some View {
         VStack {
             
-            ExerciseFormView(db: db, exerciceName: $exerciseName, date: $date, type: $type, muscleGroups: $muscleGroups)
+            ExerciseFormView(db: db, exerciseName: $exerciseName, date: $date, type: $type, muscleGroups: $muscleGroups)
             
             HStack {
                 NavigationLink(

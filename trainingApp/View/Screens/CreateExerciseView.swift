@@ -24,18 +24,22 @@ struct CreateExerciseView: View {
     
     var body: some View {
         VStack {
-            ExerciseFormView(db: db, exerciceName: $exerciseName, date: $date, type: $type, muscleGroups: $muscleGroups)
+            ExerciseFormView(db: db, exerciseName: $exerciseName, date: $date, type: $type, muscleGroups: $muscleGroups)
             
             TrainingRecordFormView(db: db, weight: $weight, reps: $reps, sets: $sets)
             
             HStack {
                 PrimaryBtn(title: "Save", onPress: {
+                    
+                    let weightValue = Double(weight) ?? 0.0
+                    
                     if !exerciseName.isEmpty {
                         let newTrainingRecord = UsersTrainingRecord(
                             weight: weight,
                             reps: reps,
                             sets: sets,
-                            totalReps: reps * sets)
+                            totalReps: reps * sets,
+                            totalWeight: reps * sets * Int(weightValue))
                         
                         let exerciseId = selectedExercise?.id ?? UUID()
                         

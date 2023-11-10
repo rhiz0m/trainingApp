@@ -4,7 +4,7 @@ struct ExerciseFormView: View {
     
     @ObservedObject var db: DbConnection
     
-    @Binding var exerciceName: String
+    @Binding var exerciseName: String
     @Binding var date: String
     @Binding var type: String
     @Binding var muscleGroups: String
@@ -12,16 +12,14 @@ struct ExerciseFormView: View {
     var selectedProgram: UsersExcercise?
     
     var body: some View {
-        TextField("Name", text: $exerciceName)
+        
+        TextField("Name", text: $exerciseName)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding(.vertical, GridPoints.x1)
             .padding(.horizontal, GridPoints.x4)
-        
-        TextField("Date",
-                  text: $date)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .padding(.vertical, GridPoints.x1)
-        .padding(.horizontal, GridPoints.x4)
+            .onAppear {
+                print("ExerciseFormView - exerciseName: \(exerciseName)")
+            }
         
         TextField("Type", text: $type)
             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -32,8 +30,10 @@ struct ExerciseFormView: View {
                   text: $muscleGroups)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .padding(.vertical, GridPoints.x1)
-        .padding(.horizontal, GridPoints.x4)
+        .padding(.horizontal, GridPoints.x4).onAppear {
+        }
     }
+
 }
 
 struct ProgramFormView_Previews: PreviewProvider {
@@ -49,7 +49,7 @@ struct ProgramFormView_Previews: PreviewProvider {
         let date = Binding.constant("2023-11-02")
         
         return ExerciseFormView(db: db,
-                                exerciceName: .constant("my exercise"),
+                                exerciseName: .constant("my exercise"),
                                 date: date,
                                 type: Binding.constant("strength"),
                                 muscleGroups:

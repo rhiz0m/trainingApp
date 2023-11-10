@@ -28,9 +28,18 @@ struct CreateProgramView: View {
     var body: some View {
         
         VStack {
-            ExerciseFormView(db: db, exerciceName: $exerciseName, date: $date, type: $type, muscleGroups: $muscleGroups)
+            ExerciseFormView(
+                db: db,
+                exerciseName: $exerciseName,
+                date: $date,
+                type: $type,
+                muscleGroups: $muscleGroups)
             
-            TrainingRecordFormView(db: db, weight: $weight, reps: $reps, sets: $sets)
+            TrainingRecordFormView(
+                db: db,
+                weight: $weight,
+                reps: $reps,
+                sets: $sets)
             
             HStack {
                 NavigationLink(
@@ -44,7 +53,9 @@ struct CreateProgramView: View {
                     
                     if !exerciseName.isEmpty {
                         
-                        let usersTrainingRecord = UsersTrainingRecord(weight: weight, reps: reps, sets: sets, totalReps: reps * sets)
+                        let weightValue = Double(weight) ?? 0.0
+                        
+                        let usersTrainingRecord = UsersTrainingRecord(weight: weight, reps: reps, sets: sets, totalReps: reps * sets, totalWeight: reps * sets * Int(weightValue))
                         
                         let trainingRecordsId = selectedExercise?.id ?? UUID()
                         

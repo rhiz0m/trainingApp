@@ -12,8 +12,8 @@ class DbConnection: ObservableObject {
     @Published var weight = ""
     @Published var reps = 0
     @Published var sets = 0
-    @Published var usersPrograms: [UsersExcercise] = []
-    @Published var usersExercises: [UsersTrainingRecord] = []
+    @Published var usersExercises: [UsersExcercise] = []
+    @Published var usersTrainingRecord: [UsersTrainingRecord] = []
     
     @Published var currentUser: User?
     @Published var currentUserData: UserData?
@@ -69,7 +69,7 @@ class DbConnection: ObservableObject {
         weight = ""
         reps = 0
         sets = 0
-        usersPrograms = []
+        usersExercises = []
         usersExercises = []
     }
     
@@ -98,6 +98,9 @@ class DbConnection: ObservableObject {
             switch result {
             case .success(let userData):
                 self.currentUserData = userData
+                
+                // Update local data
+                self.usersExercises = userData.usersExercises
             case .failure(let error):
                 print("Error decoding data: \(error.localizedDescription)")
             }
@@ -143,24 +146,30 @@ class DbConnection: ObservableObject {
         }
     }
     
-    func updateProgram(exercise: UsersExcercise) {
+    func updateProgram(exercises: [UsersExcercise]) {
         if let currentUser = currentUser {
             do {
-                // Convert the program to a dictionary using Firestore encoder
-                let programData = try Firestore.Encoder().encode(exercise)
+                var updateData: [String: Any] = [:]
+
+                for exercise in exercises {
+                    // Convert each exercise to a dictionary using Firestore encoder
+                    let exerciseData = try Firestore.Encoder().encode(exercise)
+
+                    // Add the exercise data to the update dictionary
+                    updateData["programs.\(exercise.id.uuidString)"] = exerciseData
+                }
 
                 // Update Firestore with the modified program data
-            try db.collection(USER_DATA_COLLECTION)
+                try db.collection(USER_DATA_COLLECTION)
                     .document(currentUser.uid)
-                    .updateData([
-                        "programs.\(exercise.id.uuidString)": programData
-                    ])
+                    .updateData(updateData)
             } catch {
                 // Handle error
                 print("Error updating Firestore: \(error.localizedDescription)")
             }
         }
     }
+
 
     
     func registerUser(email: String, password: String, completion: @escaping (Bool) -> Void) {

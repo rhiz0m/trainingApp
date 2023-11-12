@@ -11,14 +11,40 @@ struct HomeView: View {
 
 
 @ViewBuilder private var content: some View {
-    VStack(spacing: CGFloat(GridPoints.x3)) {
+    ZStack {
+        backgroundImageView(imageName: "listBg")
+        VStack(spacing: CGFloat(GridPoints.x1)) {
                 programList
                 bottomBar
+            }
         }
+    }
+
+
+@ViewBuilder private func backgroundImageView(imageName: String) -> some View {
+    Image(imageName)
+        .resizable()
+        .scaledToFit()
+        .blur(radius: 2.5)
+        .edgesIgnoringSafeArea(.bottom)
+        .overlay(
+            LinearGradient(
+                gradient: Gradient(
+                    colors: [
+                        Color.white.opacity(1),
+                        Color.white.opacity(0.65)]
+                ),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            
+            .edgesIgnoringSafeArea(.bottom)
+        )
 }
 
+
 @ViewBuilder private var programList: some View {
-    ProgramListView()
+        ProgramListView()
     
 }
 

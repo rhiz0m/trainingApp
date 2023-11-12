@@ -24,12 +24,10 @@ struct RoundedBtn: View {
                         startPoint: .top,
                         endPoint: .bottom),
                         lineWidth: 1)
-                    .shadow(color: .white,
-                            radius: 10, x: 2, y: 2)
                     .background(
                         HStack(alignment: .center) {
                             Image(systemName: icon)
-                                .foregroundColor(.pink)
+                                .foregroundColor(CustomColors.magenta)
                                 .imageScale(.medium)
                         }
                     )

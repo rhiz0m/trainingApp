@@ -22,8 +22,6 @@ struct ExerciseListView: View {
  
             var body: some View {
                 VStack {
-                    Text("Your Exercises").font(.title).bold()
-                    
                     if let userData = db.currentUserData {
                         if userData.usersExercises.isEmpty {
                             Text("No programs yet")
@@ -32,11 +30,8 @@ struct ExerciseListView: View {
                                 VStack {
                                     Text(program.exerciseName)
                                 }
-                                
 
-                                      
                                     }
-                                    .padding()
                                 }
                             }
                         }

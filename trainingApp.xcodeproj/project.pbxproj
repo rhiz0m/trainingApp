@@ -20,6 +20,7 @@
 		FE69EAC12ADC3F0D00F3D825 /* UsersExcercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC02ADC3F0D00F3D825 /* UsersExcercise.swift */; };
 		FE69EAC32ADC45F000F3D825 /* DbConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE69EAC22ADC45F000F3D825 /* DbConnection.swift */; };
 		FE6BF5172AD854C900E54679 /* UsersTrainingRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BF5162AD854C900E54679 /* UsersTrainingRecord.swift */; };
+		FE78CE422B01646100DC6771 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE78CE412B01646100DC6771 /* CustomColors.swift */; };
 		FE7D2A672AE5562600FEEA4D /* UpdateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */; };
 		FE7D2A692AE5583200FEEA4D /* CreateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A682AE5583200FEEA4D /* CreateProgramView.swift */; };
 		FE7D2A6B2AE6AC5B00FEEA4D /* CreateExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */; };
@@ -85,6 +86,7 @@
 		FE69EAC02ADC3F0D00F3D825 /* UsersExcercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersExcercise.swift; sourceTree = "<group>"; };
 		FE69EAC22ADC45F000F3D825 /* DbConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbConnection.swift; sourceTree = "<group>"; };
 		FE6BF5162AD854C900E54679 /* UsersTrainingRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTrainingRecord.swift; sourceTree = "<group>"; };
+		FE78CE412B01646100DC6771 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		FE7D2A662AE5562600FEEA4D /* UpdateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProgramView.swift; sourceTree = "<group>"; };
 		FE7D2A682AE5583200FEEA4D /* CreateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProgramView.swift; sourceTree = "<group>"; };
 		FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseView.swift; sourceTree = "<group>"; };
@@ -226,10 +228,12 @@
 		FE8EDA9F2AD176BA00B610A6 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				FE3950CA2AE038DF00A3D4FF /* RoundedBtn.swift */,
 				FEC2DA932AD475D4003F88C4 /* GridPoints.swift */,
 				FEC2DA9B2AD48105003F88C4 /* Spacing.swift */,
 				FEC2DA9D2AD481BF003F88C4 /* FontSizes.swift */,
 				FE8ECEE62AD6C05C008B5E15 /* PrimaryBtnStyle.swift */,
+				FE78CE412B01646100DC6771 /* CustomColors.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -239,7 +243,6 @@
 			children = (
 				FE8EDAA12AD177C000B610A6 /* PrimaryBtn.swift */,
 				FE535EC22AD1A789000AEC34 /* CustomTextFeild.swift */,
-				FE3950CA2AE038DF00A3D4FF /* RoundedBtn.swift */,
 				FEAF9CF52AE1340A001D0461 /* ProgramListView.swift */,
 				FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */,
 				FEA3864F2AEA925C006189E5 /* ExerciseFormView.swift */,
@@ -477,6 +480,7 @@
 				FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */,
 				FE8A72612B00F91E00A0FF80 /* BottomBarView.swift in Sources */,
 				FE7D2A672AE5562600FEEA4D /* UpdateProgramView.swift in Sources */,
+				FE78CE422B01646100DC6771 /* CustomColors.swift in Sources */,
 				FE8A7B052AF25E1E0000A75E /* CustomSecureFeild.swift in Sources */,
 				FEC2DA982AD4796E003F88C4 /* AuthViewAdapterer.swift in Sources */,
 				FEA386502AEA925C006189E5 /* ExerciseFormView.swift in Sources */,

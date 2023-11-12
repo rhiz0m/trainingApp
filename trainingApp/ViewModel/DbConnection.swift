@@ -146,29 +146,85 @@ class DbConnection: ObservableObject {
         }
     }
     
-    func updateProgram(exercises: [UsersExcercise]) {
-        if let currentUser = currentUser {
-            do {
-                var updateData: [String: Any] = [:]
+    func updateProgram(usersExercise: [UsersExcercise], completion: @escaping (Error?) -> Void) {
+        guard let currentUser = currentUser else { return }
 
-                for exercise in exercises {
-                    // Convert each exercise to a dictionary using Firestore encoder
-                    let exerciseData = try Firestore.Encoder().encode(exercise)
-
-                    // Add the exercise data to the update dictionary
-                    updateData["programs.\(exercise.id.uuidString)"] = exerciseData
+        do {
+            // Remove the old exercise from the array
+            let removedData = try usersExercise.map { try Firestore.Encoder().encode($0) }
+            try db.collection(USER_DATA_COLLECTION)
+                .document(currentUser.uid)
+                .updateData([
+                    USER_EXERCISES: FieldValue.arrayRemove(removedData)
+                ]) { (error: Error?) in
+                    if let error = error {
+                        completion(error)
+                    } else {
+                        // Add the updated exercise to the array
+                        let addedData = try! usersExercise.map { try! Firestore.Encoder().encode($0) }
+                        self.db.collection(self.USER_DATA_COLLECTION)
+                            .document(currentUser.uid)
+                            .updateData([
+                                self.USER_EXERCISES: FieldValue.arrayUnion(addedData)
+                            ]) { (error: Error?) in
+                                completion(error)
+                            }
+                    }
                 }
-
-                // Update Firestore with the modified program data
-                try db.collection(USER_DATA_COLLECTION)
-                    .document(currentUser.uid)
-                    .updateData(updateData)
-            } catch {
-                // Handle error
-                print("Error updating Firestore: \(error.localizedDescription)")
-            }
+        } catch {
+            print("Error updating Firestore: \(error.localizedDescription)")
+            completion(error)
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+    
+  /*  func updateProgram(exercise: UsersExcercise, completion: @escaping (Error?) -> Void) {
+        if let currentUser = currentUser {
+            do {
+                // Convert exercise to a dictionary using Firestore encoder
+                let exerciseData = try Firestore.Encoder().encode(exercise)
+
+                // Update Firestore with the modified exercise data
+                db.collection(USER_DATA_COLLECTION)
+                    .document(currentUser.uid)
+                    .setData(["userExercises.\(exercise.id.uuidString)": exerciseData], merge: true) { error in
+                        if let error = error {
+                            // Handle error
+                            print("Error updating Firestore: \(error.localizedDescription)")
+                        } else {
+                            // Document successfully updated
+                            print("Document successfully updated for exercise with ID: \(exercise.id)")
+                        }
+
+                        // Call the completion handler with the result
+                        completion(error)
+                    }
+            } catch {
+                // Handle error
+                print("Error encoding exercise: \(error.localizedDescription)")
+                completion(error)
+            }
+        }
+    } */
+
+
+
+
+
+
+
+
+
 
 
     

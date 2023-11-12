@@ -88,7 +88,8 @@ struct SignUpView: View {
         .padding(.horizontal, GridPoints.custom(16))
         
         NavigationLink(destination: LoginView(database: database, authViewAdapter: authViewAdapter), label: {
-            SharedBtnStyle(title: "Cancel")
+            PrimaryBtnStyle(title: "Cancel",
+                           icon: "plus.circle.fill")
         })
         .padding(.horizontal, GridPoints.custom(16))
     }}

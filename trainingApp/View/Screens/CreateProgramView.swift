@@ -45,7 +45,8 @@ struct CreateProgramView: View {
                 NavigationLink(
                     destination: CreateExerciseView(db: db, exerciseName: exerciseName, date: date, type: type, muscleGroups: muscleGroups, weight: weight, reps: reps, sets: sets, selectedExercise: selectedProgram),
                     label: {
-                        SharedBtnStyle(title: "Add Exercise")
+                        PrimaryBtnStyle(title: "Add Exercise",
+                                       icon: "plus.circle.fill")
                     }
                 )
                 

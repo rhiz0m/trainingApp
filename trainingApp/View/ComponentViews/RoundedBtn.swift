@@ -1,43 +1,45 @@
 //
-//  RoundedBtn.swift
+//  SharedBtnStyle.swift
 //  trainingApp
 //
-//  Created by Andreas Antonsson on 2023-10-18.
+//  Created by Andreas Antonsson on 2023-10-11.
 //
 
 import SwiftUI
 
 struct RoundedBtn: View {
     
-    var width: CGFloat = 60
-    var height: CGFloat = 60
     var title: String
-    var onPress: () -> Void
-    @State private var isPressed = false
+    var height: CGFloat = 44
+    var width: CGFloat = 44
+    var icon: String
     
     var body: some View {
-        Button(action: {
-            self.onPress()
-        }) {
-            Text(title)
-                .font(.largeTitle)
-                .foregroundColor(.white)
-                .padding()
-                .frame(width: width, height: height)
-        }
-        .background(
-            RoundedRectangle(cornerRadius: GridPoints.x6)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color.indigo.opacity(0.6)]), startPoint: .center, endPoint: .top))
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: GridPoints.x6)
-                .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo, Color.indigo]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
-        )
+        LinearGradient(gradient: Gradient(colors: [Color.black, Color.purple.opacity(0.45)]), startPoint: .bottom, endPoint: .top)
+            .cornerRadius(GridPoints.x6)
+            .frame(width: width, height: height)
+            .overlay(
+                RoundedRectangle(cornerRadius: GridPoints.x3)
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.purple, Color.black]),
+                        startPoint: .top,
+                        endPoint: .bottom),
+                        lineWidth: 1)
+                    .shadow(color: .white,
+                            radius: 10, x: 2, y: 2)
+                    .background(
+                        HStack(alignment: .center) {
+                            Image(systemName: icon)
+                                .foregroundColor(.pink)
+                                .imageScale(.medium)
+                        }
+                    )
+                )
     }
 }
 
+
 struct RoundedBtn_Previews: PreviewProvider {
     static var previews: some View {
-        RoundedBtn(title: "+", onPress: {})
+        PrimaryBtnStyle(title: "title", icon: "plus.circle.fill")
     }
 }

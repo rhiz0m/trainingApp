@@ -25,10 +25,13 @@
 		FE7D2A6B2AE6AC5B00FEEA4D /* CreateExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */; };
 		FE7D2A6D2AE6AD0A00FEEA4D /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */; };
 		FE86BE7D2AF3A22A00863EA4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86BE7C2AF3A22A00863EA4 /* UserData.swift */; };
+		FE8A725F2B00EDAC00A0FF80 /* ExerciseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A725E2B00EDAC00A0FF80 /* ExerciseList.swift */; };
+		FE8A72612B00F91E00A0FF80 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A72602B00F91E00A0FF80 /* BottomBarView.swift */; };
+		FE8A72632B011E3D00A0FF80 /* NavStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A72622B011E3C00A0FF80 /* NavStack.swift */; };
 		FE8A7B052AF25E1E0000A75E /* CustomSecureFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A7B042AF25E1E0000A75E /* CustomSecureFeild.swift */; };
 		FE8CC3E22AFB7E270042EBDF /* MapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8CC3E12AFB7E270042EBDF /* MapsView.swift */; };
 		FE8CC3E42AFB7E690042EBDF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8CC3E32AFB7E690042EBDF /* SearchView.swift */; };
-		FE8ECEE72AD6C05C008B5E15 /* SharedBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */; };
+		FE8ECEE72AD6C05C008B5E15 /* PrimaryBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ECEE62AD6C05C008B5E15 /* PrimaryBtnStyle.swift */; };
 		FE8EDA812AD16B4A00B610A6 /* auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA802AD16B4A00B610A6 /* auth.swift */; };
 		FE8EDA882AD171D000B610A6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA872AD171D000B610A6 /* LoginView.swift */; };
 		FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EDA892AD171EF00B610A6 /* SignUpView.swift */; };
@@ -87,10 +90,13 @@
 		FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseView.swift; sourceTree = "<group>"; };
 		FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 		FE86BE7C2AF3A22A00863EA4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		FE8A725E2B00EDAC00A0FF80 /* ExerciseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseList.swift; sourceTree = "<group>"; };
+		FE8A72602B00F91E00A0FF80 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
+		FE8A72622B011E3C00A0FF80 /* NavStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavStack.swift; sourceTree = "<group>"; };
 		FE8A7B042AF25E1E0000A75E /* CustomSecureFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureFeild.swift; sourceTree = "<group>"; };
 		FE8CC3E12AFB7E270042EBDF /* MapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsView.swift; sourceTree = "<group>"; };
 		FE8CC3E32AFB7E690042EBDF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedBtnStyle.swift; sourceTree = "<group>"; };
+		FE8ECEE62AD6C05C008B5E15 /* PrimaryBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryBtnStyle.swift; sourceTree = "<group>"; };
 		FE8EDA802AD16B4A00B610A6 /* auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auth.swift; sourceTree = "<group>"; };
 		FE8EDA872AD171D000B610A6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FE8EDA892AD171EF00B610A6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -223,7 +229,7 @@
 				FEC2DA932AD475D4003F88C4 /* GridPoints.swift */,
 				FEC2DA9B2AD48105003F88C4 /* Spacing.swift */,
 				FEC2DA9D2AD481BF003F88C4 /* FontSizes.swift */,
-				FE8ECEE62AD6C05C008B5E15 /* SharedBtnStyle.swift */,
+				FE8ECEE62AD6C05C008B5E15 /* PrimaryBtnStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -239,6 +245,9 @@
 				FEA3864F2AEA925C006189E5 /* ExerciseFormView.swift */,
 				FEA386512AEA9326006189E5 /* TrainingRecordFormView.swift */,
 				FE8A7B042AF25E1E0000A75E /* CustomSecureFeild.swift */,
+				FE8A725E2B00EDAC00A0FF80 /* ExerciseList.swift */,
+				FE8A72602B00F91E00A0FF80 /* BottomBarView.swift */,
+				FE8A72622B011E3C00A0FF80 /* NavStack.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -454,7 +463,7 @@
 				FE535EC32AD1A789000AEC34 /* CustomTextFeild.swift in Sources */,
 				FE8CC3E42AFB7E690042EBDF /* SearchView.swift in Sources */,
 				FE8EDA8C2AD1721800B610A6 /* HomeView.swift in Sources */,
-				FE8ECEE72AD6C05C008B5E15 /* SharedBtnStyle.swift in Sources */,
+				FE8ECEE72AD6C05C008B5E15 /* PrimaryBtnStyle.swift in Sources */,
 				FEC2DA942AD475D4003F88C4 /* GridPoints.swift in Sources */,
 				FEF1E2302AD0769B0080FE1C /* trainingApp.swift in Sources */,
 				FE7D2A6B2AE6AC5B00FEEA4D /* CreateExerciseView.swift in Sources */,
@@ -462,14 +471,17 @@
 				FEA386522AEA9326006189E5 /* TrainingRecordFormView.swift in Sources */,
 				FEC2DA9E2AD481BF003F88C4 /* FontSizes.swift in Sources */,
 				FE69EAC32ADC45F000F3D825 /* DbConnection.swift in Sources */,
+				FE8A72632B011E3D00A0FF80 /* NavStack.swift in Sources */,
 				FE7D2A6D2AE6AD0A00FEEA4D /* ExerciseListView.swift in Sources */,
 				FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */,
 				FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */,
+				FE8A72612B00F91E00A0FF80 /* BottomBarView.swift in Sources */,
 				FE7D2A672AE5562600FEEA4D /* UpdateProgramView.swift in Sources */,
 				FE8A7B052AF25E1E0000A75E /* CustomSecureFeild.swift in Sources */,
 				FEC2DA982AD4796E003F88C4 /* AuthViewAdapterer.swift in Sources */,
 				FEA386502AEA925C006189E5 /* ExerciseFormView.swift in Sources */,
 				FE8CC3E22AFB7E270042EBDF /* MapsView.swift in Sources */,
+				FE8A725F2B00EDAC00A0FF80 /* ExerciseList.swift in Sources */,
 				FE86BE7D2AF3A22A00863EA4 /* UserData.swift in Sources */,
 				FE8EDA8E2AD1724E00B610A6 /* DetailsView.swift in Sources */,
 				FE5F08192AFEE73E0064EACC /* ExerciseViewModel.swift in Sources */,

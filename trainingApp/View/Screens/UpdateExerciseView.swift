@@ -31,7 +31,8 @@ struct UpdateExerciseView: View {
                 NavigationLink(
                     destination: CreateExerciseView(db: db, exerciseName: exerciseName, date: date, type: type, muscleGroups: muscleGroups, weight: weight, reps: reps, sets: sets, selectedExercise: selectedProgram),
                     label: {
-                        SharedBtnStyle(title: "Save")
+                        PrimaryBtnStyle(title: "Save",
+                                       icon: "plus.circle.fill")
                     }
                 )
                 Text("test").padding()

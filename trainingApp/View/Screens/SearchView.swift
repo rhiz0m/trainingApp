@@ -12,7 +12,7 @@ struct SearchView: View {
     
     @ViewBuilder private var content: some View {
         ZStack {
-            backgroundImageView(imageName: "gym_loginBg")
+            //backgroundImageView(imageName: "gym_loginBg")
             VStack(spacing: CGFloat(GridPoints.x3)) {
                 searchFeildView
                 resultListView()
@@ -39,6 +39,7 @@ struct SearchView: View {
                 .edgesIgnoringSafeArea(.bottom)
             )
     }
+    
     
     @ViewBuilder private func resultListView() -> some View {
         VStack {

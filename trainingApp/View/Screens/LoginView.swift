@@ -67,16 +67,17 @@ struct LoginView: View {
     @ViewBuilder private var buttonsView: some View {
         
         NavigationLink(destination: HomeView(), label: {
-            SharedBtnStyle(title: "Login")
+            PrimaryBtnStyle(title: "Login",
+                           icon: "key.fill")
             if !authViewAdapter.emailInput.isEmpty && !authViewAdapter.passwordInput.isEmpty {
-                // Logga in användaren
+                
             }
             
         })
         .padding(.horizontal, GridPoints.custom(16))
         
         NavigationLink(destination: SignUpView(database: database, authViewAdapter: authViewAdapter), label: {
-            SharedBtnStyle(title: "Sign Up")
+            Text("Sign Up").foregroundStyle(.white)
         })
         .padding(.horizontal, GridPoints.custom(16))
         .padding(.bottom, GridPoints.x2)

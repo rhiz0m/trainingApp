@@ -8,6 +8,7 @@
 import Foundation
 
 class ExerciseViewModel: ObservableObject {
+    @Published var selectedExerciseID: UUID?
     @Published var selectedExercise: UsersExcercise?
     @Published var exerciseName: String = ""
     @Published var date: String = ""

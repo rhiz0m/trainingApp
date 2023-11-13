@@ -4,7 +4,6 @@ import SwiftUI
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
     @State private var title = ""
-    //@State private var apiResponse: String = ""
     
     var body: some View {
         content
@@ -12,7 +11,7 @@ struct SearchView: View {
     
     @ViewBuilder private var content: some View {
         ZStack {
-            //backgroundImageView(imageName: "gym_loginBg")
+            backgroundImageView(imageName: "gym_loginBg")
             VStack(spacing: CGFloat(GridPoints.x3)) {
                 searchFeildView
                 resultListView()
@@ -30,7 +29,7 @@ struct SearchView: View {
                 LinearGradient(
                     gradient: Gradient(
                         colors: [
-                            Color.indigo.opacity(0.5),
+                            Color.indigo.opacity(0.2),
                             Color.black.opacity(0.9)]
                     ),
                     startPoint: .top,
@@ -68,21 +67,26 @@ struct SearchView: View {
         .padding()
     }
 
-
-
-
-    
     @ViewBuilder private var searchFeildView: some View {
-        VStack {
-            CustomTextField(textInput: $title, title: "musclegroup", onPress: {})
+        HStack {
+            CustomTextField(textInput: $title, title: "musclegroups...", onPress: {})
             
-            PrimaryBtn(title: "Search Muscles", onPress: {
+            Button(action: {
                 viewModel.API(muscle: title)
+            }, label: {
+                RoundedBtn(title: "", icon: "magnifyingglass.circle.fill")
             })
             
-
-        
-            }
+           /* PrimaryBtn(title: "Search", onPress: {
+                viewModel.API(muscle: title)
+            }).padding(.horizontal, GridPoints.x6)
+                .padding(.bottom, GridPoints.x2) */
+       
+            
+            
+        }.padding(.horizontal, GridPoints.x8)
+            .padding(.vertical, GridPoints.x4)
+           
         }
     }
 

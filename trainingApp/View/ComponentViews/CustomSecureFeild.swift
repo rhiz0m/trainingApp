@@ -28,7 +28,7 @@ struct CustomSecureFeild: View {
                     .padding(GridPoints.half)
                     .overlay(
                         RoundedRectangle(cornerRadius: GridPoints.x6)
-                            .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo.opacity(0.8), Color.blue.opacity(0.6)]), startPoint: .top, endPoint: .bottom), lineWidth: 2)
+                            .stroke(LinearGradient(gradient: Gradient(colors: [CustomColors.darkerCyan.opacity(0.8), Color.blue.opacity(0.6)]), startPoint: .bottom, endPoint: .top), lineWidth: 1)
                     )
                     .padding(.horizontal, GridPoints.x4)
                 

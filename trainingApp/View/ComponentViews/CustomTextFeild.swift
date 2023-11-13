@@ -18,10 +18,12 @@ struct CustomTextField: View {
     
     var body: some View {
         VStack {
-            ZStack(alignment: .leading) {
+            ZStack() {
+                
+                
                 TextField("", text: $textInput)
                     .autocapitalization(.none)
-                    .padding()
+                    .padding(.leading, GridPoints.custom(1.5))
                     .textFieldStyle(PlainTextFieldStyle())
                     .frame(height: fixedHeight)
                     .background(.black)
@@ -29,17 +31,17 @@ struct CustomTextField: View {
                     .padding(GridPoints.half)
                     .overlay(
                         RoundedRectangle(cornerRadius: GridPoints.x6)
-                            .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo.opacity(0.8), Color.blue.opacity(0.6)]), startPoint: .top, endPoint: .bottom), lineWidth: 2)
-                    ).padding(.horizontal, GridPoints.x4)
+                            .stroke(LinearGradient(gradient: Gradient(colors: [CustomColors.darkerCyan.opacity(0.8), CustomColors.cyan.opacity(0.6)]), startPoint: .bottom, endPoint: .top), lineWidth: 1)
+                    )
                     .overlay(
                         Text(textInput.isEmpty ? title : textInput)
-                            .foregroundColor(textInput.isEmpty ? Color(red: 122/255, green: 245/255, blue: 255/255) : Color.white)
+                            //.padding(GridPoints.half)
+                            .foregroundColor(textInput.isEmpty ? Color(CustomColors.cyan) : Color.white)
                             .font(.caption)
-                            .padding(.horizontal, GridPoints.x8)
-                            .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading)
+                            
                     )
-                
             }
         }
     }

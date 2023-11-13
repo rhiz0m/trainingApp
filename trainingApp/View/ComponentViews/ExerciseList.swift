@@ -13,16 +13,21 @@ struct ExerciseList: View {
     
     var body: some View {
         VStack() {
-            Text("Welcome")
-                .font(.title).bold()
-                .foregroundStyle(.black)
-                //.shadow(color: CustomColors.cyan.opacity(0.7), radius: 5, x: 0, y: 1)
-                .padding(.top)
+            HStack(alignment: .center) {
+                Image(.barbell)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+                Text("Welcome")
+                    .font(.title).bold()
+                    .foregroundStyle(.black)
+            }.padding(.top)
                 Spacer()
             
             if let userData = db.currentUserData {
                 if userData.usersExercises.isEmpty {
-                    Text("No programs yet")
+                    Text("No programs yet").italic()
+                    Spacer()
                 } else {
                     List(userData.usersExercises) { exercise in
                         
@@ -93,11 +98,11 @@ struct ExerciseList: View {
                                     
                                 }.padding(GridPoints.x2)
                                     .overlay(
-                                        RoundedRectangle(cornerRadius: GridPoints.x1)
+                                        RoundedRectangle(cornerRadius: GridPoints.x4)
                                             .stroke(LinearGradient(gradient: Gradient(colors: [CustomColors.dark, Color.black]),
                                                                    startPoint: .bottom,
                                                                    endPoint: .top),
-                                                    lineWidth: 2))
+                                                                    lineWidth: 2))
                             })
                         }
                         .listRowBackground(Color.black).cornerRadius(GridPoints.x1)

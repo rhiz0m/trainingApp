@@ -9,37 +9,34 @@ struct HomeView: View {
     }
 }
 
-
 @ViewBuilder private var content: some View {
     ZStack {
         backgroundImageView(imageName: "listBg")
-        VStack(spacing: CGFloat(GridPoints.x1)) {
+        VStack() {
                 programList
                 bottomBar
             }
         }
     }
 
-
 @ViewBuilder private func backgroundImageView(imageName: String) -> some View {
     Image(imageName)
         .resizable()
         .scaledToFit()
-        .blur(radius: 2.5)
-        .edgesIgnoringSafeArea(.bottom)
+        .blur(radius: 3)
+        .edgesIgnoringSafeArea(.all)
+        .shadow(color: CustomColors.dark.opacity(0.7), radius: 5, x: 0, y: 1)
         .overlay(
             LinearGradient(
                 gradient: Gradient(
                     colors: [
                         Color.white.opacity(1),
-                        Color.white.opacity(0.65)]
+                        Color.white.opacity(0.5)]
                 ),
                 startPoint: .top,
                 endPoint: .bottom
             )
-            
-            .edgesIgnoringSafeArea(.bottom)
-        )
+        ).background(.black)
 }
 
 
@@ -49,7 +46,7 @@ struct HomeView: View {
 }
 
 @ViewBuilder private var bottomBar: some View {
-    BottomBarView(db: DbConnection()).background(.black)
+    BottomBarView(db: DbConnection())
     
 }
 

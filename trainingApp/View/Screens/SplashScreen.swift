@@ -50,7 +50,7 @@ struct SplashScreen: View {
         var body: some View {
             
             ZStack {
-                Image(.swiftui128X128)
+                Image(.swiftui)
                     .scaleEffect(selected ? 1.5 : 1.0)
                     .onTapGesture {
                         withAnimation(.bouncy) {

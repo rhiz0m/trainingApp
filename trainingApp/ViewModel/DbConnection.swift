@@ -51,6 +51,8 @@ class DbConnection: ObservableObject {
         //updateDateString()
     }
     
+
+    
     func updateDateString() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short

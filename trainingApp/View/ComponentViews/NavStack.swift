@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct NavStack: View {
-    @StateObject var fireBaseDb = DbConnection()
+    @StateObject var db = DbConnection()
     @StateObject var authViewAdapter = AuthViewAdapter()
     
     var body: some View {
         
-    if let user = fireBaseDb.currentUser {
+    if let user = db.currentUser {
 
             NavigationStack {
                 VStack {
@@ -23,7 +23,7 @@ struct NavStack: View {
     
     } else {
         NavigationStack {
-            LoginView(database: fireBaseDb, authViewAdapter: authViewAdapter)
+            LoginView(db: db, authViewAdapter: authViewAdapter)
             }
         }
     }

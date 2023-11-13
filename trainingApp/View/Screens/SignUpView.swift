@@ -87,7 +87,7 @@ struct SignUpView: View {
         })
         .padding(.horizontal, GridPoints.custom(16))
         
-        NavigationLink(destination: LoginView(database: database, authViewAdapter: authViewAdapter), label: {
+        NavigationLink(destination: LoginView(db: database, authViewAdapter: authViewAdapter), label: {
             PrimaryBtnStyle(title: "Cancel",
                            icon: "plus.circle.fill")
         })

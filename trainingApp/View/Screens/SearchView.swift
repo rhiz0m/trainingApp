@@ -3,6 +3,7 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
+    @State var selected: Bool = false
     @State private var title = ""
     
     var body: some View {
@@ -41,49 +42,88 @@ struct SearchView: View {
     
     
     @ViewBuilder private func resultListView() -> some View {
-        VStack {
-            List(viewModel.apiResponse) { exerciseInfo in
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Name: \(exerciseInfo.name)")
-                        .foregroundColor(.black)
-                    Text("Type: \(exerciseInfo.type)")
-                        .foregroundColor(.black)
-                    
-                    Text("Muscle: \(exerciseInfo.muscle)")
-                        .foregroundColor(.black)
+    
+                List(viewModel.apiResponse) { exerciseInfo in
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack(alignment: .top) {
+                            Text("Name:")
+                                .bold()
+                                .foregroundColor(CustomColors.cyan)
 
-                    Text("Equipment: \(exerciseInfo.equipment)")
-                        .foregroundColor(.black)
+                            Text(exerciseInfo.name)
+                                .foregroundColor(.white)
+                        }
+                        HStack {
+                            Text("Type:")
+                                .bold()
+                                .foregroundColor(CustomColors.cyan)
+                            
+                            Text("\(exerciseInfo.type)")
+                                .foregroundColor(.white)
+                        }
+                        HStack {
+                            Text("Muscle:")
+                                .bold()
+                                .foregroundColor(CustomColors.cyan)
+                            
+                            Text("\(exerciseInfo.muscle)")
+                                .foregroundColor(.white)
+                            
+                        }
+                        HStack {
+                            Text("Equipment:")
+                                .bold()
+                                .foregroundColor(CustomColors.cyan)
+                            
+                            Text("\(exerciseInfo.equipment)")
+                                .foregroundColor(.white)
+                        }
+                        HStack {
+                            Text("Difficulty:")
+                                .bold()
+                                .foregroundColor(CustomColors.cyan)
+                            
+                            Text("\(exerciseInfo.difficulty)")
+                                .foregroundColor(.white)
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Instructions:")
+                                .bold()
+                                .foregroundColor(CustomColors.cyan)
+                            
+                            Text("\(exerciseInfo.instructions)")
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding()
+                    .background(Color.black)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
-                    Text("Muscle: \(exerciseInfo.difficulty)")
-                        .foregroundColor(.black)
-                    
-                    Text("Muscle: \(exerciseInfo.instructions)")
-                        .foregroundColor(.black)
-                }
-            }.padding()
-            .listStyle(PlainListStyle())
-        }
-        .padding()
+                }.cornerRadius(GridPoints.x2)
+                    .listStyle(PlainListStyle())
+                
+                    .padding(.horizontal, GridPoints.x8)
+                    .shadow(color: CustomColors.cyan.opacity(0.2), radius: 15, x: 0, y: 5)
+            
     }
 
+
     @ViewBuilder private var searchFeildView: some View {
+        
+       
+        
         HStack {
             CustomTextField(textInput: $title, title: "musclegroups...", onPress: {})
             
             Button(action: {
-                viewModel.API(muscle: title)
+                withAnimation(.bouncy(duration: 0.5)) {
+                    selected.toggle()
+                    viewModel.API(muscle: title)
+                }
             }, label: {
                 RoundedBtn(title: "", icon: "magnifyingglass.circle.fill")
+                        .scaleEffect(selected ? 1.1 : 1.0)
             })
-            
-           /* PrimaryBtn(title: "Search", onPress: {
-                viewModel.API(muscle: title)
-            }).padding(.horizontal, GridPoints.x6)
-                .padding(.bottom, GridPoints.x2) */
-       
-            
-            
         }.padding(.horizontal, GridPoints.x8)
             .padding(.vertical, GridPoints.x4)
            

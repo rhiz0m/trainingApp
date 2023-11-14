@@ -28,6 +28,7 @@ struct CustomTextField: View {
                     .frame(height: fixedHeight)
                     .background(.black)
                     .cornerRadius(GridPoints.x6)
+                
                     .padding(GridPoints.half)
                     .overlay(
                         RoundedRectangle(cornerRadius: GridPoints.x6)
@@ -35,7 +36,6 @@ struct CustomTextField: View {
                     )
                     .overlay(
                         Text(textInput.isEmpty ? title : textInput)
-                            //.padding(GridPoints.half)
                             .foregroundColor(textInput.isEmpty ? Color(CustomColors.cyan) : Color.white)
                             .font(.caption)
                             .frame(maxWidth: .infinity, alignment: .leading)

@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "gym_girl.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "login_bg.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

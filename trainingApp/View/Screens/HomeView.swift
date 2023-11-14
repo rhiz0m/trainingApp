@@ -11,9 +11,11 @@ struct HomeView: View {
 
 @ViewBuilder private var content: some View {
     ZStack {
-        backgroundImageView(imageName: "listBg")
+        backgroundImageView(imageName: "gymEquipBg")
+            .edgesIgnoringSafeArea(.vertical)
         VStack() {
                 programList
+                Spacer()
                 bottomBar
             }
         }
@@ -23,9 +25,7 @@ struct HomeView: View {
     Image(imageName)
         .resizable()
         .scaledToFit()
-        .blur(radius: 3)
-        .edgesIgnoringSafeArea(.all)
-        .shadow(color: CustomColors.dark.opacity(0.7), radius: 5, x: 0, y: 1)
+        .edgesIgnoringSafeArea(.vertical)
         .overlay(
             LinearGradient(
                 gradient: Gradient(

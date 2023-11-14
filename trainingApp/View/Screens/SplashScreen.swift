@@ -19,7 +19,7 @@ struct SplashScreen: View {
         ZStack {
             backgroundImageView(imageName: "gym_loginBg")
             VStack() {
-                splashLogo()
+                //splashLogo()
             }
         }
     }

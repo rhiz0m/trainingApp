@@ -20,7 +20,8 @@ struct CustomSecureFeild: View {
         VStack {
             ZStack(alignment: .leading) {
                 SecureField("", text: $textInput)
-                    .padding()
+                    .autocapitalization(.none)
+                    .padding(.leading, GridPoints.custom(1.5))
                     .textFieldStyle(PlainTextFieldStyle())
                     .frame(height: fixedHeight)
                     .background(.white)
@@ -28,17 +29,15 @@ struct CustomSecureFeild: View {
                     .padding(GridPoints.half)
                     .overlay(
                         RoundedRectangle(cornerRadius: GridPoints.x6)
-                            .stroke(LinearGradient(gradient: Gradient(colors: [CustomColors.darkerCyan.opacity(0.8), Color.blue.opacity(0.6)]), startPoint: .bottom, endPoint: .top), lineWidth: 1)
+                            .stroke(LinearGradient(gradient: Gradient(colors: [CustomColors.darkerCyan.opacity(0.8), Color.white.opacity(0.6)]), startPoint: .bottom, endPoint: .top), lineWidth: 1)
                     )
-                    .padding(.horizontal, GridPoints.x4)
                 
                 if textInput.isEmpty {
-                    Text(title)
+                    Text(textInput.isEmpty ? title : textInput)
+                        .foregroundColor(textInput.isEmpty ? Color(Color.black) : Color.white)
                         .font(.caption)
-                        .padding(.horizontal, GridPoints.x8)
-                        .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(Color(.black))
+                        .padding(.leading)
                 }
             }
             

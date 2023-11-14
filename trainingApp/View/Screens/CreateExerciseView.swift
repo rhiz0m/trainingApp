@@ -58,8 +58,6 @@ struct CreateExerciseView: View {
                         dismiss()
                     }
                 })
-
-                Text("test").padding()
                 
                 PrimaryBtn(title: "Cancel", onPress: {
                     dismiss()
@@ -68,11 +66,6 @@ struct CreateExerciseView: View {
             .padding(.vertical, GridPoints.x1)
             .padding(.horizontal, GridPoints.x4)
             
-            Button(action: {
-                // Handle delete action if needed
-            }, label: {
-                Text("Delete")
-            })
         }
         .navigationTitle(db.name)
     }

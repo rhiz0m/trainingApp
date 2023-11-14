@@ -22,11 +22,13 @@ struct ExerciseList: View {
                     .font(.title).bold()
                     .foregroundStyle(.black)
             }.padding(.top)
-                Spacer()
             
             if let userData = db.currentUserData {
                 if userData.usersExercises.isEmpty {
-                    Text("No programs yet").italic()
+                    Text("You have no programs yet!")
+                        .foregroundStyle(CustomColors.dark)
+                        .italic()
+                    
                     Spacer()
                 } else {
                     List(userData.usersExercises) { exercise in

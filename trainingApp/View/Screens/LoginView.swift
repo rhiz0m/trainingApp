@@ -19,8 +19,9 @@ struct LoginView: View {
     
     @ViewBuilder private var content: some View {
         ZStack {
-            backgroundImageView(imageName: "gym_loginBg")
+            backgroundImageView(imageName: "gym_manBg")
             VStack(spacing: CGFloat(GridPoints.x3)) {
+                titleView
                 textFieldsView
                 buttonsView
             }
@@ -39,7 +40,7 @@ struct LoginView: View {
                     LinearGradient(
                         gradient: Gradient(
                             colors: [
-                                CustomColors.cyan.opacity(0.35),
+                                CustomColors.cyan.opacity(0.07),
                                 Color.black.opacity(1)
                             ]
                         ),
@@ -50,13 +51,41 @@ struct LoginView: View {
                 )
             
             RoundedRectangle(cornerRadius: 30, style: .continuous)
-                .foregroundStyle(.linearGradient(colors: [.black, .cyan],
-                                                 startPoint: .bottomTrailing, endPoint: .topTrailing))
-                .frame(height: 180)
-                .rotationEffect(.degrees(175))
-                .offset(x: 0, y: 0)
+                .foregroundStyle(.linearGradient(colors: [.black, Color.orange],
+                                                 startPoint: .topTrailing, endPoint: .bottomTrailing))
+                .frame(height: 190)
+                .rotationEffect(.degrees(165))
+                .offset(x: 20, y: -10)
                 .padding()
         }
+    }
+
+    @ViewBuilder private var titleView: some View {
+
+            VStack(alignment: .leading) {
+                HStack() {
+                    Text("s T R E N G T H")
+                        .italic()
+                        .font(.headline)
+                        .foregroundStyle(Color.orange)
+                        .padding(.top, GridPoints.x4)
+
+                }
+                HStack() {
+
+                    Text("c a m P")
+                        .italic()
+                        .rotationEffect(.degrees(180))
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .font(.custom("Arial", size: 18))
+                    Image(.dumbell).resizable().frame(width: 40, height: 40)
+                        .rotationEffect(.degrees(145))
+                    Spacer()
+                    
+                }
+              
+            }.padding(.horizontal, GridPoints.custom(10))
     }
 
     
@@ -67,14 +96,17 @@ struct LoginView: View {
             onPress: {
                 
             }
-        ).padding(.horizontal, GridPoints.x6).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom).textInputAutocapitalization(.never)
+        ).padding(.horizontal, GridPoints.x8)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            .textInputAutocapitalization(.never)
+        
         CustomSecureFeild(
             textInput: $authViewAdapter.passwordInput,
             title: authViewAdapter.passwordPlaceHolder,
             onPress: {
                 
             }
-        ).padding(.horizontal, GridPoints.x6)
+        ).padding(.horizontal, GridPoints.x8)
             .padding(.bottom, GridPoints.x2)
     }
     
@@ -93,8 +125,8 @@ struct LoginView: View {
             Text("Sign Up")
                 .foregroundStyle(.white)
         })
-        .padding(.horizontal, GridPoints.custom(16))
-        .padding(.bottom, GridPoints.x2)
+       
+        .padding(.bottom, GridPoints.x3)
     }
 }
 

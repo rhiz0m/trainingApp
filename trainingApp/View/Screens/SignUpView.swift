@@ -20,7 +20,7 @@ struct SignUpView: View {
     
     @ViewBuilder private var content: some View {
         ZStack {
-            backgroundImageView(imageName: "gym_loginBg")
+            backgroundImageView(imageName: "gym_man")
             VStack(spacing: CGFloat(GridPoints.x3)) {
                 textFieldsView
                 buttonsView
@@ -38,7 +38,7 @@ struct SignUpView: View {
                 LinearGradient(
                     gradient: Gradient(
                         colors: [
-                            Color.indigo.opacity(0.5),
+                            Color.indigo.opacity(0.1),
                             Color.black.opacity(0.9)]
                     ),
                     startPoint: .top,
@@ -54,19 +54,19 @@ struct SignUpView: View {
             textInput: $authViewAdapter.emailInput,
             title: authViewAdapter.emailPlaceHolder,
             onPress: {}
-        ).padding(.horizontal, GridPoints.x6).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        ).padding(.horizontal, GridPoints.x8).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         
         CustomTextField(
             textInput: $authViewAdapter.passwordInput,
             title: authViewAdapter.passwordPlaceHolder,
             onPress: {}
-        ).padding(.horizontal, GridPoints.x6)
+        ).padding(.horizontal, GridPoints.x8)
         
         CustomTextField(
             textInput: $confirmPassword,
             title: authViewAdapter.confirmPasswordPlaceHolder,
             onPress: {}
-        ).padding(.horizontal, GridPoints.x6)
+        ).padding(.horizontal, GridPoints.x8)
             .padding(.bottom, GridPoints.x2)
             .padding(.bottom, GridPoints.x2)
         
@@ -74,7 +74,7 @@ struct SignUpView: View {
     
     @ViewBuilder private var buttonsView: some View {
         
-        PrimaryBtn(title: "Sign Up", onPress: {
+        Button(action: {
             if !authViewAdapter.emailInput.isEmpty && !authViewAdapter.passwordInput.isEmpty && authViewAdapter.passwordInput == confirmPassword {
                 database.registerUser(email: authViewAdapter.emailInput, password: authViewAdapter.passwordInput) { success in
                     if success {
@@ -84,12 +84,13 @@ struct SignUpView: View {
                     }
                 }
             }
-        })
-        .padding(.horizontal, GridPoints.custom(16))
+        }, label: {
+            PrimaryBtnStyle(title: "Sign Up", icon: "")
+        }).padding(.horizontal, GridPoints.custom(16))
         
         NavigationLink(destination: LoginView(db: database, authViewAdapter: authViewAdapter), label: {
             PrimaryBtnStyle(title: "Cancel",
-                           icon: "plus.circle.fill")
+                           icon: "")
         })
         .padding(.horizontal, GridPoints.custom(16))
     }}

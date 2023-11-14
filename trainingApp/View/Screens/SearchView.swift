@@ -12,7 +12,7 @@ struct SearchView: View {
     
     @ViewBuilder private var content: some View {
         ZStack {
-            backgroundImageView(imageName: "gym_loginBg")
+            backgroundImageView(imageName: "gym_womanBg")
             VStack(spacing: CGFloat(GridPoints.x3)) {
                 searchFeildView
                 resultListView()
@@ -30,8 +30,8 @@ struct SearchView: View {
                 LinearGradient(
                     gradient: Gradient(
                         colors: [
-                            Color.indigo.opacity(0.2),
-                            Color.black.opacity(0.9)]
+                            Color.cyan.opacity(0.05),
+                            Color.black.opacity(0.5)]
                     ),
                     startPoint: .top,
                     endPoint: .bottom

@@ -20,7 +20,7 @@ struct SignUpView: View {
     
     @ViewBuilder private var content: some View {
         ZStack {
-            backgroundImageView(imageName: "gym_man")
+            backgroundImageView(imageName: "gym_womanBg")
             VStack(spacing: CGFloat(GridPoints.x3)) {
                 textFieldsView
                 buttonsView
@@ -30,46 +30,45 @@ struct SignUpView: View {
     
     
     @ViewBuilder private func backgroundImageView(imageName: String) -> some View {
-        Image(imageName)
-            .resizable()
-            .scaledToFill()
-            .edgesIgnoringSafeArea(.bottom)
-            .overlay(
-                LinearGradient(
-                    gradient: Gradient(
-                        colors: [
-                            Color.indigo.opacity(0.1),
-                            Color.black.opacity(0.9)]
-                    ),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
+        
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
+            Image(imageName)
+                .resizable()
+                .scaledToFill()
                 .edgesIgnoringSafeArea(.bottom)
-            )
+                .overlay(
+                    LinearGradient(
+                        gradient: Gradient(
+                            colors: [
+                                CustomColors.magenta.opacity(0.05),
+                                Color.black.opacity(1)
+                            ]
+                        ),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .edgesIgnoringSafeArea(.bottom)
+                )
+        }
     }
     
     @ViewBuilder private var textFieldsView: some View {
         
         CustomTextField(
             textInput: $authViewAdapter.emailInput,
-            title: authViewAdapter.emailPlaceHolder,
-            onPress: {}
+            title: authViewAdapter.emailPlaceHolder
         ).padding(.horizontal, GridPoints.x8).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         
         CustomTextField(
             textInput: $authViewAdapter.passwordInput,
-            title: authViewAdapter.passwordPlaceHolder,
-            onPress: {}
+            title: authViewAdapter.passwordPlaceHolder
         ).padding(.horizontal, GridPoints.x8)
         
         CustomTextField(
             textInput: $confirmPassword,
-            title: authViewAdapter.confirmPasswordPlaceHolder,
-            onPress: {}
+            title: authViewAdapter.confirmPasswordPlaceHolder
         ).padding(.horizontal, GridPoints.x8)
             .padding(.bottom, GridPoints.x2)
-            .padding(.bottom, GridPoints.x2)
-        
     }
     
     @ViewBuilder private var buttonsView: some View {
@@ -89,8 +88,9 @@ struct SignUpView: View {
         }).padding(.horizontal, GridPoints.custom(16))
         
         NavigationLink(destination: LoginView(db: database, authViewAdapter: authViewAdapter), label: {
-            PrimaryBtnStyle(title: "Cancel",
-                           icon: "")
+            Text("Cancel")
+                .foregroundStyle(CustomColors.cyan)
+                .padding()
         })
         .padding(.horizontal, GridPoints.custom(16))
     }}

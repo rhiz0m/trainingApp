@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SplashScreen: View {
-    @State private var selected: Bool = false
-    
+    @State private var animationCompleted: Bool = false
+
     
     var body: some View {
         content
@@ -17,49 +17,90 @@ struct SplashScreen: View {
     
     @ViewBuilder private var content: some View {
         ZStack {
-            backgroundImageView(imageName: "gym_loginBg")
-            VStack() {
-                //splashLogo()
+           // backgroundImageView(imageName: "gymEquip")
+            VStack {
+                SplashLogo(animationCompleted: $animationCompleted)
             }
         }
     }
     
-    @ViewBuilder private func backgroundImageView(imageName: String) -> some View {
+/*    @ViewBuilder private func backgroundImageView(imageName: String) -> some View {
         Image(imageName)
             .resizable()
-            .scaledToFill()
+            .scaledToFit()
             .edgesIgnoringSafeArea(.bottom)
             .overlay(
                 LinearGradient(
                     gradient: Gradient(
                         colors: [
-                            Color.indigo.opacity(0.5),
-                            Color.black.opacity(0.9)]
+                            CustomColors.cyan.opacity(0.08),
+                            Color.black.opacity(0.7)]
                     ),
                     startPoint: .top,
                     endPoint: .bottom
                 )
                 .edgesIgnoringSafeArea(.bottom)
             )
-    }
+    } */
+}
+
+struct SplashLogo: View {
     
-    struct splashLogo: View {
-        
-        @State private var selected: Bool = false
-        
-        var body: some View {
-            
-            ZStack {
-                Image(.swiftui)
-                    .scaleEffect(selected ? 1.5 : 1.0)
-                    .onTapGesture {
-                        withAnimation(.bouncy) {
-                            selected.toggle()
+    @Binding var animationCompleted: Bool
+    
+    var body: some View {
+        ZStack {
+            if !animationCompleted {
+                splashText
+                    .opacity(animationCompleted ? 0 : 1)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                            withAnimation() {
+                                animationCompleted = true
+                            }
                         }
                     }
+            } else {
+                HomeView()
+            }
+        }
+        .transition(.opacity)
+    }
+    
+    private var splashText: some View {
+        VStack {
+            Image("logo")
+                .resizable()
+                .frame(width: 250, height: 250)
+                .scaledToFit()
+                .cornerRadius(30)
+            
+            HStack(spacing: 0) {
+                ForEach(Array("S T R E N G T H ◄ ► C A M P")
+                        , id: \.self) { char in
+                    Text(String(char))
+                        .bold()
+                        .italic()
+                        .font(Font.custom("San Francisco", size: 12)  )
+                        .foregroundColor(.black)
+                        .opacity(charOpacity[char] ?? 0)
+                        .animation(
+                            Animation.easeIn(duration: 0.5)
+                        )
+                        .onAppear {
+                            withAnimation {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    charOpacity[char] = 1
+                                }
+                            }
+                        }
+                }
             }
         }
     }
+
+    @State private var charOpacity: [Character: Double] = [:]
+
 }
 
 struct SplashScreen_Previews: PreviewProvider {

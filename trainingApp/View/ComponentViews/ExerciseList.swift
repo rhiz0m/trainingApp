@@ -6,21 +6,31 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+
 
 struct ExerciseList: View {
     @ObservedObject var db: DbConnection
     @StateObject private var viewModel = ExerciseViewModel()
+  
     
     var body: some View {
         VStack() {
             HStack(alignment: .center) {
-                Image(.barbell)
+                Image("logo")
                     .resizable()
+                    .frame(width: 80, height: 80)
                     .scaledToFit()
-                    .frame(width: 40, height: 40)
-                Text("Welcome")
+                    .cornerRadius(50)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 50)
+                            .stroke(Color.gray, lineWidth: 2)
+                    )
+                    .padding(.horizontal, GridPoints.x4)
+                Text("Welcome!")
                     .font(.title).bold()
                     .foregroundStyle(.black)
+                Spacer()
             }.padding(.top)
             
             if let userData = db.currentUserData {
@@ -28,6 +38,7 @@ struct ExerciseList: View {
                     Text("You have no programs yet!")
                         .foregroundStyle(CustomColors.dark)
                         .italic()
+                        .padding(.top)
                     
                     Spacer()
                 } else {

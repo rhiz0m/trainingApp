@@ -19,4 +19,11 @@ class AuthViewAdapter: ObservableObject, AuthViewAdapterer {
     var loginButtonText = "Login"
     var registerButtonText = "Sign Up"
     
+    init() {
+        emailInput = ""
+        confirmEmailInput = ""
+        passwordInput = ""
+        confirmPasswordInput = ""
+    }
+    
 }

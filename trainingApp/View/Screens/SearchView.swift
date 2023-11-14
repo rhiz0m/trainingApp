@@ -31,7 +31,7 @@ struct SearchView: View {
                     gradient: Gradient(
                         colors: [
                             Color.cyan.opacity(0.05),
-                            Color.black.opacity(0.5)]
+                            Color.black.opacity(1)]
                     ),
                     startPoint: .top,
                     endPoint: .bottom
@@ -113,7 +113,7 @@ struct SearchView: View {
        
         
         HStack {
-            CustomTextField(textInput: $title, title: "musclegroups...", onPress: {})
+            CustomTextField(textInput: $title, title: "musclegroups...")
             
             Button(action: {
                 withAnimation(.bouncy(duration: 0.5)) {

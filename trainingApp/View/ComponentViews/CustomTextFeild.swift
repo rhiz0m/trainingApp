@@ -14,7 +14,6 @@ struct CustomTextField: View {
     var fixedHeight: CGFloat = 44
     var fontSize: CGFloat = CGFloat(FontSizes().medium)
     var title: String
-    var onPress: () -> Void
     
     var body: some View {
         VStack {
@@ -32,7 +31,7 @@ struct CustomTextField: View {
                     .padding(GridPoints.half)
                     .overlay(
                         RoundedRectangle(cornerRadius: GridPoints.x6)
-                            .stroke(LinearGradient(gradient: Gradient(colors: [CustomColors.darkerCyan.opacity(0.8), CustomColors.cyan.opacity(0.6)]), startPoint: .bottom, endPoint: .top), lineWidth: 1)
+                            .stroke(LinearGradient(gradient: Gradient(colors: [CustomColors.darkerCyan.opacity(0.8), Color.white.opacity(0.6)]), startPoint: .bottom, endPoint: .top), lineWidth: 1)
                     )
                     .overlay(
                         Text(textInput.isEmpty ? title : textInput)
@@ -51,7 +50,7 @@ struct CustomTextFeild_Previews: PreviewProvider {
     @State static var textInput: String = ""
     
     static var previews: some View {
-        CustomTextField(textInput: $textInput, title: "textFeild Title", onPress: {})
+        CustomTextField(textInput: $textInput, title: "textFeild Title")
             .previewLayout(.sizeThatFits)
         
     }

@@ -161,6 +161,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE8622152B0410F5000348E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FE8EDA822AD16B6000B610A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +269,7 @@
 				FEF1E23F2AD0769C0080FE1C /* trainingAppTests */,
 				FEF1E2492AD0769C0080FE1C /* trainingAppUITests */,
 				FEF1E22D2AD0769B0080FE1C /* Products */,
+				FE8622152B0410F5000348E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -354,6 +362,8 @@
 				FEF1E23E2AD0769C0080FE1C /* PBXTargetDependency */,
 			);
 			name = trainingAppTests;
+			packageProductDependencies = (
+			);
 			productName = trainingAppTests;
 			productReference = FEF1E23C2AD0769C0080FE1C /* trainingAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";

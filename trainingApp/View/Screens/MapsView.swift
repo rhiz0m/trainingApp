@@ -29,6 +29,7 @@ struct MapsView: View {
         }
         .mapControls {
             MapCompass()
+            MapPitchToggle()
             MapUserLocationButton()
         }
     }

@@ -48,16 +48,6 @@ class DbConnection: ObservableObject {
             }
             
         }
-        //updateDateString()
-    }
-    
-
-    
-    func updateDateString() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-        dateString = dateFormatter.string(from: date)
     }
     
     func clearFeilds() {
@@ -179,57 +169,6 @@ class DbConnection: ObservableObject {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-    
-  /*  func updateProgram(exercise: UsersExcercise, completion: @escaping (Error?) -> Void) {
-        if let currentUser = currentUser {
-            do {
-                // Convert exercise to a dictionary using Firestore encoder
-                let exerciseData = try Firestore.Encoder().encode(exercise)
-
-                // Update Firestore with the modified exercise data
-                db.collection(USER_DATA_COLLECTION)
-                    .document(currentUser.uid)
-                    .setData(["userExercises.\(exercise.id.uuidString)": exerciseData], merge: true) { error in
-                        if let error = error {
-                            // Handle error
-                            print("Error updating Firestore: \(error.localizedDescription)")
-                        } else {
-                            // Document successfully updated
-                            print("Document successfully updated for exercise with ID: \(exercise.id)")
-                        }
-
-                        // Call the completion handler with the result
-                        completion(error)
-                    }
-            } catch {
-                // Handle error
-                print("Error encoding exercise: \(error.localizedDescription)")
-                completion(error)
-            }
-        }
-    } */
-
-
-
-
-
-
-
-
-
-
-
-    
     func registerUser(email: String, password: String, completion: @escaping (Bool) -> Void) {
         
         var success = false

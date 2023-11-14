@@ -1,9 +1,4 @@
-//
-//  ContentView.swift
-//  trainingApp
-//
-//  Created by Andreas Antonsson on 2023-10-06.
-//
+
 
 import SwiftUI
 

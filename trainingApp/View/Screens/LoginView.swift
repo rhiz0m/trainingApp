@@ -12,12 +12,17 @@ struct LoginView: View {
     
     @ObservedObject var db: DbConnection
     @ObservedObject var authViewAdapter: AuthViewAdapter
+    @State private var navigateToHome = false
     
     var body: some View {
         content
+        NavigationLink(destination: HomeView(), isActive: $navigateToHome) {
+            EmptyView()
+        }
     }
     
     @ViewBuilder private var content: some View {
+        
         ZStack {
             backgroundImageView(imageName: "gym_manBg")
             VStack(spacing: CGFloat(GridPoints.x3)) {
@@ -27,7 +32,6 @@ struct LoginView: View {
             }
         }
     }
-    
     
     @ViewBuilder private func backgroundImageView(imageName: String) -> some View {
         
@@ -40,7 +44,7 @@ struct LoginView: View {
                     LinearGradient(
                         gradient: Gradient(
                             colors: [
-                                CustomColors.cyan.opacity(0.07),
+                                CustomColors.cyan.opacity(0.05),
                                 Color.black.opacity(1)
                             ]
                         ),
@@ -51,51 +55,46 @@ struct LoginView: View {
                 )
             
             RoundedRectangle(cornerRadius: 30, style: .continuous)
-                .foregroundStyle(.linearGradient(colors: [.black, Color.orange],
+                .foregroundStyle(.linearGradient(colors: [.black, CustomColors.cyan.opacity(0.25)],
                                                  startPoint: .topTrailing, endPoint: .bottomTrailing))
                 .frame(height: 190)
                 .rotationEffect(.degrees(165))
-                .offset(x: 20, y: -10)
+                .offset(x: 20, y: -80)
                 .padding()
         }
     }
-
+    
     @ViewBuilder private var titleView: some View {
-
-            VStack(alignment: .leading) {
-                HStack() {
-                    Text("s T R E N G T H")
-                        .italic()
-                        .font(.headline)
-                        .foregroundStyle(Color.orange)
-                        .padding(.top, GridPoints.x4)
-
-                }
-                HStack() {
-
-                    Text("c a m P")
-                        .italic()
-                        .rotationEffect(.degrees(180))
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .font(.custom("Arial", size: 18))
-                    Image(.dumbell).resizable().frame(width: 40, height: 40)
-                        .rotationEffect(.degrees(145))
-                    Spacer()
-                    
-                }
-              
-            }.padding(.horizontal, GridPoints.custom(10))
+        
+        VStack(alignment: .leading) {
+            HStack(alignment: .center) {
+                Image("logo")
+                    .resizable()
+                    .frame(width: 70, height: 70)
+                    .scaledToFit()
+                    .cornerRadius(50)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 50)
+                            .stroke(Color.black, lineWidth: 2)
+                    )
+                
+                Text("S T R E N G T H ◄ ► C A M P")
+                    .padding()
+                    .bold()
+                    .italic()
+                    .font(Font.custom("San Francisco", size: 16)  )
+                    .foregroundColor(.white)
+                Spacer()
+            }.padding(.top).padding(.horizontal, GridPoints.x8)
+            
+        }
     }
-
+    
     
     @ViewBuilder private var textFieldsView: some View {
         CustomTextField(
             textInput: $authViewAdapter.emailInput,
-            title: authViewAdapter.emailPlaceHolder,
-            onPress: {
-                
-            }
+            title: authViewAdapter.emailPlaceHolder
         ).padding(.horizontal, GridPoints.x8)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .textInputAutocapitalization(.never)
@@ -112,27 +111,54 @@ struct LoginView: View {
     
     @ViewBuilder private var buttonsView: some View {
         
-        NavigationLink(destination: HomeView(), label: {
+        Button(action: {
             
-            PrimaryBtnStyle(title: "Login",
-                            icon: "")
-        }
-                       
-        )
+            loginPressed()
+            
+        }, label: {
+            PrimaryBtnStyle(title: "Login", icon: "")
+        })
+        
+        
         .padding(.horizontal, GridPoints.custom(16))
         
         NavigationLink(destination: SignUpView(database: db, authViewAdapter: authViewAdapter), label: {
             Text("Sign Up")
-                .foregroundStyle(.white)
+                .foregroundStyle(CustomColors.cyan)
         })
-       
         .padding(.bottom, GridPoints.x3)
     }
+    
+    func loginPressed() {
+        let email = authViewAdapter.emailInput
+        let password = authViewAdapter.passwordInput
+        
+        guard !email.isEmpty, !password.isEmpty else {
+            // Handle the case where email or password is empty
+            print("Email or password is empty")
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [self] authResult, error in
+            if let error = error {
+                print("Authentication failed: \(error.localizedDescription)")
+            } else {
+                print("Authentication successful")
+                self.navToHome()
+            }
+        }
+    }
+    
+    func navToHome() {
+        navigateToHome = true
+    }
+    
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-
+        
         LoginView(db: DbConnection(), authViewAdapter: AuthViewAdapter())
     }
 }

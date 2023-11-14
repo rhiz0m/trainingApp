@@ -24,12 +24,12 @@ struct PrimaryBtn: View {
                     .padding().frame(maxWidth: .infinity, minHeight: fixedHeight)
             }
             .background(
-                RoundedRectangle(cornerRadius: GridPoints.x6)
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color.indigo.opacity(0.6)]), startPoint: .center, endPoint: .top))
+                RoundedRectangle(cornerRadius: GridPoints.x2)
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.black, CustomColors.darkerCyan.opacity(0.6)]), startPoint: .center, endPoint: .top))
             )
             .overlay(
-                RoundedRectangle(cornerRadius: GridPoints.x6)
-                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.indigo, Color.indigo]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
+                RoundedRectangle(cornerRadius: GridPoints.x2)
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.black, CustomColors.darkerCyan]), startPoint: .top, endPoint: .bottom), lineWidth: 2)
             )
            
         }

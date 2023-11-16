@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct UpdateProgramView: View {
-    @ObservedObject var db: DbConnection
+    @ObservedObject var db: DbViewModel
     @ObservedObject var viewModel: ExerciseViewModel
     @Environment(\.dismiss) private var dismiss
     
@@ -25,8 +25,6 @@ struct UpdateProgramView: View {
                                    sets: $viewModel.sets)
             
             HStack {
-                
-                // Inside the closure for the "update" button press
                 PrimaryBtn(title: "update") {
                     print("Button Pressed!")
                     
@@ -90,34 +88,3 @@ struct UpdateProgramView: View {
         }
     }
 }
-
-/* struct UpdateProgramView_Previews: PreviewProvider {
-    static var previews: some View {
-    }
-} */
-
-
-
-/*   .onAppear {
-       if let currentUserData = db.currentUserData {
-           viewModel.exercises = currentUserData.usersExercises
-
-           // Assuming you want to display details for the first exercise initially
-           if let firstExercise = viewModel.exercises.first {
-               viewModel.exerciseName = firstExercise.exerciseName
-               viewModel.date = firstExercise.date.formatted()
-               viewModel.type = firstExercise.type
-               viewModel.muscleGroups = firstExercise.muscleGroups.joined(separator: ", ")
-
-               // Assuming you want details of the first training record of the first exercise
-               if let firstTrainingRecord = firstExercise.usersTrainingRecords.first {
-                   viewModel.weight = firstTrainingRecord.weight
-                   viewModel.sets = firstTrainingRecord.sets
-                   viewModel.reps = firstTrainingRecord.reps
-               }
-
-               // Print details for the current exercise
-               print("Exercise Name: \(viewModel.exerciseName)")
-           }
-       }
-   } */

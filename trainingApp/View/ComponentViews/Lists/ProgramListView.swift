@@ -18,7 +18,7 @@ struct ProgramListView: View {
 }
 
 @ViewBuilder private var list: some View {
-    ExerciseList(db: DbConnection())
+    ExerciseList(db: DbViewModel())
 }
 
 struct ProgramListView_Previews: PreviewProvider {

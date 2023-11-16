@@ -1,7 +1,7 @@
 import Foundation
 import Firebase
 
-class DbConnection: ObservableObject {
+class DbViewModel: ObservableObject {
     @Published var id = ""
     @Published var title = ""
     @Published var date = Date()

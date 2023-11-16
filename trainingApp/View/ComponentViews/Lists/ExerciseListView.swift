@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExerciseListView: View {
     
-    @ObservedObject var db = DbConnection()
+    @ObservedObject var db = DbViewModel()
     
     @State var name = ""
     @State var muscleGroups = ""

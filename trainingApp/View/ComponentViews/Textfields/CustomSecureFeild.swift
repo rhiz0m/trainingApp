@@ -12,7 +12,7 @@ struct CustomSecureFeild: View {
     @Binding var textInput: String
     
     var fixedHeight: CGFloat = 44
-    var fontSize: CGFloat = CGFloat(FontSizes().medium)
+    var fontSize: CGFloat = CGFloat(16)
     var title: String
     var onPress: () -> Void
     

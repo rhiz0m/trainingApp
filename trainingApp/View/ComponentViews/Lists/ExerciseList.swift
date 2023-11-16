@@ -10,7 +10,7 @@ import FirebaseAuth
 
 
 struct ExerciseList: View {
-    @ObservedObject var db: DbConnection
+    @ObservedObject var db: DbViewModel
     @StateObject private var viewModel = ExerciseViewModel()
   
     
@@ -135,5 +135,5 @@ private func formatDate(_ date: Date) -> String {
 }
 
 #Preview {
-    ExerciseList(db: DbConnection())
+    ExerciseList(db: DbViewModel())
 }

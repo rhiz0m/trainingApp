@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     
-    @ObservedObject var database: DbConnection
+    @ObservedObject var database: DbViewModel
     @ObservedObject var authViewAdapter: AuthViewAdapter
 
     @State var confirmPassword = ""
@@ -97,6 +97,6 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(database: DbConnection(), authViewAdapter: AuthViewAdapter())
+        SignUpView(database: DbViewModel(), authViewAdapter: AuthViewAdapter())
     }
 }

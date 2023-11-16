@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UpdateExerciseView: View {
-    @ObservedObject var db: DbConnection
+    @ObservedObject var db: DbViewModel
     
     @Binding var exerciseName: String
     @Binding var date: String
@@ -53,7 +53,7 @@ struct UpdateExerciseView: View {
 
 struct UpdateExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-        let db = DbConnection()
+        let db = DbViewModel()
         let selectedExercice = Binding<UsersTrainingRecord?>(
             get: { nil },
             set: { _ in }

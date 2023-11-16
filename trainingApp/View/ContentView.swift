@@ -21,7 +21,7 @@ struct ContentView: View {
 }
 
 @ViewBuilder private var bottomBar: some View {
-    BottomBarView(db: DbConnection()).background(.black)
+    BottomBarView(db: DbViewModel()).background(.black)
     
 }
 

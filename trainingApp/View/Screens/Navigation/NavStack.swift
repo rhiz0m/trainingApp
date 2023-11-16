@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NavStack: View {
-    @StateObject var db = DbConnection()
+    @StateObject var db = DbViewModel()
     @StateObject var authViewAdapter = AuthViewAdapter()
     
     var body: some View {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BottomBarView: View {
-    @ObservedObject var db: DbConnection
+    @ObservedObject var db: DbViewModel
     
     var body: some View {
  
@@ -29,7 +29,7 @@ struct BottomBarView: View {
                                        icon: "magnifyingglass.circle.fill")
                     })
                     
-                    NavigationLink(destination: MapsView(), label: {
+                    NavigationLink(destination: Maps(), label: {
                         PrimaryBtnStyle(title: "Maps",
                                        icon: "map.fill")
                     })
@@ -48,5 +48,5 @@ struct BottomBarView: View {
 
 
 #Preview {
-    BottomBarView(db: DbConnection())
+    BottomBarView(db: DbViewModel())
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateProgramView: View {
     
-    @ObservedObject var db: DbConnection
+    @ObservedObject var db: DbViewModel
     
     @Environment(\.dismiss) private var dismiss
     
@@ -85,7 +85,7 @@ struct CreateProgramView: View {
 }
 struct CreateProgramView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProgramView(db: DbConnection())
+        CreateProgramView(db: DbViewModel())
     }
 }
 

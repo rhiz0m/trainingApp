@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateExerciseView: View {
-    @ObservedObject var db: DbConnection
+    @ObservedObject var db: DbViewModel
     @Environment(\.dismiss) private var dismiss
     
     @State var exerciseName = ""
@@ -73,7 +73,7 @@ struct CreateExerciseView: View {
 
 struct CreateExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-        let db = DbConnection()
+        let db = DbViewModel()
         let selectedExercise = Binding<UsersExcercise?>(
             get: { nil },
             set: { _ in }

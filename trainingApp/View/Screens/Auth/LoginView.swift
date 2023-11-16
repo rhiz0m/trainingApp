@@ -10,7 +10,7 @@ import Firebase
 
 struct LoginView: View {
     
-    @ObservedObject var db: DbConnection
+    @ObservedObject var db: DbViewModel
     @ObservedObject var authViewAdapter: AuthViewAdapter
     @State private var navigateToHome = false
     
@@ -159,7 +159,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         
-        LoginView(db: DbConnection(), authViewAdapter: AuthViewAdapter())
+        LoginView(db: DbViewModel(), authViewAdapter: AuthViewAdapter())
     }
 }
 

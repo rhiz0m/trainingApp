@@ -48,7 +48,7 @@ struct HomeView: View {
 }
 
 @ViewBuilder private var bottomBar: some View {
-    BottomBarView(db: DbConnection())
+    BottomBarView(db: DbViewModel())
     
 }
 

@@ -47,6 +47,7 @@
 		FEA386522AEA9326006189E5 /* TrainingRecordFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA386512AEA9326006189E5 /* TrainingRecordFormView.swift */; };
 		FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8DD6E2AD983AA00286223 /* SplashScreen.swift */; };
 		FEAF9CF62AE1340A001D0461 /* ProgramListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAF9CF52AE1340A001D0461 /* ProgramListView.swift */; };
+		FEBE88912B090067008A173E /* LocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBE88902B090067008A173E /* LocationDetailsView.swift */; };
 		FEC2DA942AD475D4003F88C4 /* GridPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA932AD475D4003F88C4 /* GridPoints.swift */; };
 		FEC2DA982AD4796E003F88C4 /* AuthViewAdapterer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA972AD4796E003F88C4 /* AuthViewAdapterer.swift */; };
 		FEC2DA9A2AD47A48003F88C4 /* AuthViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC2DA992AD47A48003F88C4 /* AuthViewAdapter.swift */; };
@@ -111,6 +112,7 @@
 		FEA386512AEA9326006189E5 /* TrainingRecordFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingRecordFormView.swift; sourceTree = "<group>"; };
 		FEA8DD6E2AD983AA00286223 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		FEAF9CF52AE1340A001D0461 /* ProgramListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramListView.swift; sourceTree = "<group>"; };
+		FEBE88902B090067008A173E /* LocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsView.swift; sourceTree = "<group>"; };
 		FEC2DA932AD475D4003F88C4 /* GridPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPoints.swift; sourceTree = "<group>"; };
 		FEC2DA972AD4796E003F88C4 /* AuthViewAdapterer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewAdapterer.swift; sourceTree = "<group>"; };
 		FEC2DA992AD47A48003F88C4 /* AuthViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewAdapter.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		FE8EDA832AD16B6D00B610A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FEBE88922B090088008A173E /* Maps */,
 				FE8EDAA02AD1779600B610A6 /* ComponentViews */,
 				FE8EDA9F2AD176BA00B610A6 /* Styles */,
 				FE8EDA862AD1719F00B610A6 /* Screens */,
@@ -259,7 +262,6 @@
 		FE9A94962B066365009FC6A0 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				FE8CC3E12AFB7E270042EBDF /* Maps.swift */,
 				FE8ECEE62AD6C05C008B5E15 /* PrimaryBtnStyle.swift */,
 			);
 			path = Buttons;
@@ -358,6 +360,15 @@
 				FE8A72622B011E3C00A0FF80 /* NavStack.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		FEBE88922B090088008A173E /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				FE8CC3E12AFB7E270042EBDF /* Maps.swift */,
+				FEBE88902B090067008A173E /* LocationDetailsView.swift */,
+			);
+			path = Maps;
 			sourceTree = "<group>";
 		};
 		FEF1E2232AD0769B0080FE1C = {
@@ -575,6 +586,7 @@
 				FE8ECEE72AD6C05C008B5E15 /* PrimaryBtnStyle.swift in Sources */,
 				FEC2DA942AD475D4003F88C4 /* GridPoints.swift in Sources */,
 				FEF1E2302AD0769B0080FE1C /* trainingApp.swift in Sources */,
+				FEBE88912B090067008A173E /* LocationDetailsView.swift in Sources */,
 				FE7D2A6B2AE6AC5B00FEEA4D /* CreateExerciseView.swift in Sources */,
 				FE8EDA882AD171D000B610A6 /* LoginView.swift in Sources */,
 				FEA386522AEA9326006189E5 /* TrainingRecordFormView.swift in Sources */,

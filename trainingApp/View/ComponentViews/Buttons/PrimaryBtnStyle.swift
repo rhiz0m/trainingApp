@@ -12,6 +12,7 @@ struct PrimaryBtnStyle: View {
     var title: String
     var height: CGFloat = 44
     var icon: String
+    var fontSize: CGFloat = 16
     
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [Color.black, Color.blue.opacity(0.45)]), startPoint: .bottom, endPoint: .top)
@@ -29,7 +30,7 @@ struct PrimaryBtnStyle: View {
                         VStack(alignment: .leading) {
                             HStack(alignment: .center) {
                                 Text(title)
-                                    .font(.custom("Roboto-Medium", size: 16))
+                                    .font(.custom("Roboto-Medium", size: fontSize))
                                     .foregroundColor(.white)
                                 Image(systemName: icon)
                                     .foregroundColor(.blue)

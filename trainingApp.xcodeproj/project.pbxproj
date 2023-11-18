@@ -25,6 +25,7 @@
 		FE7D2A692AE5583200FEEA4D /* CreateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A682AE5583200FEEA4D /* CreateProgramView.swift */; };
 		FE7D2A6B2AE6AC5B00FEEA4D /* CreateExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */; };
 		FE7D2A6D2AE6AD0A00FEEA4D /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */; };
+		FE80B2FD2B0795A600597A22 /* CustomBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE80B2FC2B0795A600597A22 /* CustomBottomBar.swift */; };
 		FE86BE7D2AF3A22A00863EA4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86BE7C2AF3A22A00863EA4 /* UserData.swift */; };
 		FE8A725F2B00EDAC00A0FF80 /* ExerciseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A725E2B00EDAC00A0FF80 /* ExerciseList.swift */; };
 		FE8A72612B00F91E00A0FF80 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8A72602B00F91E00A0FF80 /* BottomBarView.swift */; };
@@ -88,6 +89,7 @@
 		FE7D2A682AE5583200FEEA4D /* CreateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProgramView.swift; sourceTree = "<group>"; };
 		FE7D2A6A2AE6AC5B00FEEA4D /* CreateExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseView.swift; sourceTree = "<group>"; };
 		FE7D2A6C2AE6AD0A00FEEA4D /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
+		FE80B2FC2B0795A600597A22 /* CustomBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomBar.swift; sourceTree = "<group>"; };
 		FE86BE7C2AF3A22A00863EA4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FE8A725E2B00EDAC00A0FF80 /* ExerciseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseList.swift; sourceTree = "<group>"; };
 		FE8A72602B00F91E00A0FF80 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
@@ -155,6 +157,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE80B2FB2B07957C00597A22 /* CustomBottomBar */ = {
+			isa = PBXGroup;
+			children = (
+				FE80B2FC2B0795A600597A22 /* CustomBottomBar.swift */,
+			);
+			path = CustomBottomBar;
+			sourceTree = "<group>";
+		};
 		FE8622152B0410F5000348E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +236,7 @@
 		FE8EDA9F2AD176BA00B610A6 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				FE80B2FB2B07957C00597A22 /* CustomBottomBar */,
 				FE9A94A02B0666B8009FC6A0 /* CustomColors */,
 				FE9A949F2B0666A4009FC6A0 /* GridPoints */,
 				FE9A949E2B066681009FC6A0 /* ButtonStyles */,
@@ -570,6 +581,7 @@
 				FE69EAC32ADC45F000F3D825 /* DbViewModel.swift in Sources */,
 				FE9A94A32B066905009FC6A0 /* MapsView.swift in Sources */,
 				FE8A72632B011E3D00A0FF80 /* NavStack.swift in Sources */,
+				FE80B2FD2B0795A600597A22 /* CustomBottomBar.swift in Sources */,
 				FE7D2A6D2AE6AD0A00FEEA4D /* ExerciseListView.swift in Sources */,
 				FE8EDA8A2AD171EF00B610A6 /* SignUpView.swift in Sources */,
 				FEA8DD6F2AD983AA00286223 /* SplashScreen.swift in Sources */,

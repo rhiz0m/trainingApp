@@ -125,7 +125,7 @@ struct SearchView: View {
                         .scaleEffect(selected ? 1.1 : 1.0)
             })
         }.padding(.horizontal, GridPoints.x8)
-            .padding(.vertical, GridPoints.x4)
+            .padding(.top, GridPoints.x4)
            
         }
     }

@@ -13,7 +13,6 @@ struct ExerciseList: View {
     @ObservedObject var db: DbViewModel
     @StateObject private var viewModel = ExerciseViewModel()
   
-    
     var body: some View {
         VStack() {
             HStack(alignment: .center) {
@@ -26,12 +25,18 @@ struct ExerciseList: View {
                         RoundedRectangle(cornerRadius: 50)
                             .stroke(Color.gray, lineWidth: 2)
                     )
-                    .padding(.horizontal, GridPoints.x4)
+                  Spacer()
                 Text("Welcome!")
                     .font(.title).bold()
                     .foregroundStyle(.black)
                 Spacer()
-            }.padding(.top)
+                Button(action: {
+                    db.logout()
+                }, label: {
+                    RoundedBtn(title: "", icon: "power")
+                }).background(.black).cornerRadius(50)
+             
+            }.padding(.top).padding(.horizontal, GridPoints.x4)
             
             if let userData = db.currentUserData {
                 if userData.usersExercises.isEmpty {

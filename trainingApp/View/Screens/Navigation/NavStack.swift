@@ -17,7 +17,7 @@ struct NavStack: View {
 
             NavigationStack {
                 VStack {
-                    SplashScreen() //Homeview()
+                    SplashScreen()
                 }
             }
     

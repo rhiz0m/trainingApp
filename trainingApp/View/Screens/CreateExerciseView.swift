@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateExerciseView: View {
     @ObservedObject var db: DbViewModel
-    @Environment(\.dismiss) private var dismiss
+    @State private var navigateToListView = false
     
     @State var exerciseName = ""
     @State var date = ""
@@ -30,6 +30,7 @@ struct CreateExerciseView: View {
             
             HStack {
                 PrimaryBtn(title: "Save", onPress: {
+                    navigateToListView = true
                     
                     let weightValue = Double(weight) ?? 0.0
                     
@@ -55,13 +56,13 @@ struct CreateExerciseView: View {
                         
                         db.addProgramToDb(userExercise: newExercise)
                         
-                        dismiss()
+                      
                     }
-                })
+                }).background(NavigationLink("", destination: HomeView(), isActive: $navigateToListView))
                 
                 PrimaryBtn(title: "Cancel", onPress: {
-                    dismiss()
-                })
+                    navigateToListView = true
+                }).background(NavigationLink("", destination: HomeView(), isActive: $navigateToListView))
             }
             .padding(.vertical, GridPoints.x1)
             .padding(.horizontal, GridPoints.x4)

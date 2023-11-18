@@ -5,7 +5,7 @@ struct HomeView: View {
     
     
     var body: some View {
-            VStack {
+            VStack() {
                 content
             }.navigationBarBackButtonHidden(true)
     }
@@ -16,9 +16,9 @@ struct HomeView: View {
         backgroundImageView(imageName: "gymEquipBg")
             .edgesIgnoringSafeArea(.vertical)
         VStack() {
-                programList
-                Spacer()
-                bottomBar
+            Spacer()
+            bottomBar()
+     
             }
         }
     }
@@ -27,7 +27,6 @@ struct HomeView: View {
     Image(imageName)
         .resizable()
         .scaledToFit()
-        .edgesIgnoringSafeArea(.vertical)
         .overlay(
             LinearGradient(
                 gradient: Gradient(
@@ -38,18 +37,32 @@ struct HomeView: View {
                 startPoint: .top,
                 endPoint: .bottom
             )
-        ).background(.black)
+        )
 }
 
 
-@ViewBuilder private var programList: some View {
-        ProgramListView()
-    
-}
-
-@ViewBuilder private var bottomBar: some View {
-    BottomBarView(db: DbViewModel())
-    
+struct bottomBar: View {
+    @State private var tabSelection = 1
+    var body: some View {
+        ZStack(alignment: .bottom) {
+                TabView(selection: $tabSelection) {
+                    ProgramListView()
+                        .tabItem {
+                    }.tag(1)
+                    
+                    CreateExerciseView(db: DbViewModel()).tabItem {
+                    }.tag(2)
+                    
+                    SearchView().tabItem {
+                    }.tag(3)
+                    
+                    
+                    MapsView().tabItem {
+                    }.tag(4)
+                }
+                CustomBottomBar(tabSelection: $tabSelection)
+            }
+    }
 }
 
 struct HomeView_Previews: PreviewProvider {
